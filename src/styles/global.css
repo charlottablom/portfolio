@@ -1,0 +1,30 @@
+/*
+  Neutral starting tokens only. Colour palette and typeface are a design
+  decision for Charlotta — see instructions/DESIGN_SYSTEM.md.
+*/
+:root {
+  --color-background: #ffffff;
+  --color-text: #111111;
+  --color-muted: #666666;
+  --color-border: #dddddd;
+
+  --font-body: system-ui, sans-serif;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+  --space-5: 8rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
