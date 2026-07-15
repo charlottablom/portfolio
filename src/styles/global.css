@@ -44,6 +44,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: var(--line-height-base);
+  text-transform: lowercase;
   -webkit-font-smoothing: antialiased;
 }
 
