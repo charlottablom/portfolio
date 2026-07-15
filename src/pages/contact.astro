@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
 ---
 
 <Layout title="Contact — Charlotta Blom" description="Contact details for Charlotta Blom.">
-	<section class="page-intro container">
-		<h1>Contact</h1>
+	<PageIntro title="Contact" circleRotation={270}>
 		<ul class="contact-list">
 			<li>
 				<span class="contact-list__label">Email</span>
@@ -22,14 +22,10 @@ import Layout from '../layouts/Layout.astro';
 				</a>
 			</li>
 		</ul>
-	</section>
+	</PageIntro>
 </Layout>
 
 <style>
-  .page-intro {
-    padding-block: var(--space-5) var(--space-4);
-  }
-
   .contact-list {
     margin-top: var(--space-3);
     display: flex;

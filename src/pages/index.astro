@@ -1,13 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
 ---
 
 <Layout title="Charlotta Blom — Portfolio">
-	<section class="hero container">
-		<h1>Charlotta Blom</h1>
+	<PageIntro title="Charlotta Blom" circleRotation={0}>
 		<p class="hero__tagline">Architecture — Urbanism — Emerging Technologies</p>
 		<p class="hero__intro">Designing across disciplines, scales, and methods.</p>
-	</section>
+	</PageIntro>
 
 	<section class="section container">
 		<h2>Selected Work</h2>
@@ -16,10 +16,6 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .hero {
-    padding-block: var(--space-5) var(--space-4);
-  }
-
   .hero__tagline {
     margin-top: var(--space-2);
     font-size: var(--font-size-lg);

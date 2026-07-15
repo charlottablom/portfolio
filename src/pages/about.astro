@@ -1,20 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
 ---
 
 <Layout title="About — Charlotta Blom" description="About Charlotta Blom's practice and approach.">
-	<section class="page-intro container">
-		<h1>About</h1>
-		<p>Introductory text about practice, background and approach will go here.</p>
-	</section>
+	<PageIntro title="About" circleRotation={90}>
+		<p class="page-intro__lead">Introductory text about practice, background and approach will go here.</p>
+	</PageIntro>
 </Layout>
 
 <style>
-  .page-intro {
-    padding-block: var(--space-5) var(--space-4);
-  }
-
-  .page-intro p {
+  .page-intro__lead {
     margin-top: var(--space-3);
     max-width: 40rem;
     font-size: var(--font-size-lg);

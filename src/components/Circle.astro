@@ -1,0 +1,37 @@
+---
+interface Props {
+  color?: string;
+  size?: string;
+  rotation?: number;
+}
+
+const {
+  color = 'var(--color-text)',
+  size = 'clamp(10rem, 24vw, 24rem)',
+  rotation = 0,
+} = Astro.props;
+---
+
+<div
+  class="circle"
+  style={`--circle-color: ${color}; --circle-diameter: ${size}; --circle-rotation: ${rotation}deg;`}
+  aria-hidden="true"
+></div>
+
+<style>
+  /*
+    Quarter circle, not a clipped full circle: the box is sized to the
+    original circle's radius (half its diameter), so the arc's curvature
+    matches what a full circle of that diameter would have been.
+    Rotation turns which quarter is showing without changing that radius.
+  */
+  .circle {
+    width: calc(var(--circle-diameter) / 2);
+    height: calc(var(--circle-diameter) / 2);
+    border-radius: 100% 0 0 0;
+    background: var(--circle-color);
+    transform: rotate(var(--circle-rotation));
+    transform-origin: center;
+    flex-shrink: 0;
+  }
+</style>

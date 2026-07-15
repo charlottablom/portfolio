@@ -1,0 +1,33 @@
+---
+import Circle from './Circle.astro';
+
+interface Props {
+  title: string;
+  circleRotation?: number;
+}
+
+const { title, circleRotation = 0 } = Astro.props;
+---
+
+<section class="page-intro container">
+	<div class="page-intro__text">
+		<h1>{title}</h1>
+		<slot />
+	</div>
+	<Circle rotation={circleRotation} />
+</section>
+
+<style>
+  .page-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    padding-block: var(--space-5) var(--space-4);
+  }
+
+  .page-intro__text {
+    flex: 1 1 28rem;
+  }
+</style>

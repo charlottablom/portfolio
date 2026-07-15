@@ -1,14 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
 ---
 
 <Layout title="Projects — Charlotta Blom" description="Selected projects by Charlotta Blom.">
-	<section class="page-intro container">
-		<h1>Projects</h1>
-	</section>
+	<PageIntro title="Projects" circleRotation={180} />
 
 	<section class="projects container">
 		{projects.length === 0 ? (
@@ -24,10 +23,6 @@ const projects = await getCollection('projects');
 </Layout>
 
 <style>
-  .page-intro {
-    padding-block: var(--space-5) var(--space-4);
-  }
-
   .projects {
     padding-block: var(--space-4);
     border-top: 1px solid var(--color-border);
