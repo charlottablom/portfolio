@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@fontsource/montserrat": "^5.2.8",
     "astro": "^7.0.9"
   },
   "allowScripts": {

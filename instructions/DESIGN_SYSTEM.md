@@ -119,6 +119,11 @@ Avoid:
 
 Typography exists to support the work rather than define it.
 
+Typeface: Montserrat. Confirmed by Charlotta on 2026-07-16. Self-hosted via
+the @fontsource/montserrat package rather than an external font CDN, to
+avoid a runtime dependency on a third-party service and keep page loads
+self-contained.
+
 
 ------------------------------------------------
 
