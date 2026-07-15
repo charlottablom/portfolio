@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<Layout title="Projects — Charlotta Blom" description="Selected projects by Charlotta Blom.">
+	<section class="page-intro container">
+		<h1>Projects</h1>
+	</section>
+
+	<section class="projects container">
+		{projects.length === 0 ? (
+			<p class="projects__empty">Projects will be added here.</p>
+		) : (
+			<ul class="projects__list">
+				{projects.map((project) => (
+					<li>{project.data.title}</li>
+				))}
+			</ul>
+		)}
+	</section>
+</Layout>
+
+<style>
+  .page-intro {
+    padding-block: var(--space-5) var(--space-4);
+  }
+
+  .projects {
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .projects__empty {
+    color: var(--color-muted);
+  }
+</style>

@@ -1,17 +1,47 @@
 ---
-import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Charlotta Blom — Portfolio</title>
-	</head>
-	<body>
-		<main>
-			<h1>Charlotta Blom</h1>
-			<p>Portfolio scaffold — content and design to follow.</p>
-		</main>
-	</body>
-</html>
+<Layout title="Charlotta Blom — Portfolio">
+	<section class="hero container">
+		<h1>Charlotta Blom</h1>
+		<p class="hero__tagline">Architecture — Urbanism — Research — Emerging Technologies</p>
+		<p class="hero__intro">
+			Work exploring multidisciplinary approaches to complex spatial challenges, combining
+			architectural design with analytical and research-driven methods.
+		</p>
+	</section>
+
+	<section class="section container">
+		<h2>Selected Work</h2>
+		<p class="section__empty">Projects will be added here.</p>
+	</section>
+</Layout>
+
+<style>
+  .hero {
+    padding-block: var(--space-5) var(--space-4);
+  }
+
+  .hero__tagline {
+    margin-top: var(--space-2);
+    font-size: var(--font-size-lg);
+    color: var(--color-muted);
+  }
+
+  .hero__intro {
+    margin-top: var(--space-3);
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+  }
+
+  .section {
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section__empty {
+    margin-top: var(--space-2);
+    color: var(--color-muted);
+  }
+</style>

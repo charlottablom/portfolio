@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact — Charlotta Blom" description="Contact details for Charlotta Blom.">
+	<section class="page-intro container">
+		<h1>Contact</h1>
+		<ul class="contact-list">
+			<li>
+				<span class="contact-list__label">Email</span>
+				<span class="contact-list__value">[to be added]</span>
+			</li>
+			<li>
+				<span class="contact-list__label">LinkedIn</span>
+				<span class="contact-list__value">[to be added]</span>
+			</li>
+		</ul>
+	</section>
+</Layout>
+
+<style>
+  .page-intro {
+    padding-block: var(--space-5) var(--space-4);
+  }
+
+  .contact-list {
+    margin-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--font-size-lg);
+  }
+
+  .contact-list__label {
+    color: var(--color-muted);
+    margin-right: var(--space-2);
+  }
+</style>
