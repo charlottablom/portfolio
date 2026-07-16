@@ -2,8 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import { getCollection } from 'astro:content';
+import { featuredProjects } from '../config/featured-projects';
 
-const projects = await getCollection('projects');
+const allProjects = await getCollection('projects');
+
+const projects =
+  featuredProjects.length === 0
+    ? allProjects
+    : featuredProjects
+        .map((slug) => allProjects.find((project) => project.id === slug))
+        .filter((project) => project !== undefined);
 ---
 
 <Layout title="Projects — Charlotta Blom" description="Selected projects by Charlotta Blom.">
@@ -15,7 +23,14 @@ const projects = await getCollection('projects');
 		) : (
 			<ul class="projects__list">
 				{projects.map((project) => (
-					<li>{project.data.title}</li>
+					<li class="projects__item">
+						<a href={`/projects/${project.id}`}>
+							<span class="projects__item-title">{project.data.title}</span>
+							<span class="projects__item-meta">
+								{project.data.subtitle} — {project.data.year}
+							</span>
+						</a>
+					</li>
 				))}
 			</ul>
 		)}
@@ -29,6 +44,28 @@ const projects = await getCollection('projects');
   }
 
   .projects__empty {
+    color: var(--color-muted);
+  }
+
+  .projects__item + .projects__item {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .projects__item a {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-3);
+    padding-block: var(--space-3);
+    text-decoration: none;
+  }
+
+  .projects__item-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+  }
+
+  .projects__item-meta {
     color: var(--color-muted);
   }
 </style>

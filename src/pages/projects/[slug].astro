@@ -1,0 +1,156 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const {
+  title,
+  subtitle,
+  year,
+  location,
+  projectType,
+  role,
+  collaborators,
+  tools,
+  themes,
+  description,
+  coverImage,
+  coverImageAlt,
+} = project.data;
+
+const { Content } = await render(project);
+---
+
+<Layout title={`${title} — Charlotta Blom`} description={description}>
+	<article class="project">
+		<header class="project__header container">
+			<p class="project__back"><a href="/projects">← Projects</a></p>
+			<h1>{title}</h1>
+			<p class="project__subtitle">{subtitle}</p>
+
+			<dl class="project__meta">
+				<div>
+					<dt>Year</dt>
+					<dd>{year}</dd>
+				</div>
+				{location && (
+					<div>
+						<dt>Location</dt>
+						<dd>{location}</dd>
+					</div>
+				)}
+				<div>
+					<dt>Type</dt>
+					<dd>{projectType}</dd>
+				</div>
+				<div>
+					<dt>Role</dt>
+					<dd>{role}</dd>
+				</div>
+				{collaborators && collaborators.length > 0 && (
+					<div>
+						<dt>Collaborators</dt>
+						<dd>{collaborators.join(', ')}</dd>
+					</div>
+				)}
+				<div>
+					<dt>Tools</dt>
+					<dd>{tools.join(', ')}</dd>
+				</div>
+				<div>
+					<dt>Themes</dt>
+					<dd>{themes.join(', ')}</dd>
+				</div>
+			</dl>
+		</header>
+
+		<Image class="project__cover container" src={coverImage} alt={coverImageAlt} />
+
+		<div class="project__body container">
+			<Content />
+		</div>
+	</article>
+</Layout>
+
+<style>
+  .project__header {
+    padding-block: var(--space-4);
+  }
+
+  .project__back {
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+
+  .project__subtitle {
+    margin-top: var(--space-2);
+    max-width: 40rem;
+    font-size: var(--font-size-lg);
+    color: var(--color-muted);
+  }
+
+  .project__meta {
+    margin: var(--space-4) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-3);
+  }
+
+  .project__meta div {
+    min-width: 8rem;
+  }
+
+  .project__meta dt {
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+  }
+
+  .project__meta dd {
+    margin: 0;
+    margin-top: var(--space-0);
+  }
+
+  .project__cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: var(--space-4);
+  }
+
+  .project__body {
+    padding-block: var(--space-4) var(--space-5);
+    max-width: 48rem;
+  }
+
+  .project__body :global(h2) {
+    margin-top: var(--space-4);
+    font-size: var(--font-size-2xl);
+  }
+
+  .project__body :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .project__body :global(p) {
+    margin-top: var(--space-2);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-base);
+  }
+
+  .project__body :global(img) {
+    width: 100%;
+    height: auto;
+    margin-block: var(--space-3);
+  }
+</style>
