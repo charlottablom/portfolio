@@ -133,11 +133,12 @@ const { Content } = await render(project);
   }
 
   /*
-    Text stays in a narrow, readable column. Images (placed via the
-    <Image> component in project MDX files) are direct children of this
-    container rather than nested in a paragraph, so they're unaffected
-    by this rule and stay at the full container width - giving maps and
-    diagrams with fine text/labels room to stay legible.
+    Text stays in a narrow, readable column. Images and figures (placed
+    via the <Image> component, optionally wrapped in <figure> for a
+    caption, in project MDX files) are direct children of this container
+    rather than nested in a paragraph, so they're unaffected by this rule
+    and stay at the full container width - giving maps and diagrams with
+    fine text/labels room to stay legible.
   */
   .project__body :global(h2),
   .project__body :global(p) {
@@ -164,6 +165,20 @@ const { Content } = await render(project);
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  .project__body :global(img),
+  .project__body :global(figure) {
     margin-block: var(--space-4);
+  }
+
+  .project__body :global(figure) {
+    margin-inline: 0;
+  }
+
+  .project__body :global(figcaption) {
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
   }
 </style>

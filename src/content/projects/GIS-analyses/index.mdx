@@ -1,0 +1,64 @@
+---
+title: "Siting a New Preschool in Östra Göteborg"
+subtitle: "A GIS site-suitability analysis balancing children's needs, transit access, and existing barriers"
+year: "CONFIRM: e.g. 2024"
+location: "Bergsjön, Gothenburg, Sweden"
+projectType: "Coursework"
+role: "GIS analysis and mapping"
+tools: ["QGIS", "Place Syntax Tool (PST)"]
+themes: ["Urbanism", "Research", "Computational Design"]
+description: "A GIS analysis identifying suitable sites for a new preschool in Östra Göteborg, weighing estimated child population, transit access, and physical or regulatory barriers."
+coverImage: "./final_sites_map.jpg"
+coverImageAlt: "Map showing three candidate sites for a new preschool highlighted in green across a residential district, with a table listing each site's area, capacity, and expected number of children."
+---
+
+import { Image } from 'astro:assets';
+import workflow from './diagram_1.jpg';
+import barriers from './barriers_map.jpg';
+import transit from './transit_map.jpg';
+import preschoolProximity from './preschool_proximity_map.jpg';
+import finalSites from './final_sites_map.jpg';
+
+## Context
+
+Bergsjön, in Östra Göteborg, needs a new preschool - but where? This analysis works through that question systematically: estimating how many children live in different parts of the district, then narrowing down to sites that are actually viable once real-world constraints are taken into account.
+
+## Methods
+
+Using QGIS alongside the Place Syntax Tool (PST) plug-in, the analysis layers several criteria on top of each other.
+
+<Image src={workflow} width={1600} alt="Workflow diagram showing the analysis process: overview of data and data types, data limitation, data processing, overlap analysis, and presentation, each with the specific QGIS operations used." />
+
+Barriers rule out land that's unsuitable for any preschool, regardless of demand: major roads and industrial areas (with a 100-metre buffer, to keep distance from traffic and noise), terrain steeper than 20 degrees, and existing buildings (an 8-metre buffer, so nothing existing would need to be demolished).
+
+<figure>
+  <Image src={barriers} width={1600} alt="Map showing barriers to preschool development across Östra Göteborg: major roads, industrial areas, and terrain steeper than 20 degrees, each shown with its buffer zone, overlaid on existing buildings." />
+  <figcaption>Barriers to preschool development: major roads, industrial areas, and steep terrain.</figcaption>
+</figure>
+
+Separately, PST's attraction-reach function measures how many public transit stops fall within a 500-metre walk of each street segment - the distance most people are willing to walk, per Gehl (2010).
+
+<figure>
+  <Image src={transit} width={1600} alt="Map showing streets across Östra Göteborg color-coded by how many public transit stops are reachable within a 500-metre walk, using the Place Syntax Tool's attraction-reach function." />
+  <figcaption>Public transit proximity: streets within a 500-metre walk of a stop.</figcaption>
+</figure>
+
+The same method, repeated with existing preschools as the attraction target instead of transit stops, identifies areas currently underserved - then narrowed to where the most children already live or are expected to live within five years.
+
+<figure>
+  <Image src={preschoolProximity} width={1600} alt="Map showing street segments that are both within 500 metres of transit and further than 500 metres from any existing preschool, overlaid with areas shaded by expected number of children." />
+  <figcaption>Streets within reach of transit but underserved by existing preschools, shaded by expected number of children.</figcaption>
+</figure>
+
+## Outcomes
+
+Overlapping all these layers - viable land, transit access, distance from existing preschools, and proximity to areas with the most children - narrows the district down to three candidate sites. Site 1 is the strongest match: large enough for 352 children against a projected need of 209, and a short walk from the Rymdtorget tram stop. Its main drawback is that it currently sits on forested land, so building there would mean clearing trees. Sites 2 and 3 are smaller and don't fully meet the size needed for their local demand, but illustrate what the method generates elsewhere in the district.
+
+<figure>
+  <Image src={finalSites} width={1600} alt="Map showing three candidate sites for a new preschool highlighted in green across a residential district, with a table listing each site's area, capacity, and expected number of children." />
+  <figcaption>Suitable sites for a new preschool in Östra Göteborg.</figcaption>
+</figure>
+
+## Reflection
+
+CONFIRM: what was learned, limitations, or what you'd explore next.
