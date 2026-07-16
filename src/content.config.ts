@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 
 // Field set required by instructions/PROJECT_RULES.md
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),

@@ -73,7 +73,7 @@ const { Content } = await render(project);
 			</dl>
 		</header>
 
-		<Image class="project__cover container" src={coverImage} alt={coverImageAlt} />
+		<Image class="project__cover container" src={coverImage} alt={coverImageAlt} width={1600} />
 
 		<div class="project__body container">
 			<Content />
@@ -133,10 +133,11 @@ const { Content } = await render(project);
   }
 
   /*
-    Text stays in a narrow, readable column; a paragraph that's just an
-    image (the normal shape for a markdown image on its own line) is
-    allowed to widen to the full page container instead, so maps and
-    diagrams with fine text/labels have room to stay legible.
+    Text stays in a narrow, readable column. Images (placed via the
+    <Image> component in project MDX files) are direct children of this
+    container rather than nested in a paragraph, so they're unaffected
+    by this rule and stay at the full container width - giving maps and
+    diagrams with fine text/labels room to stay legible.
   */
   .project__body :global(h2),
   .project__body :global(p) {
@@ -157,10 +158,6 @@ const { Content } = await render(project);
     margin-top: var(--space-2);
     font-size: var(--font-size-lg);
     line-height: var(--line-height-base);
-  }
-
-  .project__body :global(p:has(img)) {
-    max-width: 100%;
   }
 
   .project__body :global(img) {
