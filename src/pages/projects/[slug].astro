@@ -130,7 +130,18 @@ const { Content } = await render(project);
 
   .project__body {
     padding-block: var(--space-4) var(--space-5);
+  }
+
+  /*
+    Text stays in a narrow, readable column; a paragraph that's just an
+    image (the normal shape for a markdown image on its own line) is
+    allowed to widen to the full page container instead, so maps and
+    diagrams with fine text/labels have room to stay legible.
+  */
+  .project__body :global(h2),
+  .project__body :global(p) {
     max-width: 48rem;
+    margin-inline: auto;
   }
 
   .project__body :global(h2) {
@@ -148,9 +159,14 @@ const { Content } = await render(project);
     line-height: var(--line-height-base);
   }
 
+  .project__body :global(p:has(img)) {
+    max-width: 100%;
+  }
+
   .project__body :global(img) {
+    display: block;
     width: 100%;
     height: auto;
-    margin-block: var(--space-3);
+    margin-block: var(--space-4);
   }
 </style>
