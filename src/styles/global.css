@@ -4,6 +4,35 @@
   colours below are a separate, confirmed palette (2026-07-17) used only
   as per-project accent colours - see instructions/DESIGN_SYSTEM.md.
 */
+
+/*
+  Hand-written instead of importing @fontsource/montserrat's own CSS:
+  that package hardcodes font-display: swap, which shows the fallback
+  font first and swaps to Montserrat once it loads - visible as a jump
+  in size, since the fallback and Montserrat don't share the same
+  metrics. font-display: optional here means the browser only uses
+  Montserrat if it's already cached or loads almost immediately;
+  otherwise it sticks with the fallback for that visit rather than
+  swapping mid-read. Only the latin subset is pulled in (not
+  Fontsource's cyrillic/vietnamese/latin-ext files too), since Swedish
+  characters (å, ä, ö) already fall inside it.
+*/
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url('@fontsource/montserrat/files/montserrat-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: optional;
+  src: url('@fontsource/montserrat/files/montserrat-latin-600-normal.woff2') format('woff2');
+}
+
 :root {
   --color-background: #ffffff;
   --color-text: #111111;
