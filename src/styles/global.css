@@ -1,13 +1,33 @@
 /*
-  Typeface: Montserrat, confirmed by Charlotta on 2026-07-16 (see
-  instructions/DESIGN_SYSTEM.md). Colour palette remains a neutral
-  placeholder pending a separate design decision.
+  Typeface: Montserrat, confirmed by Charlotta on 2026-07-16. Site chrome
+  (background/text/muted/border) stays a neutral placeholder. The named
+  colours below are a separate, confirmed palette (2026-07-17) used only
+  as per-project accent colours - see instructions/DESIGN_SYSTEM.md.
 */
 :root {
   --color-background: #ffffff;
   --color-text: #111111;
   --color-muted: #666666;
   --color-border: #dddddd;
+
+  --color-dry-sage: rgb(205, 195, 146);
+  --color-soft-linen: rgb(232, 229, 218);
+  --color-baby-blue-ice: rgb(158, 183, 229);
+  --color-cornflower-blue: rgb(100, 141, 229);
+  --color-dusk-blue: rgb(48, 76, 137);
+  --color-bubblegum-pink: rgb(247, 86, 124);
+  --color-cornsilk: rgb(255, 250, 227);
+  --color-pearl-aqua: rgb(153, 225, 217);
+  --color-taupe-grey: rgb(93, 87, 107);
+  --color-lavender: rgb(222, 217, 226);
+  --color-periwinkle: rgb(192, 185, 221);
+  --color-wisteria-blue: rgb(128, 161, 212);
+  --color-teal-aqua: rgb(117, 201, 200);
+  --color-tropical-teal: rgb(117, 185, 190);
+  --color-light-blue: rgb(168, 204, 201);
+  --color-ash-grey: rgb(179, 214, 198);
+  --color-tea-green: rgb(220, 234, 178);
+  --color-pale-amber: rgb(199, 214, 109);
 
   --font-body: 'Montserrat', system-ui, sans-serif;
 

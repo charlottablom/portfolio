@@ -3,20 +3,59 @@ interface Props {
   color?: string;
   size?: string;
   rotation?: number;
+  full?: boolean;
+  spin?: boolean;
+  spinTarget?: string;
+  hideWhenDone?: boolean;
+  class?: string;
 }
 
 const {
   color = 'var(--color-text)',
   size = 'clamp(10rem, 24vw, 24rem)',
   rotation = 0,
+  full = false,
+  spin = false,
+  spinTarget,
+  hideWhenDone = false,
+  class: className,
 } = Astro.props;
 ---
 
 <div
-  class="circle"
+  class:list={['circle', className, { 'circle--full': full, 'circle--spin': spin }]}
   style={`--circle-color: ${color}; --circle-diameter: ${size}; --circle-rotation: ${rotation}deg;`}
   aria-hidden="true"
+  data-circle-spin={spin ? spinTarget ?? '' : undefined}
+  data-circle-hide-when-done={spin && hideWhenDone ? '' : undefined}
 ></div>
+
+<script>
+  // Quarter-circles marked to spin cycle upper-left -> upper-right ->
+  // lower-right -> lower-left (see the CSS keyframes) until whatever
+  // they're standing in for has finished loading: a specific image, if
+  // data-circle-spin names one via selector, otherwise the page itself.
+  // A circle standing in for one image (hideWhenDone) fades away once
+  // that image is visible; the page's own circle just settles at rest.
+  document.querySelectorAll<HTMLElement>('[data-circle-spin]').forEach((el) => {
+    const selector = el.dataset.circleSpin;
+    const target = selector ? document.querySelector(selector) : null;
+    const hideWhenDone = el.hasAttribute('data-circle-hide-when-done');
+    const stop = () => {
+      el.classList.remove('circle--spin');
+      if (hideWhenDone) el.classList.add('circle--hidden');
+    };
+
+    if (target instanceof HTMLImageElement) {
+      if (target.complete) stop();
+      else target.addEventListener('load', stop, { once: true });
+    } else if (document.readyState === 'complete') {
+      stop();
+    } else {
+      window.addEventListener('load', stop, { once: true });
+    }
+  });
+</script>
 
 <style>
   /*
@@ -33,5 +72,33 @@ const {
     transform: rotate(var(--circle-rotation));
     transform-origin: center;
     flex-shrink: 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .circle--hidden {
+    opacity: 0;
+  }
+
+  .circle--full {
+    width: var(--circle-diameter);
+    height: var(--circle-diameter);
+    border-radius: 50%;
+    transform: none;
+  }
+
+  .circle--spin {
+    animation: circle-spin 1.2s steps(4, jump-end) infinite;
+  }
+
+  @keyframes circle-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .circle--spin {
+      animation: none;
+    }
   }
 </style>

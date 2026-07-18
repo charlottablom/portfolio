@@ -1,37 +1,34 @@
 ---
 title: "Kyrktornet"
 subtitle: "A kinetic, parametric facade study for a fictional research tower in Gothenburg"
-year: "CONFIRM: e.g. 2024"
+year: "2021"
 location: "Kyrkbyn, Gothenburg, Sweden"
 projectType: "Coursework"
 role: "Co-designer"
 collaborators: ["Victoria Hansson"]
-tools: ["Grasshopper", "Rhino", "CONFIRM: solar analysis plug-in, e.g. Ladybug"]
-themes: ["Architecture", "Computational Design", "Emerging Technologies"]
+tools: ["Grasshopper", "Rhino"]
+themes: ["Architecture", "Computational Design"]
 description: "A parametric, kinetic facade for a fictional fully-glazed research tower, designed in Grasshopper to open, close, and reshape itself in response to daylight, privacy, and view."
 coverImage: "./Kyrktornet2.jpg"
 coverImageAlt: "Composite of four renders: two overlaid views of the tower's faceted diamond-panel skin at different closure percentages, two solar-analysis renders showing hours of direct sunlight across the tower's floor plates, and a site plan heat map showing hours of direct sun across the surrounding buildings."
+accentColor: "taupe-grey"
 ---
 
-import { Image } from 'astro:assets';
+import LoadingImage from '../../../components/LoadingImage.astro';
 import script from './Kyrktornet.jpg';
 
 ## Context
 
-The project began with a deliberately loose way of choosing a site: closing our eyes and zooming in on a map of Gothenburg. It landed just south of Kyrkbyn, bordered by a large green space to the west and Volvo's factories beyond. The tower's twisting form responds to the undulating shapes of nearby buildings, but reinterprets that language through rotation along its vertical axis.
+The project began with a deliberately loose way of choosing a site: closing our eyes and zooming in on a map of Gothenburg. It landed just south of Kyrkbyn, bordered by a large green space to the west and **Volvo**'s factories beyond. The tower's twisting form responds to the undulating shapes of nearby buildings, but reinterprets that language through rotation along its vertical axis.
 
 ## Methods
 
-We imagined the tower as a fully-glazed office for sensitive R&D work - envisioned as a facility supporting Volvo's development of security-classified components - which needed the ability to exclude nearly all daylight and shield its interior from outside view. In Grasshopper, we scripted a kinetic facade of panels that rotate around vectors drawn from each corner of a facade module, letting each panel close completely or extend outward from the surface by a controlled amount. The result is a facade that can reconfigure itself entirely depending on the need for privacy, darkness, or daylight - closer to a chameleon than a fixed skin.
+We imagined the tower as a fully-glazed office for sensitive R&D work - envisioned as a facility supporting **Volvo**'s development of security-classified components - which needed the ability to exclude nearly all daylight and shield its interior from outside view. In **Grasshopper**, we scripted a kinetic facade of panels that rotate around vectors drawn from each corner of a facade module, letting each panel close completely or extend outward from the surface by a controlled amount. The result is a facade that can reconfigure itself entirely depending on the need for privacy, darkness, or daylight - closer to a chameleon than a fixed skin.
 
-<Image src={script} width={1600} alt="Grasshopper definition for the facade panel script, above two renderings of a single folded panel module shown in an open, star-shaped configuration and a more closed, triangular configuration, each with a photograph of a person collaged into the opening to show scale." />
+<LoadingImage src={script} width={1600} alt="Grasshopper definition for the facade panel script, above two renderings of a single folded panel module shown in an open, star-shaped configuration and a more closed, triangular configuration, each with a photograph of a person collaged into the opening to show scale." />
 
 ## Outcomes
 
 We tested the facade at both extremes. Fully closed, the building admits very little daylight on its northeast-facing side - workable for some activities, potentially uncomfortable for others. Fully open, sunlight reaches deeper into the core, though the middle floors stay comparatively shaded, a side-effect of the tower's rotation putting its widest face toward the north.
 
 We also compared outward views in both states. With the panels mostly closed, the clearest sightlines run through the middle of the building; move closer to the facade and the panel angle becomes far more critical to what you can actually see. With the panels open, view quality improves substantially and much more evenly across the building - even its lowest measured value comes in well above the closed version's best case.
-
-## Reflection
-
-CONFIRM: what was learned, limitations, or what you'd explore next.

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageIntro from '../components/PageIntro.astro';
+import Circle from '../components/Circle.astro';
 import { getCollection } from 'astro:content';
 import { featuredProjects } from '../config/featured-projects';
 
@@ -12,6 +13,11 @@ const projects =
     : featuredProjects
         .map((slug) => allProjects.find((project) => project.id === slug))
         .filter((project) => project !== undefined);
+
+// Themes are derived from whatever's actually on this page, not a fixed
+// list, so the filter stays accurate as projects (and their themes)
+// change - no hierarchy between them, so options are just alphabetical.
+const themes = [...new Set(projects.flatMap((project) => project.data.themes))].sort();
 ---
 
 <Layout title="Projects — Charlotta Blom" description="Selected projects by Charlotta Blom.">
@@ -21,21 +27,93 @@ const projects =
 		{projects.length === 0 ? (
 			<p class="projects__empty">Projects will be added here.</p>
 		) : (
-			<ul class="projects__list">
-				{projects.map((project) => (
-					<li class="projects__item">
-						<a href={`/projects/${project.id}`}>
-							<span class="projects__item-title">{project.data.title}</span>
-							<span class="projects__item-meta">
-								{project.data.subtitle} — {project.data.year}
-							</span>
-						</a>
-					</li>
-				))}
-			</ul>
+			<>
+				{themes.length > 1 && (
+					<div class="projects__filter" role="group" aria-label="Filter by theme">
+						<button type="button" class="projects__filter-chip" data-theme-all aria-pressed="true">
+							All
+						</button>
+						{themes.map((theme) => (
+							<button type="button" class="projects__filter-chip" data-theme={theme} aria-pressed="false">
+								{theme}
+							</button>
+						))}
+					</div>
+				)}
+
+				<ul class="projects__list">
+					{projects.map((project) => (
+						<li class="projects__item" data-themes={project.data.themes.join('|')}>
+							<a href={`/projects/${project.id}`}>
+								<span class="projects__item-title">
+									{project.data.accentColor && (
+										<Circle
+											full
+											size="0.85em"
+											color={`var(--color-${project.data.accentColor})`}
+											class="projects__item-dot"
+										/>
+									)}
+									{project.data.title}
+								</span>
+								<span class="projects__item-meta">
+									{project.data.subtitle} — {project.data.year}
+								</span>
+							</a>
+						</li>
+					))}
+				</ul>
+
+				<p class="projects__no-match" hidden>No projects match the selected themes.</p>
+			</>
 		)}
 	</section>
 </Layout>
+
+<script>
+  const filterGroup = document.querySelector<HTMLElement>('.projects__filter');
+
+  if (filterGroup) {
+    const allButton = filterGroup.querySelector<HTMLButtonElement>('[data-theme-all]');
+    const themeButtons = filterGroup.querySelectorAll<HTMLButtonElement>('[data-theme]');
+    const items = document.querySelectorAll<HTMLElement>('.projects__item');
+    const noMatch = document.querySelector<HTMLElement>('.projects__no-match');
+    const active = new Set<string>();
+
+    const applyFilter = () => {
+      let visibleCount = 0;
+      items.forEach((item) => {
+        const itemThemes = (item.dataset.themes ?? '').split('|');
+        const show = active.size === 0 || itemThemes.some((theme) => active.has(theme));
+        item.hidden = !show;
+        if (show) visibleCount += 1;
+      });
+      if (noMatch) noMatch.hidden = visibleCount > 0;
+    };
+
+    allButton?.addEventListener('click', () => {
+      active.clear();
+      allButton.setAttribute('aria-pressed', 'true');
+      themeButtons.forEach((button) => button.setAttribute('aria-pressed', 'false'));
+      applyFilter();
+    });
+
+    themeButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const theme = button.dataset.theme ?? '';
+        if (active.has(theme)) {
+          active.delete(theme);
+          button.setAttribute('aria-pressed', 'false');
+        } else {
+          active.add(theme);
+          button.setAttribute('aria-pressed', 'true');
+        }
+        allButton?.setAttribute('aria-pressed', String(active.size === 0));
+        applyFilter();
+      });
+    });
+  }
+</script>
 
 <style>
   .projects {
@@ -43,26 +121,72 @@ const projects =
     border-top: 1px solid var(--color-border);
   }
 
-  .projects__empty {
+  .projects__empty,
+  .projects__no-match {
     color: var(--color-muted);
   }
 
-  .projects__item + .projects__item {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .projects__item a {
+  .projects__filter {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: var(--space-1) var(--space-3);
+    gap: var(--space-1);
+    margin-bottom: var(--space-3);
+  }
+
+  .projects__filter-chip {
+    border: 1px solid var(--color-border);
+    background: none;
+    color: var(--color-text);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    padding: var(--space-0) var(--space-2);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .projects__filter-chip:hover {
+    border-color: var(--color-text);
+  }
+
+  .projects__filter-chip[aria-pressed='true'] {
+    background: var(--color-text);
+    color: var(--color-background);
+    border-color: var(--color-text);
+  }
+
+  /*
+    A uniform bottom border on every item (rather than a top border on
+    every item but the first) keeps dividers correct regardless of which
+    items the theme filter has hidden.
+  */
+  .projects__item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /*
+    Column, not row-with-wrap: a short title (Kyrktornet) left enough
+    room for the meta line to sit beside it instead of below, unlike the
+    longer titles - stacking unconditionally keeps every item consistent
+    regardless of title length.
+  */
+  .projects__item a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
     padding-block: var(--space-3);
     text-decoration: none;
   }
 
   .projects__item-title {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
     font-size: var(--font-size-xl);
     font-weight: 600;
+  }
+
+  .projects__item-dot {
+    display: inline-block;
   }
 
   .projects__item-meta {

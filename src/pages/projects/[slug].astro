@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
+import LoadingImage from '../../components/LoadingImage.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -25,7 +25,10 @@ const {
   description,
   coverImage,
   coverImageAlt,
+  accentColor,
 } = project.data;
+
+const coverColor = accentColor ? `var(--color-${accentColor})` : undefined;
 
 const { Content } = await render(project);
 ---
@@ -73,7 +76,13 @@ const { Content } = await render(project);
 			</dl>
 		</header>
 
-		<Image class="project__cover container" src={coverImage} alt={coverImageAlt} width={1600} />
+		<LoadingImage
+			class="project__cover container"
+			src={coverImage}
+			alt={coverImageAlt}
+			width={1600}
+			color={coverColor}
+		/>
 
 		<div class="project__body container">
 			<Content />
@@ -124,7 +133,6 @@ const { Content } = await render(project);
   .project__cover {
     display: block;
     width: 100%;
-    height: auto;
     margin-top: var(--space-4);
   }
 
@@ -133,8 +141,8 @@ const { Content } = await render(project);
   }
 
   /*
-    Text stays in a narrow, readable column. Images and figures (placed
-    via the <Image> component, optionally wrapped in <figure> for a
+    Text stays in a narrow, readable column. Images (placed via the
+    LoadingImage component, optionally wrapped in <figure> for a
     caption, in project MDX files) are direct children of this container
     rather than nested in a paragraph, so they're unaffected by this rule
     and stay at the full container width - giving maps and diagrams with
@@ -161,19 +169,20 @@ const { Content } = await render(project);
     line-height: var(--line-height-base);
   }
 
-  .project__body :global(img) {
+  .project__body :global(.loading-image) {
     display: block;
     width: 100%;
-    height: auto;
-  }
-
-  .project__body :global(img),
-  .project__body :global(figure) {
     margin-block: var(--space-4);
   }
 
   .project__body :global(figure) {
+    margin-block: var(--space-4);
     margin-inline: 0;
+  }
+
+  /* Avoid doubling the spacing when a figure already owns it. */
+  .project__body :global(figure .loading-image) {
+    margin-block: 0;
   }
 
   .project__body :global(figcaption) {

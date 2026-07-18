@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import Circle from './Circle.astro';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  width: number;
+  color?: string;
+  class?: string;
+}
+
+const { src, alt, width, color = 'var(--color-text)', class: className } = Astro.props;
+const imgId = `loading-image-${crypto.randomUUID()}`;
+---
+
+<span class:list={['loading-image', className]}>
+  <Circle
+    color={color}
+    size="clamp(3rem, 8vw, 6rem)"
+    spin
+    spinTarget={`#${imgId}`}
+    hideWhenDone
+    class="loading-image__spinner"
+  />
+  <Image id={imgId} src={src} alt={alt} width={width} class="loading-image__img" />
+</span>
+
+<style>
+  .loading-image {
+    position: relative;
+    display: block;
+  }
+
+  .loading-image__spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  }
+
+  .loading-image__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

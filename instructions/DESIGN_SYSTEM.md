@@ -124,6 +124,49 @@ the @fontsource/montserrat package rather than an external font CDN, to
 avoid a runtime dependency on a third-party service and keep page loads
 self-contained.
 
+Body text is styled lowercase throughout, so proper nouns lose the
+capital letter that would normally signal "this is a name." Confirmed by
+Charlotta on 2026-07-17: names of people, organisations, and named
+programs (degree programs, software) are set in bold within prose to
+compensate. Place names are left unbolded.
+
+
+------------------------------------------------
+
+# Colour
+
+The site's own chrome (navigation, text, background, borders) stays the
+neutral black-and-white palette already in place. It is not themed by
+the colours below.
+
+Confirmed by Charlotta on 2026-07-17: a fixed palette of accent colours,
+used only to give each project its own identifying colour - shown as a
+small full circle next to the project in listings, and used to tint that
+project's image-loading animation. A project may use at most one colour
+from this palette. The palette may grow over time, but should stay a
+curated, named set rather than arbitrary picked-per-project colours.
+
+| Name | RGB |
+|---|---|
+| dry-sage | 205, 195, 146 |
+| soft-linen | 232, 229, 218 |
+| baby-blue-ice | 158, 183, 229 |
+| cornflower-blue | 100, 141, 229 |
+| dusk-blue | 48, 76, 137 |
+| bubblegum-pink | 247, 86, 124 |
+| cornsilk | 255, 250, 227 |
+| pearl-aqua | 153, 225, 217 |
+| taupe-grey | 93, 87, 107 |
+| lavender | 222, 217, 226 |
+| periwinkle | 192, 185, 221 |
+| wisteria-blue | 128, 161, 212 |
+| teal-aqua | 117, 201, 200 |
+| tropical-teal | 117, 185, 190 |
+| light-blue | 168, 204, 201 |
+| ash-grey | 179, 214, 198 |
+| tea-green | 220, 234, 178 |
+| pale-amber | 199, 214, 109 |
+
 
 ------------------------------------------------
 
@@ -215,6 +258,12 @@ Avoid:
 - decorative animations
 
 Movement should support navigation and readability rather than become a visual feature.
+
+One confirmed example: the recurring quarter-circle motif (see Images and
+Analytical Material) steps through its four rotations as a loading
+indicator - for the page itself, and per image while that image loads -
+then settles at rest. It is tied to real loading, not decorative, and
+stops entirely for visitors who have requested reduced motion.
 
 
 ------------------------------------------------

@@ -5,15 +5,30 @@ import PageIntro from '../components/PageIntro.astro';
 
 <Layout title="About — Charlotta Blom" description="About Charlotta Blom's practice and approach.">
 	<PageIntro title="About" circleRotation={90}>
-		<p class="page-intro__lead">Introductory text about practice, background and approach will go here.</p>
+		<p class="about__paragraph">
+			I work at the intersection of architecture, landscape, and computational design — currently as an
+			Applied AI Architect at <strong>Arkyv</strong>, developing AI-driven workflows for architects
+			working in <strong>Revit</strong>, <strong>Archicad</strong>, and <strong>Rhino</strong>.
+		</p>
+		<p class="about__paragraph">
+			My background combines architectural education and practice: a master's degree in <strong>Architecture and Planning beyond Sustainability</strong> from <strong>Chalmers University of Technology</strong>, alongside ongoing studies in <strong>Landscape Architecture for Sustainable Urbanisation</strong> at the <strong>Swedish University of Agricultural Sciences</strong>. Practice experience spans an internship with <strong>LINK Arkitektur</strong> in Aarhus, Denmark, working on architecture competitions, and a period as a contributing architect with <strong>LINK Arkitektur</strong> in Stockholm.
+		</p>
+		<p class="about__paragraph">
+			Recurring interests across this portfolio are explorative and computational methods to handle
+			spatial challenges at various scales.
+		</p>
 	</PageIntro>
 </Layout>
 
 <style>
-  .page-intro__lead {
+  .about__paragraph {
     margin-top: var(--space-3);
     max-width: 40rem;
     font-size: var(--font-size-lg);
-    color: var(--color-muted);
+    line-height: var(--line-height-base);
+  }
+
+  .about__paragraph + .about__paragraph {
+    margin-top: var(--space-2);
   }
 </style>

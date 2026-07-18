@@ -18,9 +18,16 @@ const { title, circleRotation = 0 } = Astro.props;
 </section>
 
 <style>
+  /*
+    align-items: flex-start (not center) keeps the heading at the same
+    vertical position on every page. Centering would tie the heading's
+    position to how tall the surrounding text is, which varies a lot
+    between pages (a full hero vs. just a title) and made it visibly
+    shift when navigating between them.
+  */
   .page-intro {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: var(--space-4);
