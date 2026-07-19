@@ -177,9 +177,15 @@ const themes = [...new Set(projects.flatMap((project) => project.data.themes))].
     text-decoration: none;
   }
 
+  /*
+    align-items: flex-start (not center): a long title can wrap to more
+    than one line, and centering would leave the dot drifting toward the
+    middle of the whole wrapped block instead of sitting beside the
+    first line, where it reads naturally.
+  */
   .projects__item-title {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-2);
     font-size: var(--font-size-xl);
     font-weight: 600;

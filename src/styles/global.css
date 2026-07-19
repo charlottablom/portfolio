@@ -87,6 +87,18 @@
   box-sizing: border-box;
 }
 
+/*
+  Reserves the vertical scrollbar's width on every page, whether or not
+  that page is actually tall enough to need one. Without this, a page
+  short enough to fit the viewport (e.g. Home) gets no scrollbar while a
+  longer one (e.g. About) does, and the centered container shifts left
+  by roughly half the scrollbar's width between them - visible as a
+  jump when navigating.
+*/
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0;
   background: var(--color-background);
