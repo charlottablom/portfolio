@@ -1,0 +1,120 @@
+---
+interface TimelineEntry {
+  dates: string;
+  commitment: 'full' | 'half' | 'quarter';
+  commitmentLabel: string;
+  role: string;
+  org: string;
+  description: string;
+  merit?: string;
+}
+
+interface Props {
+  entries: TimelineEntry[];
+}
+
+const { entries } = Astro.props;
+---
+
+<ol class="timeline">
+  {entries.map((entry) => (
+    <li class="timeline__entry">
+      <span class={`timeline__marker timeline__marker--${entry.commitment}`} aria-hidden="true"></span>
+      <div class="timeline__content">
+        <p class="timeline__dates">
+          {entry.dates} · {entry.commitmentLabel}
+        </p>
+        <h3 class="timeline__role">{entry.role}</h3>
+        <p class="timeline__org">{entry.org}</p>
+        <p class="timeline__desc" set:html={entry.description} />
+        {entry.merit && <p class="timeline__merit" set:html={entry.merit} />}
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  /*
+    The marker's fill fraction (full/half/quarter) is a visual echo of
+    the same commitment level spelled out in the dates line - the circle
+    alone shouldn't be the only way to know what it means.
+  */
+  .timeline {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.25rem;
+    top: 0.4em;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+    transform: translateX(-50%);
+  }
+
+  .timeline__entry {
+    position: relative;
+    display: flex;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+  }
+
+  .timeline__entry:first-child {
+    padding-top: 0;
+  }
+
+  .timeline__entry:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline__marker {
+    flex-shrink: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: 0.4em;
+    border-radius: 50%;
+    background: var(--color-text);
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline__marker--half {
+    background: conic-gradient(var(--color-text) 0deg 180deg, var(--color-border) 180deg 360deg);
+  }
+
+  .timeline__marker--quarter {
+    background: conic-gradient(var(--color-text) 0deg 90deg, var(--color-border) 90deg 360deg);
+  }
+
+  .timeline__dates {
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+  }
+
+  .timeline__role {
+    margin-top: var(--space-0);
+    font-size: var(--font-size-lg);
+  }
+
+  .timeline__org {
+    margin-top: var(--space-0);
+    color: var(--color-muted);
+  }
+
+  .timeline__desc {
+    margin-top: var(--space-1);
+    max-width: 40rem;
+  }
+
+  .timeline__merit {
+    margin-top: var(--space-1);
+    max-width: 40rem;
+    color: var(--color-muted);
+    font-style: italic;
+  }
+</style>

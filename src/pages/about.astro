@@ -1,6 +1,70 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageIntro from '../components/PageIntro.astro';
+import Timeline from '../components/Timeline.astro';
+
+const timelineEntries = [
+  {
+    dates: '2026 – ongoing',
+    commitment: 'full' as const,
+    commitmentLabel: 'Full-time',
+    role: 'Applied AI Architect',
+    org: 'Arkyv AB, Stockholm, Sweden',
+    description: 'Developing AI-driven workflows for architects working in Revit, Archicad, and Rhino.',
+  },
+  {
+    dates: 'Jan – Jun 2026',
+    commitment: 'full' as const,
+    commitmentLabel: 'Full-time',
+    role: 'Junior Architect',
+    org: 'LINK Arkitektur AB, Stockholm, Sweden',
+    description: 'Project and tender work across several business areas, working directly with clients and specialist consultants.',
+  },
+  {
+    dates: 'Sep 2024 – Jun 2025',
+    commitment: 'full' as const,
+    commitmentLabel: 'Full-time',
+    role: "Master's Thesis: Multifunctional Suburban Networks",
+    org: 'Chalmers University of Technology, Gothenburg, Sweden',
+    description: "A GIS-based study of the 15-minute city and green corridors in Gothenburg's suburbs. 60 credits.",
+    merit:
+      "Tied to <strong>Evolutive Meshed Compact City (EMC²)</strong>, a <strong>Vinnova</strong>-funded research project led by <strong>Chalmers' Spatial Morphology Group (SMoG)</strong>.",
+  },
+  {
+    dates: 'Jan 2024 – ongoing',
+    commitment: 'half' as const,
+    commitmentLabel: '50%',
+    role: 'Landscape Architecture for Sustainable Urbanisation',
+    org: 'Swedish University of Agricultural Sciences (SLU), Uppsala, Sweden',
+    description: 'Coursework in urban ecology and explorative methods for landscape architecture. 60 credits.',
+  },
+  {
+    dates: 'Aug 2023 – Jan 2024',
+    commitment: 'full' as const,
+    commitmentLabel: 'Full-time',
+    role: 'Architecture Intern',
+    org: 'LINK Arkitektur A/S, Aarhus, Denmark',
+    description: 'Project work on architecture competitions.',
+    merit: 'Won an architecture competition for ALFA Development A/S.',
+  },
+  {
+    dates: 'Sep 2021 – Sep 2022',
+    commitment: 'half' as const,
+    commitmentLabel: '50%',
+    role: "Chair, Architecture Students' Section",
+    org: 'Chalmers Student Union, Gothenburg, Sweden',
+    description: 'Led board work for an organisation of around 700 members, overseeing operations, budget, and student influence.',
+  },
+  {
+    dates: 'Sep 2019 – Jun 2025',
+    commitment: 'full' as const,
+    commitmentLabel: 'Full-time',
+    role: 'BSc Architecture & MSc Architecture and Planning beyond Sustainability',
+    org: 'Chalmers University of Technology, Gothenburg, Sweden',
+    description: '180 + 120 credits, including an exchange semester at Aarhus School of Architecture, Denmark.',
+    merit: "Also: student representative on the Institution Council for Architecture and Civil Engineering, and communicator and event coordinator for the Architecture Students' photo committee, FotA.",
+  },
+];
 ---
 
 <Layout title="About — Charlotta Blom" description="About Charlotta Blom's practice and approach.">
@@ -18,6 +82,11 @@ import PageIntro from '../components/PageIntro.astro';
 			spatial challenges at various scales.
 		</p>
 	</PageIntro>
+
+	<section class="about-timeline container">
+		<h2>Timeline</h2>
+		<Timeline entries={timelineEntries} />
+	</section>
 </Layout>
 
 <style>
@@ -30,5 +99,14 @@ import PageIntro from '../components/PageIntro.astro';
 
   .about__paragraph + .about__paragraph {
     margin-top: var(--space-2);
+  }
+
+  .about-timeline {
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .about-timeline h2 {
+    margin-bottom: var(--space-3);
   }
 </style>
