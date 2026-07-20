@@ -1,0 +1,107 @@
+---
+interface ProjectEntry {
+  slug: string;
+  title: string;
+  year: string;
+  isGroupProject: boolean;
+}
+
+interface Props {
+  entries: ProjectEntry[];
+}
+
+const { entries } = Astro.props;
+---
+
+<ol class="project-timeline">
+  {entries.map((entry) => (
+    <li class="project-timeline__entry">
+      <span
+        class={`project-timeline__marker ${entry.isGroupProject ? 'project-timeline__marker--half' : ''}`}
+        aria-hidden="true"
+      ></span>
+      <a href={`/projects/${entry.slug}`} class="project-timeline__link">
+        <span class="project-timeline__title">{entry.title}</span>
+        <span class="project-timeline__year">
+          {entry.year}
+          {entry.isGroupProject && <> · group project</>}
+        </span>
+      </a>
+    </li>
+  ))}
+</ol>
+
+<style>
+  /*
+    A half-filled marker means the project was made with collaborators
+    (derived from that project's own `collaborators` frontmatter, not a
+    separate field) - spelled out in the text too, per the same rule as
+    the About page timeline, so the marker shape alone isn't the only
+    way to know what it means.
+  */
+  .project-timeline {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.25rem;
+    top: 0.6em;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+    transform: translateX(-50%);
+  }
+
+  .project-timeline__entry {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding-block: var(--space-1);
+  }
+
+  .project-timeline__entry:first-child {
+    padding-top: 0;
+  }
+
+  .project-timeline__entry:last-child {
+    padding-bottom: 0;
+  }
+
+  .project-timeline__marker {
+    flex-shrink: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-text);
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-timeline__marker--half {
+    background: conic-gradient(var(--color-text) 0deg 180deg, var(--color-border) 180deg 360deg);
+  }
+
+  .project-timeline__link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    text-decoration: none;
+  }
+
+  .project-timeline__title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+  }
+
+  .project-timeline__year {
+    color: var(--color-muted);
+    font-size: var(--font-size-sm);
+  }
+</style>
