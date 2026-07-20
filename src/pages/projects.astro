@@ -4,6 +4,7 @@ import PageIntro from '../components/PageIntro.astro';
 import Circle from '../components/Circle.astro';
 import { getCollection } from 'astro:content';
 import { featuredProjects } from '../config/featured-projects';
+import { careerStages } from '../content.config';
 
 const allProjects = await getCollection('projects');
 
@@ -18,6 +19,23 @@ const projects =
 // list, so the filter stays accurate as projects (and their themes)
 // change - no hierarchy between them, so options are just alphabetical.
 const themes = [...new Set(projects.flatMap((project) => project.data.themes))].sort();
+
+const careerStageLabels: Record<(typeof careerStages)[number], string> = {
+  bachelor: 'Bachelor',
+  master: 'Master',
+  practice: 'Applied in Practice',
+};
+
+// Grouped by career stage, most recent project first within each group -
+// mirrors the "most recent at top" convention used by the About page
+// timeline.
+const groups = careerStages.map((stage) => ({
+  stage,
+  label: careerStageLabels[stage],
+  projects: projects
+    .filter((project) => project.data.careerStage === stage)
+    .sort((a, b) => Number(b.data.year) - Number(a.data.year)),
+}));
 ---
 
 <Layout title="Projects — Charlotta Blom" description="Selected projects by Charlotta Blom.">
@@ -41,28 +59,37 @@ const themes = [...new Set(projects.flatMap((project) => project.data.themes))].
 					</div>
 				)}
 
-				<ul class="projects__list">
-					{projects.map((project) => (
-						<li class="projects__item" data-themes={project.data.themes.join('|')}>
-							<a href={`/projects/${project.id}`}>
-								<span class="projects__item-title">
-									{project.data.accentColor && (
-										<Circle
-											full
-											size="0.85em"
-											color={`var(--color-${project.data.accentColor})`}
-											class="projects__item-dot"
-										/>
-									)}
-									{project.data.title}
-								</span>
-								<span class="projects__item-meta">
-									{project.data.subtitle} — {project.data.year}
-								</span>
-							</a>
-						</li>
-					))}
-				</ul>
+				{groups.map((group) => (
+					<section class="projects__group" data-group={group.stage}>
+						<h2 class="projects__group-title">{group.label}</h2>
+						{group.projects.length === 0 ? (
+							<p class="projects__empty">Projects will be added here.</p>
+						) : (
+							<ul class="projects__list">
+								{group.projects.map((project) => (
+									<li class="projects__item" data-themes={project.data.themes.join('|')}>
+										<a href={`/projects/${project.id}`}>
+											<span class="projects__item-title">
+												{project.data.accentColor && (
+													<Circle
+														full
+														size="0.85em"
+														color={`var(--color-${project.data.accentColor})`}
+														class="projects__item-dot"
+													/>
+												)}
+												{project.data.title}
+											</span>
+											<span class="projects__item-meta">
+												{project.data.subtitle} — {project.data.year}
+											</span>
+										</a>
+									</li>
+								))}
+							</ul>
+						)}
+					</section>
+				))}
 
 				<p class="projects__no-match" hidden>No projects match the selected themes.</p>
 			</>
@@ -76,17 +103,29 @@ const themes = [...new Set(projects.flatMap((project) => project.data.themes))].
   if (filterGroup) {
     const allButton = filterGroup.querySelector<HTMLButtonElement>('[data-theme-all]');
     const themeButtons = filterGroup.querySelectorAll<HTMLButtonElement>('[data-theme]');
-    const items = document.querySelectorAll<HTMLElement>('.projects__item');
+    const groups = document.querySelectorAll<HTMLElement>('.projects__group');
     const noMatch = document.querySelector<HTMLElement>('.projects__no-match');
     const active = new Set<string>();
 
     const applyFilter = () => {
       let visibleCount = 0;
-      items.forEach((item) => {
-        const itemThemes = (item.dataset.themes ?? '').split('|');
-        const show = active.size === 0 || itemThemes.some((theme) => active.has(theme));
-        item.hidden = !show;
-        if (show) visibleCount += 1;
+      groups.forEach((group) => {
+        const items = group.querySelectorAll<HTMLElement>('.projects__item');
+        let groupVisible = 0;
+        items.forEach((item) => {
+          const itemThemes = (item.dataset.themes ?? '').split('|');
+          const show = active.size === 0 || itemThemes.some((theme) => active.has(theme));
+          item.hidden = !show;
+          if (show) {
+            groupVisible += 1;
+            visibleCount += 1;
+          }
+        });
+        // Groups with no items yet (e.g. an empty Applied in Practice) have
+        // nothing to filter, so leave their placeholder text showing.
+        if (items.length > 0) {
+          group.hidden = groupVisible === 0;
+        }
       });
       if (noMatch) noMatch.hidden = visibleCount > 0;
     };
@@ -130,7 +169,7 @@ const themes = [...new Set(projects.flatMap((project) => project.data.themes))].
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1);
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
   }
 
   .projects__filter-chip {
@@ -152,6 +191,16 @@ const themes = [...new Set(projects.flatMap((project) => project.data.themes))].
     background: var(--color-text);
     color: var(--color-background);
     border-color: var(--color-text);
+  }
+
+  .projects__group + .projects__group {
+    margin-top: var(--space-4);
+  }
+
+  .projects__group-title {
+    margin-bottom: var(--space-2);
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--color-border);
   }
 
   /*

@@ -1,0 +1,54 @@
+---
+title: "The Urban Dwelling"
+subtitle: "A multi-family housing block designed and then tested against Swedish energy-performance requirements"
+year: "2020"
+projectType: "Coursework"
+role: "Architect"
+collaborators: ["Johanna Åström"]
+tools: ["CAD", "Excel"]
+themes: ["Architecture", "Sustainability", "Research"]
+careerStage: "bachelor"
+description: "A multi-family apartment building, from unit plans and facade detailing through to a full energy balance calculation checking the design against Swedish building code and low-energy targets."
+coverImage: "./facades-1-200-1.jpg"
+coverImageAlt: "Two isometric views of a five-storey apartment building with a pitched roof, balconies, and a banded facade."
+accentColor: "light-blue"
+---
+
+import LoadingImage from '../../../components/LoadingImage.astro';
+import massing from './facades-1-200-1.jpg';
+import typicalFloor from './NORMALPLAN.jpg';
+import unitDiagram from './diagram-1.jpg';
+import groundFloor from './bottenplan-1.jpg';
+import detail from './detail-1.jpg';
+
+## Context
+
+A multi-family apartment building in five storeys, its pitched roof and banded facade wrapping a mix of one- to four-room apartments around a shared stair core.
+
+<LoadingImage src={massing} width={1600} alt="Two isometric views of the apartment building, showing its pitched roof, balconies, and banded facade from different angles." />
+
+## Methods
+
+Each floor pairs apartments of different sizes - from a 26 m² one-room unit to a 104 m² four-room unit - around a single stair, mirrored across the building's width so every combination of unit sizes repeats floor to floor.
+
+<LoadingImage src={typicalFloor} width={1600} alt="Typical floor plan showing a stair core flanked by mirrored apartments ranging from one to four rooms, each labeled with its area in square meters." />
+
+Alternative combinations of those same units were tested against the fixed stair core, regrouping which apartments share a floor without changing the building's overall structure.
+
+<LoadingImage src={unitDiagram} width={1600} alt="Four-step diagram showing the same floor plan with different apartment groupings highlighted in pink, testing alternative combinations of unit sizes around the fixed stair core." />
+
+## Process
+
+At ground level, the entrance floor sits within a landscaped courtyard; a cross-section through the building shows how its five floors and balconies step down to meet it.
+
+<LoadingImage src={groundFloor} width={1600} alt="Ground floor plan set within a landscaped courtyard, alongside a cross-section through the building showing its five floors and stepped balconies." />
+
+The facade's banded brick coursing, integrated LED lighting at each floor line, and full wall build-up - from roof insulation through to the foundation's drainage layer - were resolved down to a construction detail.
+
+<LoadingImage src={detail} width={1600} alt="Facade elevation showing banded brick coursing and integrated LED lighting, beside a detailed wall section from the roof insulation down to the foundation." />
+
+## Outcomes
+
+Once the design was resolved, **Johanna Åström** and I ran a full energy balance calculation against it. Sweden's building code (BBR) sets a maximum specific energy use of 85 kWh/m²A<sub>temp</sub> per year for this climate zone; without heat recovery, the building reaches 78.1. With a heat exchanger, that drops by almost 30% to 57 kWh/m²A<sub>temp</sub> per year - inside the code requirement, though just above the 50 kWh/m²A<sub>temp</sub> threshold for classification as a low-energy building.
+
+Windows turned out to be the building's weak point: despite covering a small share of the facade, they account for 41% of transmission losses and 43% of total energy use - more than the walls, which make up far more of the envelope's area. Doubling the window area alone pushes heating energy use up substantially; doubling it while also doubling the window's U-value pushes it further still. Lowering the indoor set point from 22°C to 21°C, by contrast, only trims energy use modestly - a reminder that the envelope, not the thermostat, is what this design lives or dies by.

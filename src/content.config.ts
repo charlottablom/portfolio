@@ -25,6 +25,10 @@ export const accentColors = [
   'pale-amber',
 ] as const;
 
+// Where a project falls in Charlotta's career - used to group the Projects
+// listing under Bachelor / Master / Applied in Practice headers.
+export const careerStages = ['bachelor', 'master', 'practice'] as const;
+
 // Field set required by instructions/PROJECT_RULES.md
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
@@ -43,6 +47,7 @@ const projects = defineCollection({
       coverImage: image(),
       coverImageAlt: z.string(),
       accentColor: z.enum(accentColors).optional(),
+      careerStage: z.enum(careerStages),
     }),
 });
 
