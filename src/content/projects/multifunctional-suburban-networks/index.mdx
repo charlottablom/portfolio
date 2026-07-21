@@ -15,53 +15,75 @@ accentColor: "tea-green"
 ---
 
 import LoadingImage from '../../../components/LoadingImage.astro';
-import analysis1 from './analysis_1.jpg';
-import analysis2 from './analysis_2.jpg';
-import context1 from './context_1.jpg';
-import context2 from './context_2.jpg';
-import plan1 from './plan_1.jpg';
+import socialNetworks from './Portfolio_260430.jpg';
+import ecologicalNetworks from './Portfolio_260430_s6-7.jpg';
+import speciesCards from './Portfolio_260430_s6-72.jpg';
+import cityModel from './Portfolio_260430_s5.jpg';
+import strategicSocial from './Portfolio_260430s_8.jpg';
+import strategicEcological from './Portfolio_260430s_82.jpg';
+import designPrinciples from './Portfolio_260430_11.jpg';
+import sitePlan from './Portfolio_260430-13.jpg';
 import perspective2 from './perspective_2.jpg';
 import illustration1 from './illustration_1.jpg';
 
 ## Context
 
-Many of Gothenburg's suburban areas face challenges such as social exclusion, car dependency, and poor connectivity within the urban street network. The thesis was tied to **Evolutive Meshed Compact City (EMC²)**, a **Vinnova**-funded research project led by **Chalmers' Spatial Morphology Group (SMoG)**, and explores how the EMC² concept can guide sustainable densification by focusing development along existing suburban main streets.
+Many of Gothenburg's suburban areas face social exclusion, car dependency, and poor connectivity within the urban street network. The thesis investigates how strategic urban planning can create social-ecological synergies - and surface the conflicts - in the city's periphery, using north eastern Gothenburg as a case study. It was tied to **Evolutive Meshed Compact City (EMC²)**, a **Vinnova**-funded research project led by **Chalmers' Spatial Morphology Group (SMoG)**.
+
+GIS analyses mapped the social networks that structure how people move through the city - street centrality by pedestrian and vehicular flow, layered against built functions like housing, healthcare, and schools.
 
 <figure>
-  <LoadingImage src={analysis1} width={1600} alt="Diagram comparing the 15-minute city model applied to a dense urban grid (left) and a more dispersed suburban street network (right), with a dashed line showing a 15-minute walking path between example destinations in each." />
-  <figcaption>The 15-minute city model in a dense grid, compared to a dispersed suburban network.</figcaption>
+  <LoadingImage src={socialNetworks} width={1600} alt="GIS map of Gothenburg showing street centrality by pedestrian and vehicular flow, color-coded from low to high, overlaid with built functions such as residential, commercial, healthcare, and school buildings." />
+  <figcaption>Social networks of Gothenburg: street centrality and built functions.</figcaption>
 </figure>
 
-The EMC² model responds to this by concentrating new density along a redesigned mesh of existing suburban main streets, rather than spreading it evenly across the area.
+The same method, applied to three focus species instead of transit stops and amenities, mapped ecological connectivity. The pattern reverses the social one: habitat quality and species movement increase toward the periphery and fall toward the city core.
 
 <figure>
-  <LoadingImage src={analysis2} width={1600} alt="The same diagram with the Evolutive Meshed Compact City (EMC2) model applied: a hatched corridor marks where densification is proposed along the suburban main street, connecting neighborhoods without redeveloping the areas between them." />
-  <figcaption>The EMC² model applied: densification concentrated along the suburban main street.</figcaption>
+  <LoadingImage src={ecologicalNetworks} width={1600} alt="GIS map of Gothenburg showing habitat quality and connectivity zones for three focus species, layered over the same street network, with connectivity increasing toward the city's periphery." />
+  <figcaption>Ecological networks of Gothenburg: habitat quality and connectivity for three focus species.</figcaption>
+</figure>
+
+<figure>
+  <LoadingImage src={speciesCards} width={1200} alt="Three species profiles: the common frog (Rana temporaria, pest control), the small scabious mining bee (Andrena marginata, pollination), and the lesser spotted woodpecker (Dryobates minor, bird song and nest creation for other species)." />
+  <figcaption>The three species behind the ecological analysis: common frog, small scabious mining bee, and lesser spotted woodpecker.</figcaption>
 </figure>
 
 ## Methods
 
-The project examines how urban growth can balance density with biodiversity, using **QGIS**-based tools built by **Chalmers' Spatial Morphology Group (SMoG)** to map human movement and wildlife habitat connectivity across the same suburban area, side by side.
+EMC² proposes an alternative to the standard 15-minute city model for car-dependent suburbs. Rather than spreading density evenly, it concentrates growth along a single redesigned main street - keeping everyday destinations within a 15-minute walk without fragmenting the green corridors around it.
 
 <figure>
-  <LoadingImage src={context1} width={1600} alt='GIS map titled "Social Networks of Gothenburg" showing street centrality by pedestrian and vehicular flow, and built functions such as residential, commercial, healthcare, and school buildings, with the Östra Göteborg focus area highlighted.' />
-  <figcaption>Social Networks of Gothenburg: street centrality and built functions.</figcaption>
+  <LoadingImage src={cityModel} width={1600} alt="Diagram comparing the 15-minute city model in a generic suburban grid against the same grid with the EMC2 model applied, showing densification concentrated along one main street connecting two destinations, with habitat corridors preserved around it." />
+  <figcaption>The 15-minute city model in a generic suburban grid, and the EMC² model applied to it.</figcaption>
+</figure>
+
+Overlaying the social and ecological networks surfaced both conflicts, where dense human activity and high habitat value collide, and opportunities: two parallel strategic plans, one linking suburbs through social exchange along the main street, the other linking green corridors through ecosystem services at the city scale.
+
+<figure>
+  <LoadingImage src={strategicSocial} width={1400} alt="Strategic plan diagram showing suburbs in north eastern Gothenburg linked in a loop by social exchange along a proposed main street." />
+  <figcaption>Strategic design linking suburbs through social exchange along the main street.</figcaption>
 </figure>
 
 <figure>
-  <LoadingImage src={context2} width={1600} alt='GIS map titled "Ecological Networks of Gothenburg" showing species observation points and ecological connectivity corridors for sand bees, the lesser spotted woodpecker, and amphibians, with the same Östra Göteborg district boundary highlighted.' />
-  <figcaption>Ecological Networks of Gothenburg: species observations and connectivity corridors.</figcaption>
+  <LoadingImage src={strategicEcological} width={1400} alt="Strategic plan diagram showing green corridors in north eastern Gothenburg linked through ecosystem services, connecting the river, wetlands, and parks." />
+  <figcaption>Strategic design linking green corridors through ecosystem services at the city scale.</figcaption>
+</figure>
+
+Four design principles carried that analysis into a densification proposal: suburban typologies keep their existing openness to green space, but gain entrances that face the street instead of the private courtyard; a clear street hierarchy balances urban activity against quieter courtyards; density follows centrality, to keep businesses viable along the main street; and multifunctional green structure runs between buildings, providing both recreation and ecosystem services.
+
+<figure>
+  <LoadingImage src={designPrinciples} width={1400} alt="Four diagrams illustrating design principles: suburban typologies open to green space with street-facing entrances; a clear street hierarchy; density following centrality; and integrated multifunctional green structure between buildings." />
+  <figcaption>Four design principles carried from analysis into the densification proposal.</figcaption>
 </figure>
 
 ## Outcomes
 
-The result is a social–ecological case study revealing synergies and conflicts between urban and natural systems in Gothenburg's periphery. One key finding: the streets that are busiest and best-connected aren't always the ones closest to shops, transit, and everyday amenities — a mismatch that complicates any simple "just add density here" approach.
-
-Building on that finding, the thesis proposes a redesigned network of main streets for the area, plus a detailed design for one of them: Kvibergs bäckväg, a street crossing the Kvibergsbäcken stream.
+The result is a social-ecological case study revealing synergies and conflicts between urban and natural systems in Gothenburg's periphery. Building on that analysis, the thesis proposes a redesigned network of main streets for the area, plus a detailed local design for one of them: Kvibergs bäckväg, a street crossing the Kvibergsbäcken stream and linking the peripheral districts of Kortedala, Kviberg, and Utby.
 
 <figure>
-  <LoadingImage src={plan1} width={1600} alt="Site plan at 1:250 scale showing the redesigned street network and building layout for the local-scale design proposal, with green infrastructure and pedestrian paths woven between buildings." />
-  <figcaption>Site plan for the local-scale design, 1:250.</figcaption>
+  <LoadingImage src={sitePlan} width={1600} alt="Site plan for Kvibergs bäckväg, showing the redesigned street network and building layout linking Kortedala, Kviberg, and Utby, with a locator map inset." />
+  <figcaption>Site plan for Kvibergs bäckväg, linking Kortedala, Kviberg, and Utby.</figcaption>
 </figure>
 
 The street's character shifts along its length. Near the public square, high foot traffic supports cafés and everyday street life:
@@ -71,7 +93,7 @@ The street's character shifts along its length. Near the public square, high foo
   <figcaption>Street level near the public square.</figcaption>
 </figure>
 
-Where it crosses the stream, the design steps back instead — a quieter boardwalk with informal seating, positioned to stay out of the way of the stream's ecological function rather than displacing it, as shown at the top of this page.
+Where it crosses the stream, the design steps back instead - a quieter boardwalk with informal seating, positioned to stay out of the way of the stream's ecological function rather than displacing it, as shown at the top of this page.
 
 The same multi-species thinking carries down to the scale of individual buildings, integrating homes, food, and foraging opportunities for people and other species directly into the architecture.
 
