@@ -19,7 +19,6 @@ import workflow from './diagram_1.jpg';
 import barriers from './barriers_map.jpg';
 import transit from './transit_map.jpg';
 import preschoolProximity from './preschool_proximity_map.jpg';
-import finalSites from './final_sites_map.jpg';
 
 ## Context
 
@@ -29,7 +28,10 @@ Bergsjön, in Östra Göteborg, needs a new preschool - but where? The analysis 
 
 Using **QGIS** alongside the **Place Syntax Tool (PST)** plug-in, the analysis layers several criteria on top of each other.
 
-<LoadingImage src={workflow} width={1600} alt="Workflow diagram showing the analysis process: overview of data and data types, data limitation, data processing, overlap analysis, and presentation, each with the specific QGIS operations used." />
+<figure>
+  <LoadingImage src={workflow} width={1600} alt="Workflow diagram showing the analysis process: overview of data and data types, data limitation, data processing, overlap analysis, and presentation, each with the specific QGIS operations used." />
+  <figcaption>The analysis workflow, from data to final sites.</figcaption>
+</figure>
 
 Barriers rule out land that's unsuitable for any preschool, regardless of demand: major roads and industrial areas (with a 100-metre buffer, to keep distance from traffic and noise), terrain steeper than 20 degrees, and existing buildings (an 8-metre buffer, so nothing existing would need to be demolished).
 
@@ -55,8 +57,3 @@ The same method, repeated with existing preschools as the attraction target inst
 ## Outcomes
 
 Overlapping all these layers - viable land, transit access, distance from existing preschools, and proximity to areas with the most children - narrows the district down to three candidate sites. Site 1 is the strongest match: large enough for 352 children against a projected need of 209, and a short walk from the Rymdtorget tram stop. Its main drawback is that it currently sits on forested land, so building there would mean clearing trees. Sites 2 and 3 are smaller and don't fully meet local demand, but show what the method finds elsewhere in the district.
-
-<figure>
-  <LoadingImage src={finalSites} width={1600} alt="Map showing three candidate sites for a new preschool highlighted in green across a residential district, with a table listing each site's area, capacity, and expected number of children." />
-  <figcaption>Suitable sites for a new preschool in Östra Göteborg.</figcaption>
-</figure>

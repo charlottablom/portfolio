@@ -195,6 +195,15 @@ A GIS map should be presented with the same care and importance as an architectu
 
 Analytical work should be celebrated rather than hidden.
 
+Confirmed by Charlotta on 2026-07-21: every image within a project's body
+carries a short visible caption (a `<figcaption>`, wrapped around the
+image in a `<figure>`), distinct from that image's `alt` text and from
+the surrounding prose. The caption is a brief, direct label - what the
+image is - not a restatement of the accessibility description or the
+paragraph's narrative point. The project's cover image, shown once at
+the top of the page before any body content, is the one exception and
+carries no caption of its own.
+
 
 ------------------------------------------------
 

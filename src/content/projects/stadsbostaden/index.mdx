@@ -15,7 +15,6 @@ accentColor: "light-blue"
 ---
 
 import LoadingImage from '../../../components/LoadingImage.astro';
-import massing from './facades-1-200-1.jpg';
 import typicalFloor from './NORMALPLAN.jpg';
 import unitDiagram from './diagram-1.jpg';
 import groundFloor from './bottenplan-1.jpg';
@@ -25,27 +24,37 @@ import detail from './detail-1.jpg';
 
 A multi-family apartment building in five storeys, its pitched roof and banded facade wrapping a mix of one- to four-room apartments around a shared stair core.
 
-<LoadingImage src={massing} width={1600} alt="Two isometric views of the apartment building, showing its pitched roof, balconies, and banded facade from different angles." />
-
 ## Methods
 
 Each floor pairs apartments of different sizes - from a 26 m² one-room unit to a 104 m² four-room unit - around a single stair, mirrored across the building's width so every combination of unit sizes repeats floor to floor.
 
-<LoadingImage src={typicalFloor} width={1600} alt="Typical floor plan showing a stair core flanked by mirrored apartments ranging from one to four rooms, each labeled with its area in square meters." />
+<figure>
+  <LoadingImage src={typicalFloor} width={1600} alt="Typical floor plan showing a stair core flanked by mirrored apartments ranging from one to four rooms, each labeled with its area in square meters." />
+  <figcaption>A typical floor, apartments mirrored around the stair.</figcaption>
+</figure>
 
 Alternative combinations of those same units were tested against the fixed stair core, regrouping which apartments share a floor without changing the building's overall structure.
 
-<LoadingImage src={unitDiagram} width={1600} alt="Four-step diagram showing the same floor plan with different apartment groupings highlighted in pink, testing alternative combinations of unit sizes around the fixed stair core." />
+<figure>
+  <LoadingImage src={unitDiagram} width={1600} alt="Four-step diagram showing the same floor plan with different apartment groupings highlighted in pink, testing alternative combinations of unit sizes around the fixed stair core." />
+  <figcaption>Alternative apartment groupings around the fixed stair core.</figcaption>
+</figure>
 
 ## Process
 
 At ground level, the entrance floor sits within a landscaped courtyard; a cross-section through the building shows how its five floors and balconies step down to meet it.
 
-<LoadingImage src={groundFloor} width={1600} alt="Ground floor plan set within a landscaped courtyard, alongside a cross-section through the building showing its five floors and stepped balconies." />
+<figure>
+  <LoadingImage src={groundFloor} width={1600} alt="Ground floor plan set within a landscaped courtyard, alongside a cross-section through the building showing its five floors and stepped balconies." />
+  <figcaption>Ground floor plan and section through the building.</figcaption>
+</figure>
 
 The facade's banded brick coursing, integrated LED lighting at each floor line, and full wall build-up - from roof insulation through to the foundation's drainage layer - were resolved down to a construction detail.
 
-<LoadingImage src={detail} width={1600} alt="Facade elevation showing banded brick coursing and integrated LED lighting, beside a detailed wall section from the roof insulation down to the foundation." />
+<figure>
+  <LoadingImage src={detail} width={1600} alt="Facade elevation showing banded brick coursing and integrated LED lighting, beside a detailed wall section from the roof insulation down to the foundation." />
+  <figcaption>Facade detail and wall section.</figcaption>
+</figure>
 
 ## Outcomes
 
