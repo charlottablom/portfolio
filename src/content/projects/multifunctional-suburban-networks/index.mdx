@@ -28,16 +28,20 @@ import illustration1 from './illustration_1.jpg';
 
 ## Context
 
-Many of Gothenburg's suburban areas face challenges such as social exclusion, car dependency, and poor connectivity within the urban street network. This thesis explores how the **Evolutive Meshed Compact City (EMC²)** concept can guide sustainable densification by focusing development along existing suburban main streets. It was tied to a **Vinnova**-funded research project led by **Chalmers' Spatial Morphology Group (SMoG)**.
+Many of Gothenburg's suburban areas were shaped by "The People's Homes" (**Folkhemmet**), the Swedish welfare state's planning initiative from the 1940s onward: spatially demarcated enclaves with traffic separated from housing. Researchers have since linked that design to obstacles for social integration - uneven distribution of resources, social exclusion, and car dependency.
 
-Recognizing the ecological value of suburban woodlands, the project examines how urban growth can balance density with biodiversity and ecosystem preservation. Through data-driven analyses of the street and green–blue networks, the study identifies how proximity, connectivity, and ecological functions interact. The result is a social–ecological case study revealing synergies and conflicts between urban and natural systems in Gothenburg's periphery.
-
-The 15-minute city model already works in Gothenburg's dense, connected core. EMC² asks whether the same model can work in the more disconnected street networks of its modernist-planned suburbs instead - concentrating densification onto a single main street that ties car-dependent suburbs together, reachable within a 15-minute walk or bike ride from satellite districts like Bergsjön and Kortedala. This thesis investigates how to plan for both social and ecological connectivity in those suburbs.
+One response gaining ground in Europe is the **15-minute city**: dense neighborhoods where all essential services sit within a 15-minute walk or bike ride. But the demographic and morphological preconditions the model assumes - density, proximity, mixed use - are largely absent from the periphery. The **Evolutive Meshed Compact City (EMC²)** answers that gap: strategic, dense corridor development along *existing* suburban main streets, concentrated wherever the driver for densification is already highest.
 
 <figure>
   <LoadingImage src={cityModel} width={1600} alt="Diagram comparing the 15-minute city model as it works today in Gothenburg's dense city core, above, against the EMC2 model applied to the disconnected street network of a modernist-planned suburb, below, concentrating densification along one main street reachable within 15 minutes from surrounding districts." />
   <figcaption>The 15-minute city applied to the city core, and the EMC² model applied to suburbia.</figcaption>
 </figure>
+
+Density brings its own ecological risk. As the acquisition of protected nature reserves plateaus internationally, the habitat heterogeneity of the suburban mosaic has become increasingly important to conserve - suburbia sits as a stepping stone partway along a rural-to-urban species-richness gradient, and densifying it without accounting for the green and blue networks threatens to fragment that connectivity just as it's needed most.
+
+The thesis's central question follows from that tension: how can the potential synergies and conflicts of overlapping social-ecological dynamics inform the design of dense corridor development in Gothenburg's north eastern suburbs? It was tied to **EMC²**, a **Vinnova**-funded research project led by **Chalmers' Spatial Morphology Group (SMoG)**.
+
+The case study area centers on **Kortedala** and **Bergsjön**, developed during the neighborhood-unit paradigm of the 1950s and 60s and considered particularly disadvantaged on social-ecological grounds, in contrast to neighboring Utby. **Gamlestaden** connects the district to the urban core; the wider study area is bounded by the Göta Älv, the Lärjeån valley, and the Säveå stream.
 
 GIS analyses mapped the social networks that structure how people move through the city - street centrality by pedestrian and vehicular flow, layered against built functions like housing, healthcare, and schools.
 
@@ -60,7 +64,9 @@ The same method, applied to three focus species instead of transit stops and ame
 
 ## Methods
 
-Overlaying the social and ecological networks surfaced both conflicts, where dense human activity and high habitat value collide, and opportunities: two parallel strategic plans, one linking suburbs through social exchange along the main street, the other linking green corridors through ecosystem services at the city scale.
+Both analyses investigate the same underlying question in different registers: how well can a living being navigate the suburban network to reach what it needs from a home base? The spatial analysis, run in **QGIS** with the **Place Syntax Tool**, measured street centrality at local, neighborhood, and city scales alongside accessibility to homes, markets, healthcare, and education - identifying which existing street segments already function as de facto main streets, even where they don't yet connect into a mesh. The ecological analysis, run with the **Habitat Network Analysis Tool (HNAT)**, traced the same logic for the three focus species instead, mapping the reach between each species' source habitat and the foraging and shelter grounds it depends on.
+
+Comparing the two revealed a shared vulnerability: a rupture between the *potential* for movement and its *purpose*. A street can be highly connected and still fail to lead anywhere useful; a habitat patch can be reachable and still be unsuitable to live in. For people, the suburbs' disconnected pedestrian network and hierarchical road structure impede daily access to services. For other species, that same road infrastructure fragments the landscape into isolated patches. Overlaying the two systems surfaced both where they conflict - dense human activity colliding with high habitat value - and where they align: two parallel strategic plans, one linking suburbs through social exchange along a new main street, the other linking green corridors through ecosystem services at the city scale.
 
 <figure>
   <LoadingImage src={strategicSocial} width={1400} alt="Strategic plan diagram showing suburbs in north eastern Gothenburg linked in a loop by social exchange along a proposed main street." />
@@ -88,14 +94,14 @@ Building on that analysis, the thesis proposes a redesigned network of main stre
   <figcaption>Site plan for Kvibergs bäckväg, linking Kortedala, Kviberg, and Utby.</figcaption>
 </figure>
 
-The street's character shifts along its length. Near the public square, high foot traffic supports cafés and everyday street life:
+The street's character follows the same centrality-and-ecology logic throughout its length. Near the public square, high centrality and low ecological value make the site suitable for denser development - cafés, seating, everyday street life:
 
 <figure>
   <LoadingImage src={perspective2} width={1600} alt="Rendered street-level perspective of a tree-lined plaza near a public square, with colorful building facades, outdoor seating, and people walking, cycling, and sitting at tables." />
-  <figcaption>Street level near the public square.</figcaption>
+  <figcaption>Street level near the public square: high centrality, low ecological value.</figcaption>
 </figure>
 
-Where it crosses the stream, the design steps back instead - a quieter boardwalk with informal seating, positioned to stay out of the way of the stream's ecological function rather than displacing it, as shown at the top of this page.
+Where the street crosses the stream, both values run high at once, so the design steps back instead: a quieter boardwalk with informal seating, activating the crossing through low-impact use - an outdoor classroom, somewhere to sit - rather than displacing the stream's ecological function, as shown at the top of this page.
 
 The same multi-species thinking carries down to the scale of individual buildings, integrating homes, food, and foraging opportunities for people and other species directly into the architecture.
 
