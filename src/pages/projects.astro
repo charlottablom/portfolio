@@ -32,6 +32,20 @@ const careerStageLabels: Record<(typeof careerStages)[number], string> = {
 // timeline.
 const isCurated = featuredProjects.length > 0;
 
+// Deterministic per-project horizontal offset for the preview image, so
+// the list reads with some visual rhythm instead of a strict grid, but
+// the same project always lands in the same place rather than shifting
+// on every rebuild. Weighted toward the right, since the container has
+// far more room there than in the left gutter.
+const previewOffsets = [0, 4, 7, 1.5, -1, 8.5, 3, 6, -1.5, 5.5];
+function previewOffsetFor(slug: string) {
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = (hash * 31 + slug.charCodeAt(i)) >>> 0;
+  }
+  return previewOffsets[hash % previewOffsets.length];
+}
+
 const groups = careerStages
   .map((stage) => ({
     stage,
@@ -91,7 +105,11 @@ const groups = careerStages
 											<span class="projects__item-meta">
 												{project.data.subtitle} — {project.data.year}
 											</span>
-											<div class="projects__preview" data-reveal>
+											<div
+											class="projects__preview"
+											data-reveal
+											style={`--preview-offset: ${previewOffsetFor(project.id)}rem;`}
+										>
 												<span class="projects__preview-image-wrap">
 													<Image
 														src={project.data.previewImage ?? project.data.coverImage}
@@ -304,6 +322,17 @@ const groups = careerStages
     gap: var(--space-2);
     max-width: 40rem;
     margin-top: var(--space-2);
+  }
+
+  /*
+    The offset only kicks in once the container is wide enough to have
+    spare room beside a 40rem-wide preview - below that it would either
+    do nothing or risk crowding/overflowing, so it just stays flush left.
+  */
+  @media (min-width: 60rem) {
+    .projects__preview {
+      margin-left: var(--preview-offset, 0rem);
+    }
   }
 
   .projects__preview-image-wrap {
