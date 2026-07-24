@@ -8,8 +8,8 @@ tools: ["Revit", "Arkyv AI"]
 themes: ["Architecture", "Computational Design"]
 careerStage: "practice"
 description: "A set of short workflow videos showing how Arkyv's AI copilot speeds up everyday Revit tasks, made for LinkedIn and as the start of a customer-facing video library for Arkyv's website."
-coverImage: "./cover.jpg"
-coverImageAlt: "Screen recording of Revit with a schedule open, alongside the Arkyv AI copilot panel, with a webcam view of Charlotta introducing herself as an architect at Arkyv."
+coverImage: "./Arkyv.png"
+coverImageAlt: "The Arkyv wordmark logo, in black on a white background."
 accentColor: "teal-aqua"
 ---
 
@@ -20,20 +20,32 @@ import renamingViewsAndSheets from './renaming-views-and-sheets.mp4';
 
 ## Context
 
-At **Arkyv**, my current role includes producing short videos that show what the AI copilot can do inside **Revit** - for LinkedIn, and as the start of a customer-facing video library for Arkyv's own website.
+At **Arkyv**, my current role includes producing short videos that show what the AI agent can do inside **Revit** - for LinkedIn, and as the start of a customer-facing video library for Arkyv's own website.
 
 ### Creating a schedule
 
-<video controls preload="metadata" src={createSchedule} style="width: 100%; display: block;" />
+<figure>
+  <video controls preload="metadata" src={createSchedule} style="width: 100%; display: block;" />
+  <figcaption>Swift creation of a Revit-native schedule, with columns specified directly in the prompt.</figcaption>
+</figure>
 
 ### Editing a type parameter
 
-<video controls preload="metadata" src={editParameter} style="width: 100%; display: block;" />
+<figure>
+  <video controls preload="metadata" src={editParameter} style="width: 100%; display: block;" />
+  <figcaption>Editing a specific type parameter across all interior door types, except one.</figcaption>
+</figure>
 
 ### Color-coding elements
 
-<video controls preload="metadata" src={elementColorCoding} style="width: 100%; display: block;" />
+<figure>
+  <video controls preload="metadata" src={elementColorCoding} style="width: 100%; display: block;" />
+  <figcaption>Color-coding by room boundary, based on room elements sharing the same name.</figcaption>
+</figure>
 
 ### Renaming views and sheets
 
-<video controls preload="metadata" src={renamingViewsAndSheets} style="width: 100%; display: block;" />
+<figure>
+  <video controls preload="metadata" src={renamingViewsAndSheets} style="width: 100%; display: block;" />
+  <figcaption>Renaming sheets and views to match a specific Swedish naming convention.</figcaption>
+</figure>
