@@ -37,7 +37,7 @@ const isCurated = featuredProjects.length > 0;
 // the same project always lands in the same place rather than shifting
 // on every rebuild. Weighted toward the right, since the container has
 // far more room there than in the left gutter.
-const previewOffsets = [0, 4, 7, 1.5, -1, 8.5, 3, 6, -1.5, 5.5];
+const previewOffsets = [2, 14, 22, 8, -2, 26, 11, 18, -3, 16];
 function previewOffsetFor(slug: string) {
   let hash = 0;
   for (let i = 0; i < slug.length; i++) {
@@ -226,6 +226,12 @@ const groups = careerStages
   .projects {
     padding-block: var(--space-4);
     border-top: 1px solid var(--color-border);
+    /*
+      Wider than the site's usual reading-width container: this page is
+      a scannable list rather than a block of prose, so it uses more of
+      the viewport instead of leaving large empty margins either side.
+    */
+    max-width: 100rem;
   }
 
   .projects__empty,
@@ -331,7 +337,13 @@ const groups = careerStages
   */
   @media (min-width: 60rem) {
     .projects__preview {
-      margin-left: var(--preview-offset, 0rem);
+      /*
+        clamp()'s upper bound is viewport-relative, not a fixed rem value:
+        a project's offset should stay proportionally big on a wide
+        screen, but automatically shrink on a merely-past-the-breakpoint
+        one instead of pushing the preview past the container's edge.
+      */
+      margin-left: clamp(0rem, var(--preview-offset, 0rem), 22vw);
     }
   }
 
