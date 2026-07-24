@@ -53,7 +53,7 @@ const groups = careerStages
 			<p class="projects__empty">Projects will be added here.</p>
 		) : (
 			<>
-				{themes.length > 1 && (
+				{themes.length > 1 && !isCurated && (
 					<div class="projects__filter" role="group" aria-label="Filter by theme">
 						<button type="button" class="projects__filter-chip" data-theme-all aria-pressed="true">
 							All

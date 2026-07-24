@@ -26,15 +26,15 @@ const { entries } = Astro.props;
         class={`project-timeline__marker ${entry.isGroupProject ? 'project-timeline__marker--half' : ''}`}
         aria-hidden="true"
       ></span>
-      <details class="project-timeline__details">
-        <summary class="project-timeline__link">
+      <div class="project-timeline__body">
+        <a href={`/projects/${entry.slug}`} class="project-timeline__link">
           <span class="project-timeline__title">{entry.title}</span>
           <span class="project-timeline__year">
             {entry.year}
             {entry.isGroupProject && <> · group project</>}
           </span>
-        </summary>
-        <div class="project-timeline__preview">
+        </a>
+        <div class="project-timeline__preview" data-reveal>
           <Image
             src={entry.coverImage}
             alt={entry.coverImageAlt}
@@ -44,10 +44,37 @@ const { entries } = Astro.props;
           <p class="project-timeline__preview-text">{entry.description}</p>
           <a href={`/projects/${entry.slug}`} class="project-timeline__preview-link">View project →</a>
         </div>
-      </details>
+      </div>
     </li>
   ))}
 </ol>
+
+<script>
+  // Each preview starts visible (progressive enhancement: if this script
+  // doesn't run, everything is just shown), then this hides it and reveals
+  // it again as it scrolls into view, so the page reads as one continuous
+  // scroll of titles and previews rather than requiring a click per project.
+  const previews = document.querySelectorAll<HTMLElement>('.project-timeline__preview[data-reveal]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (previews.length > 0 && !prefersReducedMotion && 'IntersectionObserver' in window) {
+    previews.forEach((preview) => preview.classList.add('project-timeline__preview--pending'));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('project-timeline__preview--visible');
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.15 },
+    );
+
+    previews.forEach((preview) => observer.observe(preview));
+  }
+</script>
 
 <style>
   /*
@@ -105,18 +132,9 @@ const { entries } = Astro.props;
     background: conic-gradient(var(--color-text) 0deg 180deg, var(--color-border) 180deg 360deg);
   }
 
-  .project-timeline__details {
+  .project-timeline__body {
     flex: 1;
     min-width: 0;
-  }
-
-  /* Replace the browser's default disclosure triangle with our own. */
-  .project-timeline__link {
-    list-style: none;
-  }
-
-  .project-timeline__link::-webkit-details-marker {
-    display: none;
   }
 
   .project-timeline__link {
@@ -124,25 +142,12 @@ const { entries } = Astro.props;
     flex-wrap: wrap;
     align-items: baseline;
     gap: var(--space-2);
-    cursor: pointer;
     text-decoration: none;
   }
 
   .project-timeline__title {
     font-size: var(--font-size-lg);
     font-weight: 600;
-  }
-
-  .project-timeline__title::after {
-    content: '+';
-    display: inline-block;
-    margin-left: var(--space-1);
-    color: var(--color-muted);
-    font-weight: 400;
-  }
-
-  .project-timeline__details[open] .project-timeline__title::after {
-    content: '−';
   }
 
   .project-timeline__year {
@@ -174,18 +179,14 @@ const { entries } = Astro.props;
     font-size: var(--font-size-sm);
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .project-timeline__preview {
-      animation: project-timeline-preview-in var(--transition-fast) ease-out;
-    }
+  .project-timeline__preview--pending {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
   }
 
-  @keyframes project-timeline-preview-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .project-timeline__preview--pending.project-timeline__preview--visible {
+    opacity: 1;
+    transform: none;
   }
 </style>
