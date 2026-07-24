@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Circle from '../components/Circle.astro';
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { featuredProjects } from '../config/featured-projects';
 import { careerStages } from '../content.config';
@@ -90,6 +91,15 @@ const groups = careerStages
 											<span class="projects__item-meta">
 												{project.data.subtitle} — {project.data.year}
 											</span>
+											<div class="projects__preview" data-reveal>
+												<Image
+													src={project.data.previewImage ?? project.data.coverImage}
+													alt={project.data.previewImageAlt ?? project.data.coverImageAlt}
+													width={640}
+													class="projects__preview-img"
+												/>
+												<p class="projects__preview-text">{project.data.description}</p>
+											</div>
 										</a>
 									</li>
 								))}
@@ -105,6 +115,30 @@ const groups = careerStages
 </Layout>
 
 <script>
+  // Same scroll-reveal as the Home page preview list: each project's
+  // preview starts visible (progressive enhancement), then this hides it
+  // and fades it back in as it scrolls into view.
+  const previews = document.querySelectorAll<HTMLElement>('.projects__preview[data-reveal]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (previews.length > 0 && !prefersReducedMotion && 'IntersectionObserver' in window) {
+    previews.forEach((preview) => preview.classList.add('projects__preview--pending'));
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('projects__preview--visible');
+            revealObserver.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.15 },
+    );
+
+    previews.forEach((preview) => revealObserver.observe(preview));
+  }
+
   const filterGroup = document.querySelector<HTMLElement>('.projects__filter');
 
   if (filterGroup) {
@@ -253,5 +287,34 @@ const groups = careerStages
 
   .projects__item-meta {
     color: var(--color-muted);
+  }
+
+  .projects__preview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-width: 24rem;
+    margin-top: var(--space-2);
+  }
+
+  .projects__preview-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .projects__preview-text {
+    color: var(--color-text);
+  }
+
+  .projects__preview--pending {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+  }
+
+  .projects__preview--pending.projects__preview--visible {
+    opacity: 1;
+    transform: none;
   }
 </style>
