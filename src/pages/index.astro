@@ -24,6 +24,9 @@ const timelineEntries = projects
     title: project.data.title,
     year: project.data.year,
     isGroupProject: (project.data.collaborators?.length ?? 0) > 0,
+    coverImage: project.data.coverImage,
+    coverImageAlt: project.data.coverImageAlt,
+    description: project.data.description,
   }));
 ---
 
@@ -35,6 +38,7 @@ const timelineEntries = projects
 
 	<section class="section container">
 		<h2>Selected Work</h2>
+		<p class="section__intro">Click the title to see a preview.</p>
 		{timelineEntries.length === 0 ? (
 			<p class="section__empty">Projects will be added here.</p>
 		) : (
@@ -62,7 +66,13 @@ const timelineEntries = projects
   }
 
   .section h2 {
+    margin-bottom: var(--space-2);
+  }
+
+  .section__intro {
     margin-bottom: var(--space-3);
+    color: var(--color-muted);
+    font-size: var(--font-size-sm);
   }
 
   .section__empty {
