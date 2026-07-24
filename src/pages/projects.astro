@@ -29,13 +29,20 @@ const careerStageLabels: Record<(typeof careerStages)[number], string> = {
 // Grouped by career stage, most recent project first within each group -
 // mirrors the "most recent at top" convention used by the About page
 // timeline.
-const groups = careerStages.map((stage) => ({
-  stage,
-  label: careerStageLabels[stage],
-  projects: projects
-    .filter((project) => project.data.careerStage === stage)
-    .sort((a, b) => Number(b.data.year) - Number(a.data.year)),
-}));
+const isCurated = featuredProjects.length > 0;
+
+const groups = careerStages
+  .map((stage) => ({
+    stage,
+    label: careerStageLabels[stage],
+    projects: projects
+      .filter((project) => project.data.careerStage === stage)
+      .sort((a, b) => Number(b.data.year) - Number(a.data.year)),
+  }))
+  // On a curated (e.g. job-application) branch, a stage with nothing
+  // selected isn't "coming soon" - it just wasn't picked for this view,
+  // so skip it rather than showing the empty-state placeholder.
+  .filter((group) => group.projects.length > 0 || !isCurated);
 ---
 
 <Layout title="Projects — Charlotta Blom" description="Selected projects by Charlotta Blom.">
