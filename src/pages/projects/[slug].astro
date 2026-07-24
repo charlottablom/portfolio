@@ -149,6 +149,7 @@ const { Content } = await render(project);
     fine text/labels room to stay legible.
   */
   .project__body :global(h2),
+  .project__body :global(h3),
   .project__body :global(p) {
     max-width: 48rem;
     margin-inline: auto;
@@ -161,6 +162,15 @@ const { Content } = await render(project);
 
   .project__body :global(h2:first-child) {
     margin-top: 0;
+  }
+
+  /*
+    Matches the figure's own margin-block below, so a heading like the
+    per-video titles in the Arkyv project sits with equal space above
+    (from the preceding paragraph) and below (to the video/figure).
+  */
+  .project__body :global(h3) {
+    margin-top: var(--space-4);
   }
 
   .project__body :global(p) {
