@@ -7,8 +7,8 @@ interface ProjectEntry {
   title: string;
   year: string;
   isGroupProject: boolean;
-  coverImage: ImageMetadata;
-  coverImageAlt: string;
+  previewImage: ImageMetadata;
+  previewImageAlt: string;
   description: string;
 }
 
@@ -36,8 +36,8 @@ const { entries } = Astro.props;
         </a>
         <div class="project-timeline__preview" data-reveal>
           <Image
-            src={entry.coverImage}
-            alt={entry.coverImageAlt}
+            src={entry.previewImage}
+            alt={entry.previewImageAlt}
             width={640}
             class="project-timeline__preview-img"
           />

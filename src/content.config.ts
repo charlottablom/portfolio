@@ -46,6 +46,12 @@ const projects = defineCollection({
       description: z.string(),
       coverImage: image(),
       coverImageAlt: z.string(),
+      // Optional override for the Home page preview (see ProjectTimeline):
+      // falls back to coverImage/coverImageAlt when not set. Useful when the
+      // cover itself (e.g. a logo) isn't the most telling single image for
+      // a quick preview.
+      previewImage: image().optional(),
+      previewImageAlt: z.string().optional(),
       accentColor: z.enum(accentColors).optional(),
       careerStage: z.enum(careerStages),
     }),

@@ -24,8 +24,8 @@ const timelineEntries = projects
     title: project.data.title,
     year: project.data.year,
     isGroupProject: (project.data.collaborators?.length ?? 0) > 0,
-    coverImage: project.data.coverImage,
-    coverImageAlt: project.data.coverImageAlt,
+    previewImage: project.data.previewImage ?? project.data.coverImage,
+    previewImageAlt: project.data.previewImageAlt ?? project.data.coverImageAlt,
     description: project.data.description,
   }));
 ---
