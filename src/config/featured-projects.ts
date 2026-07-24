@@ -11,5 +11,5 @@ export const featuredProjects: string[] = [
   'arkyv-marketing',
   'living-by-alfa',
   'ringgarden',
-  'stadslandskap',
+  'social-inclusion',
 ];
