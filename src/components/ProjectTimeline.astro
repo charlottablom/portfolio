@@ -1,9 +1,15 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface ProjectEntry {
   slug: string;
   title: string;
   year: string;
   isGroupProject: boolean;
+  coverImage: ImageMetadata;
+  coverImageAlt: string;
+  description: string;
 }
 
 interface Props {
@@ -20,13 +26,25 @@ const { entries } = Astro.props;
         class={`project-timeline__marker ${entry.isGroupProject ? 'project-timeline__marker--half' : ''}`}
         aria-hidden="true"
       ></span>
-      <a href={`/projects/${entry.slug}`} class="project-timeline__link">
-        <span class="project-timeline__title">{entry.title}</span>
-        <span class="project-timeline__year">
-          {entry.year}
-          {entry.isGroupProject && <> · group project</>}
-        </span>
-      </a>
+      <details class="project-timeline__details">
+        <summary class="project-timeline__link">
+          <span class="project-timeline__title">{entry.title}</span>
+          <span class="project-timeline__year">
+            {entry.year}
+            {entry.isGroupProject && <> · group project</>}
+          </span>
+        </summary>
+        <div class="project-timeline__preview">
+          <Image
+            src={entry.coverImage}
+            alt={entry.coverImageAlt}
+            width={640}
+            class="project-timeline__preview-img"
+          />
+          <p class="project-timeline__preview-text">{entry.description}</p>
+          <a href={`/projects/${entry.slug}`} class="project-timeline__preview-link">View project →</a>
+        </div>
+      </details>
     </li>
   ))}
 </ol>
@@ -87,11 +105,26 @@ const { entries } = Astro.props;
     background: conic-gradient(var(--color-text) 0deg 180deg, var(--color-border) 180deg 360deg);
   }
 
+  .project-timeline__details {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Replace the browser's default disclosure triangle with our own. */
+  .project-timeline__link {
+    list-style: none;
+  }
+
+  .project-timeline__link::-webkit-details-marker {
+    display: none;
+  }
+
   .project-timeline__link {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     gap: var(--space-2);
+    cursor: pointer;
     text-decoration: none;
   }
 
@@ -100,8 +133,59 @@ const { entries } = Astro.props;
     font-weight: 600;
   }
 
+  .project-timeline__title::after {
+    content: '+';
+    display: inline-block;
+    margin-left: var(--space-1);
+    color: var(--color-muted);
+    font-weight: 400;
+  }
+
+  .project-timeline__details[open] .project-timeline__title::after {
+    content: '−';
+  }
+
   .project-timeline__year {
     color: var(--color-muted);
     font-size: var(--font-size-sm);
+  }
+
+  .project-timeline__preview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-width: 24rem;
+    margin-top: var(--space-2);
+    padding-bottom: var(--space-2);
+  }
+
+  .project-timeline__preview-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .project-timeline__preview-text {
+    color: var(--color-text);
+  }
+
+  .project-timeline__preview-link {
+    align-self: flex-start;
+    font-size: var(--font-size-sm);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .project-timeline__preview {
+      animation: project-timeline-preview-in var(--transition-fast) ease-out;
+    }
+  }
+
+  @keyframes project-timeline-preview-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 </style>
