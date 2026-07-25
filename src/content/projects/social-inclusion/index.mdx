@@ -13,6 +13,27 @@ description: "A reuse project for a 1980s school in Angered, Gothenburg, develop
 coverImage: "./COLLAGE models by the students.png"
 coverImageAlt: "Five small collaged 3D models of interior rooms made by students, each showing a different reused-material scheme, photographed against an orange background."
 accentColor: "#a1ca6d"
+collageImages:
+  - image: "./COLLAGE models by the students.png"
+    alt: "Five small collaged 3D models of interior rooms made by students, each showing a different reused-material scheme, photographed against an orange background."
+    caption: "3D collage models by the students of class SA20."
+    span: "wide"
+    targetId: "img-cover"
+  - image: "./faces final_.png"
+    alt: "Grid of eighteen blind contour drawings, one per student, each labeled with the student's first name."
+    caption: "Blind contour drawings by the students of class SA20."
+    span: "small"
+    targetId: "img-faces"
+  - image: "./0da5b655-9bdb-4e95-878b-df262f1d28f4.png"
+    alt: "Board game with colored zones for different school areas - classroom, corridors, group rooms, common areas, bathrooms - each holding cards for furniture, activity, light, and decoration choices."
+    caption: "The place-making game, played across each focus area."
+    span: "small"
+    targetId: "img-placemakinggame"
+  - image: "./exhibition.jpg"
+    alt: "Photograph of the exhibition, showing a presenter pointing to mounted boards for each focus area while visitors look on, with colored feedback dots and sticky notes attached to the boards."
+    caption: "The closing exhibition, gathering feedback from students and visitors."
+    span: "wide"
+    targetId: "img-exhibition"
 ---
 
 import LoadingImage from '../../../components/LoadingImage.astro';
@@ -46,14 +67,14 @@ An initial workshop identified eight focus areas that students and teachers high
 
 Eighteen students from class SA20 took part across five further workshops, each testing a different way of drawing out their ideas: sketching, a place-making card game scored for social, ecological, and economic sustainability, group negotiation, 3D collage, and a shared physical model of the school.
 
-<figure>
+<figure id="img-faces">
   <LoadingImage src={faces} width={1400} alt="Grid of eighteen blind contour drawings, one per student, each labeled with the student's first name." />
   <figcaption>Blind contour drawings by the students of class SA20.</figcaption>
 </figure>
 
 The place-making game let students "play" different changes to their chosen focus area, each move card-rated for how sustainable it was.
 
-<figure>
+<figure id="img-placemakinggame">
   <LoadingImage src={placeMakingGame} width={1000} alt="Board game with colored zones for different school areas - classroom, corridors, group rooms, common areas, bathrooms - each holding cards for furniture, activity, light, and decoration choices." />
   <figcaption>The place-making game, played across each focus area.</figcaption>
 </figure>
@@ -73,7 +94,7 @@ Each focus area carried its workshop feedback into a finished design. The corrid
 
 The project closed with a public exhibition, where students presented their ideas to visitors and gathered feedback on the proposals built from their own workshops.
 
-<figure>
+<figure id="img-exhibition">
   <LoadingImage src={exhibition} width={1600} alt="Photograph of the exhibition, showing a presenter pointing to mounted boards for each focus area while visitors look on, with colored feedback dots and sticky notes attached to the boards." />
   <figcaption>The closing exhibition, gathering feedback from students and visitors.</figcaption>
 </figure>

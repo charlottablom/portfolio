@@ -12,6 +12,27 @@ description: "Investigating how the Evolutive Meshed Compact City (EMC²) concep
 coverImage: "./perspective_1.jpg"
 coverImageAlt: "Rendered perspective of an elevated timber boardwalk over a stream in a wooded suburban area, with orange seating and a small pavilion among birch trees and people using the space."
 accentColor: "#e4bb82"
+collageImages:
+  - image: "./perspective_1.jpg"
+    alt: "Rendered perspective of an elevated timber boardwalk over a stream in a wooded suburban area, with orange seating and a small pavilion among birch trees and people using the space."
+    caption: "The stream crossing: a quiet boardwalk where ecological value runs high."
+    span: "wide"
+    targetId: "img-cover"
+  - image: "./Portfolio_260430_s6-72.jpg"
+    alt: "Three species profiles: the common frog (Rana temporaria, pest control), the small scabious mining bee (Andrena marginata, pollination), and the lesser spotted woodpecker (Dryobates minor, bird song and nest creation for other species)."
+    caption: "The three focus species behind the ecological analysis."
+    span: "small"
+    targetId: "img-speciescards"
+  - image: "./illustration_1.jpg"
+    alt: "Illustrated building section showing how homes/habitats and food/foraging opportunities for both people and other species are integrated into the architecture, including a green roof, balconies, and surrounding trees."
+    caption: "Habitat and foraging opportunities, integrated into the architecture."
+    span: "small"
+    targetId: "img-illustration1"
+  - image: "./perspective_2.jpg"
+    alt: "Rendered street-level perspective of a tree-lined plaza near a public square, with colorful building facades, outdoor seating, and people walking, cycling, and sitting at tables."
+    caption: "Street level near the public square: high centrality, everyday life."
+    span: "wide"
+    targetId: "img-perspective2"
 ---
 
 import LoadingImage from '../../../components/LoadingImage.astro';
@@ -57,7 +78,7 @@ The same method, applied to three focus species instead of transit stops and ame
   <figcaption>Ecological networks of Gothenburg: habitat quality and connectivity for three focus species.</figcaption>
 </figure>
 
-<figure>
+<figure id="img-speciescards">
   <LoadingImage src={speciesCards} width={1200} alt="Three species profiles: the common frog (Rana temporaria, pest control), the small scabious mining bee (Andrena marginata, pollination), and the lesser spotted woodpecker (Dryobates minor, bird song and nest creation for other species)." />
   <figcaption>The three species behind the ecological analysis: common frog, small scabious mining bee, and lesser spotted woodpecker.</figcaption>
 </figure>
@@ -98,7 +119,7 @@ Building on that analysis, the thesis proposes a redesigned network of main stre
 
 The street's character follows the same centrality-and-ecology logic throughout its length. Near the public square, high centrality and low ecological value make the site suitable for denser development - cafés, seating, everyday street life:
 
-<figure>
+<figure id="img-perspective2">
   <LoadingImage src={perspective2} width={1600} alt="Rendered street-level perspective of a tree-lined plaza near a public square, with colorful building facades, outdoor seating, and people walking, cycling, and sitting at tables." />
   <figcaption>Street level near the public square: high centrality, low ecological value.</figcaption>
 </figure>
@@ -107,7 +128,7 @@ Where the street crosses the stream, both values run high at once, so the design
 
 The same multi-species thinking carries down to the scale of individual buildings, integrating homes, food, and foraging opportunities for people and other species directly into the architecture.
 
-<figure>
+<figure id="img-illustration1">
   <LoadingImage src={illustration1} width={1600} alt="Illustrated building section showing how homes/habitats and food/foraging opportunities for both people and other species are integrated into the architecture, including a green roof, balconies, and surrounding trees." />
   <figcaption>Building section integrating habitat and foraging opportunities.</figcaption>
 </figure>
