@@ -110,21 +110,12 @@ const groups = careerStages
 											data-reveal
 											style={`--preview-offset: ${previewOffsetFor(project.id)}rem;`}
 										>
-												<span class="projects__preview-image-wrap">
-													<Image
-														src={project.data.previewImage ?? project.data.coverImage}
-														alt={project.data.previewImageAlt ?? project.data.coverImageAlt}
-														width={1200}
-														class="projects__preview-img"
-													/>
-													{project.data.accentColor && (
-														<span
-															class="projects__preview-tint"
-															style={`background: ${project.data.accentColor};`}
-															aria-hidden="true"
-														></span>
-													)}
-												</span>
+												<Image
+												src={project.data.previewImage ?? project.data.coverImage}
+												alt={project.data.previewImageAlt ?? project.data.coverImageAlt}
+												width={1200}
+												class="projects__preview-img"
+											/>
 												<p class="projects__preview-text">{project.data.description}</p>
 											</div>
 										</a>
@@ -330,28 +321,10 @@ const groups = careerStages
     }
   }
 
-  .projects__preview-image-wrap {
-    position: relative;
-    display: block;
-  }
-
   .projects__preview-img {
     display: block;
     width: 100%;
     height: auto;
-  }
-
-  .projects__preview-tint {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity var(--transition-fast);
-    pointer-events: none;
-  }
-
-  .projects__item a:hover .projects__preview-tint,
-  .projects__item a:focus-visible .projects__preview-tint {
-    opacity: 0.33;
   }
 
   .projects__preview-text {
