@@ -28,7 +28,7 @@ const {
   accentColor,
 } = project.data;
 
-const coverColor = accentColor ? `var(--color-${accentColor})` : undefined;
+const coverColor = accentColor;
 
 const { Content } = await render(project);
 ---

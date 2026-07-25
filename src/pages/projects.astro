@@ -95,8 +95,8 @@ const groups = careerStages
 												{project.data.accentColor && (
 													<Circle
 														full
-														size="0.85em"
-														color={`var(--color-${project.data.accentColor})`}
+														size="0.5rem"
+														color={project.data.accentColor}
 														class="projects__item-dot"
 													/>
 												)}
@@ -120,7 +120,7 @@ const groups = careerStages
 													{project.data.accentColor && (
 														<span
 															class="projects__preview-tint"
-															style={`background: var(--color-${project.data.accentColor});`}
+															style={`background: ${project.data.accentColor};`}
 															aria-hidden="true"
 														></span>
 													)}
@@ -273,8 +273,6 @@ const groups = careerStages
 
   .projects__group-title {
     margin-bottom: var(--space-2);
-    padding-bottom: var(--space-1);
-    border-bottom: 1px solid var(--color-border);
   }
 
   /*
@@ -291,15 +289,9 @@ const groups = careerStages
     text-decoration: none;
   }
 
-  /*
-    align-items: flex-start (not center): a long title can wrap to more
-    than one line, and centering would leave the dot drifting toward the
-    middle of the whole wrapped block instead of sitting beside the
-    first line, where it reads naturally.
-  */
   .projects__item-title {
     display: inline-flex;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--space-2);
     font-size: var(--font-size-xl);
     font-weight: 600;

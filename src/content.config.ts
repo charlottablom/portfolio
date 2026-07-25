@@ -1,33 +1,10 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// Accent palette confirmed by Charlotta on 2026-07-17 - see
-// instructions/DESIGN_SYSTEM.md. Keep in sync with the --color-* tokens
-// in src/styles/global.css.
-export const accentColors = [
-  'dry-sage',
-  'soft-linen',
-  'baby-blue-ice',
-  'cornflower-blue',
-  'dusk-blue',
-  'bubblegum-pink',
-  'cornsilk',
-  'pearl-aqua',
-  'taupe-grey',
-  'lavender',
-  'periwinkle',
-  'wisteria-blue',
-  'teal-aqua',
-  'tropical-teal',
-  'light-blue',
-  'ash-grey',
-  'tea-green',
-  'pale-amber',
-] as const;
-
 // Where a project falls in Charlotta's career - used to group the Projects
-// listing under Bachelor / Master / Applied in Practice headers.
-export const careerStages = ['bachelor', 'master', 'practice'] as const;
+// listing under Applied in Practice / Master / Bachelor headers, most
+// recent stage first (matching her CV).
+export const careerStages = ['practice', 'master', 'bachelor'] as const;
 
 // Field set required by instructions/PROJECT_RULES.md
 const projects = defineCollection({
@@ -52,7 +29,9 @@ const projects = defineCollection({
       // a quick preview.
       previewImage: image().optional(),
       previewImageAlt: z.string().optional(),
-      accentColor: z.enum(accentColors).optional(),
+      // A hex color picked out of the project's own imagery (see
+      // instructions/DESIGN_SYSTEM.md), rather than a fixed named palette.
+      accentColor: z.string().regex(/^#[0-9a-f]{6}$/i).optional(),
       careerStage: z.enum(careerStages),
     }),
 });
