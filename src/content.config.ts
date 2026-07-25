@@ -33,6 +33,32 @@ const projects = defineCollection({
       // instructions/DESIGN_SYSTEM.md), rather than a fixed named palette.
       accentColor: z.string().regex(/^#[0-9a-f]{6}$/i).optional(),
       careerStage: z.enum(careerStages),
+      // A curated subset (roughly 50-75%) of the project's images, for the
+      // "collage" step between the cover preview and the full project (see
+      // instructions/DESIGN_SYSTEM.md, "Reading depth"). Chosen to sell the
+      // project at a glance - the more explanatory images (plans, diagrams,
+      // charts) are deliberately left out here and saved for the full
+      // project, so stepping into it reveals genuinely new material rather
+      // than repeating what the collage already showed. Optional: a project
+      // without this field just skips straight to the full page, unchanged.
+      collageImages: z
+        .array(
+          z.object({
+            image: image(),
+            alt: z.string(),
+            caption: z.string(),
+            // 'wide' images are twin-width and always paired with a
+            // 'small' neighbor (alternating which side it falls on from
+            // row to row); a 'wide' image with no small left to pair
+            // becomes 'solo', spanning the full row on its own.
+            span: z.enum(['small', 'wide', 'solo']),
+            // Matches the id on that same image's <figure> in the full
+            // project body, so clicking it in the collage can jump
+            // straight there instead of just opening the full page.
+            targetId: z.string().optional(),
+          }),
+        )
+        .optional(),
     }),
 });
 

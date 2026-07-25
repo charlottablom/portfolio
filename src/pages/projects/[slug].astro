@@ -2,6 +2,8 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import LoadingImage from '../../components/LoadingImage.astro';
+import ReadingStepper from '../../components/ReadingStepper.astro';
+import ProjectCollage from '../../components/ProjectCollage.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -26,67 +28,108 @@ const {
   coverImage,
   coverImageAlt,
   accentColor,
+  collageImages,
 } = project.data;
 
 const coverColor = accentColor;
+const hasReadingSteps = collageImages && collageImages.length > 0;
 
 const { Content } = await render(project);
 ---
 
 <Layout title={`${title} — Charlotta Blom`} description={description}>
-	<article class="project">
-		<header class="project__header container">
-			<p class="project__back"><a href="/projects">← Projects</a></p>
-			<h1>{title}</h1>
-			<p class="project__subtitle">{subtitle}</p>
+	<article class="project" data-has-steps={hasReadingSteps ? '' : undefined}>
+		{hasReadingSteps && <ReadingStepper color={accentColor} class="project__stepper container" />}
 
-			<dl class="project__meta">
-				<div>
-					<dt>Year</dt>
-					<dd>{year}</dd>
-				</div>
-				{location && (
+		{hasReadingSteps && (
+			<section class="project__view container" data-view="preview">
+				<h1>{title}</h1>
+				<p class="project__subtitle">{subtitle}</p>
+				<LoadingImage
+					class="project__preview-cover"
+					src={coverImage}
+					alt={coverImageAlt}
+					width={1600}
+					color={coverColor}
+				/>
+				<p class="project__preview-text">{description}</p>
+				<button type="button" class="project__advance" data-goto="collage">See the collage →</button>
+			</section>
+		)}
+
+		{hasReadingSteps && (
+			<section class="project__view container" data-view="collage">
+				<h1>{title}</h1>
+				<p class="project__subtitle">The whole project at a glance. Click any image to open it in the full project.</p>
+				<ProjectCollage images={collageImages} />
+				<button type="button" class="project__advance project__advance--collage" data-goto="full">See the full project →</button>
+			</section>
+		)}
+
+		<section class="project__view" data-view="full">
+			<header class="project__header container">
+				<p class="project__back"><a href="/projects">← Projects</a></p>
+				<h1>{title}</h1>
+				<p class="project__subtitle">{subtitle}</p>
+
+				<dl class="project__meta">
 					<div>
-						<dt>Location</dt>
-						<dd>{location}</dd>
+						<dt>Year</dt>
+						<dd>{year}</dd>
 					</div>
-				)}
-				<div>
-					<dt>Type</dt>
-					<dd>{projectType}</dd>
-				</div>
-				<div>
-					<dt>Role</dt>
-					<dd>{role}</dd>
-				</div>
-				{collaborators && collaborators.length > 0 && (
+					{location && (
+						<div>
+							<dt>Location</dt>
+							<dd>{location}</dd>
+						</div>
+					)}
 					<div>
-						<dt>Collaborators</dt>
-						<dd>{collaborators.join(', ')}</dd>
+						<dt>Type</dt>
+						<dd>{projectType}</dd>
 					</div>
-				)}
-				<div>
-					<dt>Tools</dt>
-					<dd>{tools.join(', ')}</dd>
-				</div>
-				<div>
-					<dt>Themes</dt>
-					<dd>{themes.join(', ')}</dd>
-				</div>
-			</dl>
-		</header>
+					<div>
+						<dt>Role</dt>
+						<dd>{role}</dd>
+					</div>
+					{collaborators && collaborators.length > 0 && (
+						<div>
+							<dt>Collaborators</dt>
+							<dd>{collaborators.join(', ')}</dd>
+						</div>
+					)}
+					<div>
+						<dt>Tools</dt>
+						<dd>{tools.join(', ')}</dd>
+					</div>
+					<div>
+						<dt>Themes</dt>
+						<dd>{themes.join(', ')}</dd>
+					</div>
+				</dl>
+			</header>
 
-		<LoadingImage
-			class="project__cover container"
-			src={coverImage}
-			alt={coverImageAlt}
-			width={1600}
-			color={coverColor}
-		/>
+			<LoadingImage
+				id="img-cover"
+				class="project__cover container"
+				src={coverImage}
+				alt={coverImageAlt}
+				width={1600}
+				color={coverColor}
+			/>
 
-		<div class="project__body container">
-			<Content />
-		</div>
+			<div class="project__body container">
+				<Content />
+			</div>
+		</section>
+
+		{hasReadingSteps && (
+			<button type="button" class="project__back-to-top" aria-label="Back to top of full project" title="Back to top">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M12 19V5"></path>
+					<path d="M5 12l7-7 7 7"></path>
+				</svg>
+			</button>
+		)}
 	</article>
 </Layout>
 
@@ -114,6 +157,69 @@ const { Content } = await render(project);
     );
 
     targets.forEach((target) => observer.observe(target));
+  }
+
+  // Preview -> collage -> full project: three views on the same page,
+  // switched by the stepper, the "see the X" links, or clicking straight
+  // into a collage image (which also scrolls to that same image in the
+  // full project instead of just landing at the top).
+  const article = document.querySelector<HTMLElement>('.project[data-has-steps]');
+
+  if (article) {
+    const views = article.querySelectorAll<HTMLElement>('.project__view');
+    const stepButtons = article.parentElement?.querySelectorAll<HTMLButtonElement>('.reading-stepper button') ?? [];
+    const backToTop = article.querySelector<HTMLElement>('.project__back-to-top');
+    const scrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+    const showView = (step: string) => {
+      views.forEach((view) => {
+        view.classList.toggle('project__view--active', view.dataset.view === step);
+      });
+      stepButtons.forEach((button) => {
+        button.setAttribute('aria-current', String(button.dataset.step === step));
+      });
+      backToTop?.classList.toggle('project__back-to-top--visible', step === 'full');
+    };
+
+    const goTo = (step: string) => {
+      showView(step);
+      window.scrollTo({ top: 0, behavior: scrollBehavior });
+    };
+
+    showView('preview');
+
+    stepButtons.forEach((button) => {
+      button.addEventListener('click', () => goTo(button.dataset.step ?? 'preview'));
+    });
+
+    article.querySelectorAll<HTMLButtonElement>('[data-goto]').forEach((button) => {
+      button.addEventListener('click', () => goTo(button.dataset.goto ?? 'preview'));
+    });
+
+    article.querySelectorAll<HTMLAnchorElement>('.project-collage__piece').forEach((piece) => {
+      piece.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetId = piece.dataset.target;
+        showView('full');
+        if (targetId) {
+          // Two frames, not one: the first lets the browser register the
+          // display:none -> block swap, the second measures against the
+          // now-settled layout - a single frame still sees stale (pre-swap)
+          // positions and scrolls to the wrong place.
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              document.getElementById(targetId)?.scrollIntoView({ behavior: scrollBehavior, block: 'center' });
+            });
+          });
+        } else {
+          window.scrollTo({ top: 0, behavior: scrollBehavior });
+        }
+      });
+    });
+
+    backToTop?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: scrollBehavior });
+    });
   }
 </script>
 
@@ -215,6 +321,7 @@ const { Content } = await render(project);
   .project__body :global(figure) {
     margin-block: var(--space-4);
     margin-inline: 0;
+    scroll-margin-top: var(--space-4);
   }
 
   /* Avoid doubling the spacing when a figure already owns it. */
@@ -238,5 +345,89 @@ const { Content } = await render(project);
   .project__body :global(.project-reveal--pending.project-reveal--visible) {
     opacity: 1;
     transform: none;
+  }
+
+  /* Reading-depth steps (preview / collage / full project) */
+
+  .project[data-has-steps] .project__view {
+    display: none;
+  }
+
+  .project[data-has-steps] .project__view--active {
+    display: block;
+  }
+
+  .project__stepper {
+    padding-top: var(--space-4);
+  }
+
+  .project__view[data-view='preview'],
+  .project__view[data-view='collage'] {
+    padding-block: var(--space-4) var(--space-5);
+  }
+
+  .project__view[data-view='preview'] h1,
+  .project__view[data-view='collage'] h1 {
+    margin-bottom: var(--space-1);
+  }
+
+  .project__preview-cover {
+    display: block;
+    width: 100%;
+    margin-top: var(--space-3);
+  }
+
+  .project__preview-text {
+    margin-top: var(--space-3);
+    max-width: 48rem;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-base);
+  }
+
+  .project__view[data-view='collage'] .project__subtitle {
+    max-width: 48rem;
+  }
+
+  .project__view[data-view='collage'] :global(.project-collage) {
+    margin-top: var(--space-4);
+  }
+
+  .project__advance {
+    all: unset;
+    display: inline-block;
+    margin-top: var(--space-3);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .project__advance--collage {
+    margin-top: var(--space-4);
+  }
+
+  .project__back-to-top {
+    all: unset;
+    position: fixed;
+    right: var(--space-3);
+    bottom: var(--space-3);
+    width: 2.25rem;
+    height: 2.25rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-background);
+    cursor: pointer;
+    color: var(--color-text);
+  }
+
+  .project__back-to-top--visible {
+    display: flex;
+  }
+
+  .project__back-to-top:hover {
+    border-color: var(--color-text);
   }
 </style>
