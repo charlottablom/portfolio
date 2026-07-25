@@ -14,6 +14,27 @@ coverImageAlt: "Watercolor illustration of a green roof edge in section, showing
 previewImage: "./outcome-03.jpg"
 previewImageAlt: "Building section through the five-storey dry meadow roof, elevation view, with substrate specifications for the mountain, permaculture, and dry meadow zones and the plant species used at roof level."
 accentColor: "#f8b682"
+collageImages:
+  - image: "./cover.png"
+    alt: "Watercolor illustration of a green roof edge in section, showing a wavy planted layer over a roof slab."
+    caption: "A green roof edge, in section."
+    span: "wide"
+    targetId: "img-cover"
+  - image: "./context-03.png"
+    alt: "Watercolor illustration of a common starling, Sturnus vulgaris."
+    caption: "Common starling, Sturnus vulgaris."
+    span: "small"
+    targetId: "img-starling"
+  - image: "./outcome-01.jpg"
+    alt: "Plan of the building with four biotope roofs marked in color - Mountain, Permaculture, Dry Meadow, and Open Field - each annotated with its required maintenance."
+    caption: "The four biotope roofs and their maintenance needs."
+    span: "small"
+    targetId: "img-relations"
+  - image: "./outcome-03.jpg"
+    alt: "Building section through the five-storey dry meadow roof, elevation view, with substrate specifications for the mountain, permaculture, and dry meadow zones and the plant species used at roof level."
+    caption: "Section through the five-storey dry meadow roof."
+    span: "wide"
+    targetId: "img-drymeadow"
 ---
 
 import LoadingImage from '../../../components/LoadingImage.astro';
@@ -36,7 +57,7 @@ The site is a proposed medium-density development (5–8 storeys) near Uppsala, 
 
 Four species anchor the design, each declining and each plausibly able to use a roof: the **Northern Lapwing**, a ground-nester losing wet meadows to modernized agriculture; the **Common Swift** and **Common Starling**, both cavity-nesters squeezed out by modern roofing and urbanization; and the **Great yellow bumble bee**, losing nesting ground as agricultural edges are drained and overgrown.
 
-<figure>
+<figure id="img-starling">
   <LoadingImage src={contextStarling} width={800} alt="Watercolor illustration of a common starling, Sturnus vulgaris." />
   <figcaption>Common starling, Sturnus vulgaris.</figcaption>
 </figure>
@@ -86,7 +107,7 @@ Two cross-sections test the same gradient in elevation — a recreational deck, 
 
 The resolved plan wraps four biotope roofs — Mountain, Permaculture, Dry Meadow, and Open Field — around a student apartment building with an aquaponic system below. Each carries its own maintenance regime, from mowing the dry meadow to leaving the open field's sand mounds undisturbed for ground-nesting bees.
 
-<figure>
+<figure id="img-relations">
   <LoadingImage src={outcomeRelations} width={1600} alt="Plan of the building with four biotope roofs marked in color — Mountain, Permaculture, Dry Meadow, and Open Field — each annotated with its required maintenance." />
   <figcaption>Plan of the four biotope roofs and their maintenance needs.</figcaption>
 </figure>
@@ -100,7 +121,7 @@ At 1:200, the planting plan sets out the species behind each zone: dry meadow pe
 
 Two construction details work out what sits beneath the planting. On the five-storey dry meadow roof, the build-up runs waterproofing membrane, root barrier, drainage layer, and 200–300 mm of substrate — 10% biochar, 70% crushed bricks, 10% native plants, 10% green compost — against a lighter, deeper mix for the mountain and permaculture roofs above.
 
-<figure>
+<figure id="img-drymeadow">
   <LoadingImage src={outcomeDryMeadow} width={1600} alt="Building section through the five-storey dry meadow roof, elevation view, with substrate specifications for the mountain, permaculture, and dry meadow zones and the plant species used at roof level." />
   <figcaption>Section through the five-storey dry meadow roof.</figcaption>
 </figure>

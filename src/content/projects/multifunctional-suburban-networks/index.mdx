@@ -13,26 +13,26 @@ coverImage: "./perspective_1.jpg"
 coverImageAlt: "Rendered perspective of an elevated timber boardwalk over a stream in a wooded suburban area, with orange seating and a small pavilion among birch trees and people using the space."
 accentColor: "#e4bb82"
 collageImages:
+  - image: "./Portfolio_260430.jpg"
+    alt: "GIS map of Gothenburg showing street centrality by pedestrian and vehicular flow, color-coded from low to high, overlaid with built functions such as residential, commercial, healthcare, and school buildings."
+    caption: "Social networks of Gothenburg: street centrality and built functions."
+    span: "wide"
+    targetId: "img-socialnetworks"
   - image: "./perspective_1.jpg"
     alt: "Rendered perspective of an elevated timber boardwalk over a stream in a wooded suburban area, with orange seating and a small pavilion among birch trees and people using the space."
     caption: "The stream crossing: a quiet boardwalk where ecological value runs high."
-    span: "wide"
-    targetId: "img-cover"
-  - image: "./Portfolio_260430_s6-72.jpg"
-    alt: "Three species profiles: the common frog (Rana temporaria, pest control), the small scabious mining bee (Andrena marginata, pollination), and the lesser spotted woodpecker (Dryobates minor, bird song and nest creation for other species)."
-    caption: "The three focus species behind the ecological analysis."
     span: "small"
-    targetId: "img-speciescards"
+    targetId: "img-cover"
   - image: "./illustration_1.jpg"
     alt: "Illustrated building section showing how homes/habitats and food/foraging opportunities for both people and other species are integrated into the architecture, including a green roof, balconies, and surrounding trees."
     caption: "Habitat and foraging opportunities, integrated into the architecture."
     span: "small"
     targetId: "img-illustration1"
-  - image: "./perspective_2.jpg"
-    alt: "Rendered street-level perspective of a tree-lined plaza near a public square, with colorful building facades, outdoor seating, and people walking, cycling, and sitting at tables."
-    caption: "Street level near the public square: high centrality, everyday life."
+  - image: "./Portfolio_260430_s6-7.jpg"
+    alt: "GIS map of Gothenburg showing habitat quality and connectivity zones for three focus species, layered over the same street network, with connectivity increasing toward the city's periphery."
+    caption: "Ecological networks of Gothenburg: habitat quality and connectivity."
     span: "wide"
-    targetId: "img-perspective2"
+    targetId: "img-ecologicalnetworks"
 ---
 
 import LoadingImage from '../../../components/LoadingImage.astro';
@@ -66,14 +66,14 @@ The case study centers on **Kortedala** and **Bergsjön**, developed during the 
 
 GIS analyses mapped the social networks that structure how people move through the city - street centrality by pedestrian and vehicular flow, layered against built functions like housing, healthcare, and schools.
 
-<figure>
+<figure id="img-socialnetworks">
   <LoadingImage src={socialNetworks} width={1600} alt="GIS map of Gothenburg showing street centrality by pedestrian and vehicular flow, color-coded from low to high, overlaid with built functions such as residential, commercial, healthcare, and school buildings." />
   <figcaption>Social networks of Gothenburg: street centrality and built functions.</figcaption>
 </figure>
 
 The same method, applied to three focus species instead of transit stops and amenities, mapped ecological connectivity. The pattern reverses the social one: habitat quality and species movement increase toward the periphery and fall toward the city core.
 
-<figure>
+<figure id="img-ecologicalnetworks">
   <LoadingImage src={ecologicalNetworks} width={1600} alt="GIS map of Gothenburg showing habitat quality and connectivity zones for three focus species, layered over the same street network, with connectivity increasing toward the city's periphery." />
   <figcaption>Ecological networks of Gothenburg: habitat quality and connectivity for three focus species.</figcaption>
 </figure>
