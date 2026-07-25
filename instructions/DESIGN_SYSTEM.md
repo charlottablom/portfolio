@@ -139,33 +139,19 @@ The site's own chrome (navigation, text, background, borders) stays the
 neutral black-and-white palette already in place. It is not themed by
 the colours below.
 
-Confirmed by Charlotta on 2026-07-17: a fixed palette of accent colours,
-used only to give each project its own identifying colour - shown as a
-small full circle next to the project in listings, and used to tint that
-project's image-loading animation. A project may use at most one colour
-from this palette. The palette may grow over time, but should stay a
-curated, named set rather than arbitrary picked-per-project colours.
+Each project's identifying colour - shown as a small full circle (8px)
+next to its title in listings, and used to tint that project's
+image-loading animation and hover preview - is a hex value picked out
+of that project's own imagery, rather than assigned from a shared
+palette. Stored directly on the project as a hex string (`accentColor`
+in its frontmatter), so it stays tied to that project's own material
+rather than a separately maintained token list.
 
-| Name | RGB |
-|---|---|
-| dry-sage | 205, 195, 146 |
-| soft-linen | 232, 229, 218 |
-| baby-blue-ice | 158, 183, 229 |
-| cornflower-blue | 100, 141, 229 |
-| dusk-blue | 48, 76, 137 |
-| bubblegum-pink | 247, 86, 124 |
-| cornsilk | 255, 250, 227 |
-| pearl-aqua | 153, 225, 217 |
-| taupe-grey | 93, 87, 107 |
-| lavender | 222, 217, 226 |
-| periwinkle | 192, 185, 221 |
-| wisteria-blue | 128, 161, 212 |
-| teal-aqua | 117, 201, 200 |
-| tropical-teal | 117, 185, 190 |
-| light-blue | 168, 204, 201 |
-| ash-grey | 179, 214, 198 |
-| tea-green | 220, 234, 178 |
-| pale-amber | 199, 214, 109 |
+Superseded: from 2026-07-17 to 2026-07-25, projects instead drew from a
+fixed, named 18-colour palette confirmed by Charlotta. Retired on
+2026-07-25 - Charlotta felt the curated set had gotten stale, and
+preferred each project's colour come from its own work rather than an
+arbitrary shared list.
 
 
 ------------------------------------------------
