@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface CollageImage {
+  image: ImageMetadata;
+  alt: string;
+  caption: string;
+  span: 'small' | 'wide' | 'solo';
+  targetId?: string;
+}
+
+interface Props {
+  images: CollageImage[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="project-collage">
+  {images.map((item) => (
+    <a
+      href={item.targetId ? `#${item.targetId}` : undefined}
+      class:list={['project-collage__piece', `project-collage__piece--${item.span}`]}
+      data-target={item.targetId}
+    >
+      <Image src={item.image} alt={item.alt} width={900} class="project-collage__img" />
+      <p class="project-collage__caption">{item.caption}</p>
+    </a>
+  ))}
+</div>
+
+<style>
+  .project-collage {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .project-collage__piece {
+    display: block;
+    grid-column: span 1;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .project-collage__piece--wide {
+    grid-column: span 2;
+  }
+
+  .project-collage__piece--solo {
+    grid-column: span 3;
+  }
+
+  .project-collage__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity var(--transition-fast);
+  }
+
+  .project-collage__piece:hover .project-collage__img {
+    opacity: 0.85;
+  }
+
+  .project-collage__caption {
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+    line-height: var(--line-height-base);
+  }
+
+  @media (max-width: 40rem) {
+    .project-collage {
+      grid-template-columns: 1fr;
+    }
+
+    .project-collage__piece--wide,
+    .project-collage__piece--solo {
+      grid-column: span 1;
+    }
+  }
+</style>

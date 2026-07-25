@@ -9,13 +9,14 @@ interface Props {
   width: number;
   color?: string;
   class?: string;
+  id?: string;
 }
 
-const { src, alt, width, color = 'var(--color-text)', class: className } = Astro.props;
+const { src, alt, width, color = 'var(--color-text)', class: className, id } = Astro.props;
 const imgId = `loading-image-${crypto.randomUUID()}`;
 ---
 
-<span class:list={['loading-image', className]}>
+<span id={id} class:list={['loading-image', className]}>
   <Circle
     color={color}
     size="clamp(3rem, 8vw, 6rem)"
