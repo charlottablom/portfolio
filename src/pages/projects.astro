@@ -90,7 +90,10 @@ const groups = careerStages
 							<ul class="projects__list">
 								{group.projects.map((project) => (
 									<li class="projects__item" data-themes={project.data.themes.join('|')}>
-										<a href={`/projects/${project.id}`}>
+										<a
+										href={`/projects/${project.id}`}
+										style={`--preview-offset: ${previewOffsetFor(project.id)}rem;`}
+									>
 											<span class="projects__item-title">
 												{project.data.accentColor && (
 													<Circle
@@ -105,17 +108,16 @@ const groups = careerStages
 											<span class="projects__item-meta">
 												{project.data.subtitle} — {project.data.year}
 											</span>
-											<div
-											class="projects__preview"
-											data-reveal
-											style={`--preview-offset: ${previewOffsetFor(project.id)}rem;`}
-										>
-												<Image
-												src={project.data.previewImage ?? project.data.coverImage}
-												alt={project.data.previewImageAlt ?? project.data.coverImageAlt}
-												width={1200}
-												class="projects__preview-img"
-											/>
+											<div class="projects__preview" data-reveal>
+												<span class="projects__preview-image-wrap">
+													<Image
+														src={project.data.previewImage ?? project.data.coverImage}
+														alt={project.data.previewImageAlt ?? project.data.coverImageAlt}
+														width={1200}
+														class="projects__preview-img"
+													/>
+													<span class="projects__preview-click-tint" aria-hidden="true"></span>
+												</span>
 												<p class="projects__preview-text">{project.data.description}</p>
 											</div>
 										</a>
@@ -271,13 +273,35 @@ const groups = careerStages
     room for the meta line to sit beside it instead of below, unlike the
     longer titles - stacking unconditionally keeps every item consistent
     regardless of title length.
+
+    max-width caps the whole card - title, meta, and preview together -
+    to the preview image's own width, so neither the title nor the
+    description text can run wider than the picture beneath them.
   */
   .projects__item a {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
+    max-width: 40rem;
     padding-block: var(--space-3);
     text-decoration: none;
+  }
+
+  /*
+    The offset only kicks in once the container is wide enough to have
+    spare room beside a 40rem-wide card - below that it would either do
+    nothing or risk crowding/overflowing, so it just stays flush left.
+  */
+  @media (min-width: 60rem) {
+    .projects__item a {
+      /*
+        clamp()'s upper bound is viewport-relative, not a fixed rem value:
+        a project's offset should stay proportionally big on a wide
+        screen, but automatically shrink on a merely-past-the-breakpoint
+        one instead of pushing the card past the container's edge.
+      */
+      margin-left: clamp(0rem, var(--preview-offset, 0rem), 22vw);
+    }
   }
 
   .projects__item-title {
@@ -300,31 +324,31 @@ const groups = careerStages
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    max-width: 40rem;
     margin-top: var(--space-2);
   }
 
-  /*
-    The offset only kicks in once the container is wide enough to have
-    spare room beside a 40rem-wide preview - below that it would either
-    do nothing or risk crowding/overflowing, so it just stays flush left.
-  */
-  @media (min-width: 60rem) {
-    .projects__preview {
-      /*
-        clamp()'s upper bound is viewport-relative, not a fixed rem value:
-        a project's offset should stay proportionally big on a wide
-        screen, but automatically shrink on a merely-past-the-breakpoint
-        one instead of pushing the preview past the container's edge.
-      */
-      margin-left: clamp(0rem, var(--preview-offset, 0rem), 22vw);
-    }
+  .projects__preview-image-wrap {
+    position: relative;
+    display: block;
   }
 
   .projects__preview-img {
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  .projects__preview-click-tint {
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    pointer-events: none;
+  }
+
+  .projects__item a:active .projects__preview-click-tint {
+    opacity: 0.3;
   }
 
   .projects__preview-text {
