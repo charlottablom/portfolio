@@ -24,6 +24,7 @@ const timelineEntries = projects
     title: project.data.title,
     year: project.data.year,
     isGroupProject: (project.data.collaborators?.length ?? 0) > 0,
+    hasCollage: (project.data.collageImages?.length ?? 0) > 0,
     previewImage: project.data.previewImage ?? project.data.coverImage,
     previewImageAlt: project.data.previewImageAlt ?? project.data.coverImageAlt,
     description: project.data.description,
