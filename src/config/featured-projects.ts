@@ -9,8 +9,8 @@
 export const featuredProjects: string[] = [
   'arbetet-som-plats-for-inspiration',
   'hotell-stella',
+  'en-plats-pa-natten',
   'social-inclusion',
   'arkyv-marketing',
   'living-by-alfa',
-  'ringgarden',
 ];
