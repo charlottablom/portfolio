@@ -1,0 +1,99 @@
+---
+title: "A Place at Night"
+subtitle: "A timber high-rise on Första Långgatan, Gothenburg, whose market hall becomes a dance floor after dark"
+year: "2022"
+location: "Gothenburg, Sweden"
+projectType: "Coursework"
+role: "Architect"
+tools: ["Rhinoceros", "V-ray", "Photoshop"]
+themes: ["Architecture", "Urbanism"]
+careerStage: "bachelor"
+description: "A timber high-rise on Första Långgatan in Gothenburg, close to the nightlife of Andra Långgatan and Stigbergstorget, mixing delicatessen, restaurant, office, co-working, and a rooftop bar around a ground-floor market hall that doubles as the neighbourhood's dance floor by night."
+coverImage: "./rendering-exterior-1.jpg"
+coverImageAlt: "Twilight rendering of a tall timber-framed building with glowing interior lights along a tram street, trees lining the pavement in the foreground."
+previewImage: "./rendering-market-hall-1.png"
+previewImageAlt: "Rendered interior of a double-height market hall with a timber structure, market stalls selling produce and cheese, and people browsing and looking down from a mezzanine above."
+accentColor: "#533c35"
+collageImages:
+  - image: "./rendering-exterior-1.jpg"
+    alt: "Twilight rendering of a tall timber-framed building with glowing interior lights along a tram street, trees lining the pavement in the foreground."
+    caption: "The high-rise at dusk, on Första Långgatan."
+    span: "small"
+    targetId: "img-cover"
+  - image: "./rendering-market-hall-1.png"
+    alt: "Rendered interior of a double-height market hall with a timber structure, market stalls selling produce and cheese, and people browsing and looking down from a mezzanine above."
+    caption: "The market hall, by day."
+    span: "wide"
+    targetId: "img-markethall"
+  - image: "./section-indoor-1.jpg"
+    alt: "Interior section at night showing people on a bridge looking down over a lit double-height void, with figures dancing on the floor below."
+    caption: "The market hall, by night."
+    span: "solo"
+    targetId: "img-nightscene"
+---
+
+import LoadingImage from '../../../components/LoadingImage.astro';
+import marketHall from './rendering-market-hall-1.png';
+import groundFloor from './plan-1.jpg';
+import restaurantFloor from './plan-2.jpg';
+import nightScene from './section-indoor-1.jpg';
+import loadsDiagram from './diagram-loads-1.jpg';
+import facadeDetail from './Detalj 1.20 bjälklag.jpg';
+import systemsDiagram from './diagram-systems-1.jpg';
+
+## Context
+
+"A place at night" was the guiding phrase behind this high-rise on Första Långgatan in Gothenburg, close to the new Masthuggskajen and the rich nightlife of Andra Långgatan and Stigbergstorget. Built entirely in timber, it houses a mix of uses - delicatessen, restaurant, office, co-working, and a rooftop bar with conference space.
+
+## Methods
+
+The ground floor is organized as a market hall, its stalls arranged like a street network around a central square - open for temporary market vendors by day, and for the neighbourhood's dance floor by night.
+
+<figure id="img-markethall">
+  <LoadingImage src={marketHall} width={1600} alt="Rendered interior of a double-height market hall with a timber structure, market stalls selling produce and cheese, and people browsing and looking down from a mezzanine above." />
+  <figcaption>The market hall, a double-height space open to the floor above.</figcaption>
+</figure>
+
+<figure id="img-groundfloor">
+  <LoadingImage src={groundFloor} width={1600} alt="Ground floor plan of a square high-rise building, showing market stalls arranged in a street-like grid around a central open square, with two entrances and a stair core at each corner." />
+  <figcaption>Ground floor: the market hall's street-like plan.</figcaption>
+</figure>
+
+## Process
+
+Above, the first floor holds four restaurants, each with its own kitchen, dish-washing area, and till, arranged around the large opening in the floor slab down to the market hall. That opening keeps the restaurants visible from the ground floor and connects them to both the public market below and the office floors above.
+
+<figure id="img-restaurantfloor">
+  <LoadingImage src={restaurantFloor} width={1600} alt="First floor plan showing four restaurants with kitchens arranged around a large central opening in the floor slab, overlooking the market hall below." />
+  <figcaption>The restaurant floor, wrapped around the opening to the market hall.</figcaption>
+</figure>
+
+By night, that same double-height opening turns the market hall into a stage: a bridge across the void becomes somewhere to look down from, while the floor below fills with dancing.
+
+<figure id="img-nightscene">
+  <LoadingImage src={nightScene} width={1600} alt="Interior section at night showing people on a bridge looking down over a lit double-height void, with figures dancing on the floor below." />
+  <figcaption>The market hall at night: a bridge over the dance floor.</figcaption>
+</figure>
+
+## Outcomes
+
+Framed as "the building as a system," the high-rise was designed rationally around its function and technical systems, to make future spatial reorganization easy. Its load-bearing structure of glulam columns follows a grid spaced to functional room dimensions, so the building could one day be transformed into, for example, housing.
+
+<figure id="img-loads">
+  <LoadingImage src={loadsDiagram} width={1600} alt="Axonometric diagram of the building's structural frame, color-coded for vertical load, horizontal load, and supported elements, with glulam columns spaced on a regular grid." />
+  <figcaption>The structural system: columns, loads, and support.</figcaption>
+</figure>
+
+That same rationality carries down to a single construction detail, resolving the facade and floor slab's build-up - insulation, vapor barrier, and cladding - against an office fitted out above.
+
+<figure id="img-facadedetail">
+  <LoadingImage src={facadeDetail} width={1600} alt="A detailed construction section through the facade and floor slab at 1:20, showing the wall build-up of insulation, vapor barrier, and cladding layers, beside an office scene with desks and chairs." />
+  <figcaption>Facade and floor slab, detailed at 1:20.</figcaption>
+</figure>
+
+The stairwells are their own fire cells in concrete, placed against the facade - which keeps the upper floors' offices and co-working spaces running independently of the market hall's own opening hours. A separate section maps the building's technical systems - shafts, telecom, plumbing, and supply and exhaust air - running the height of the building alongside the stairs.
+
+<figure id="img-systems">
+  <LoadingImage src={systemsDiagram} width={1600} alt="Building section color-coded to show technical systems running through the tower: shaft, telecom, plumbing, and supply/exhaust air, alongside offices, kitchen, conference, and garage spaces at the base." />
+  <figcaption>Technical systems running the height of the building.</figcaption>
+</figure>
