@@ -186,7 +186,10 @@ const { Content } = await render(project);
       window.scrollTo({ top: 0, behavior: scrollBehavior });
     };
 
-    showView('preview');
+    // A link from the Home page's Selected Work timeline already served as
+    // this project's "preview" (title, cover, description), so it points
+    // here with a #collage hash to skip straight past a second preview.
+    showView(window.location.hash === '#collage' ? 'collage' : 'preview');
 
     stepButtons.forEach((button) => {
       button.addEventListener('click', () => goTo(button.dataset.step ?? 'preview'));

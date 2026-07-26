@@ -7,6 +7,7 @@ interface ProjectEntry {
   title: string;
   year: string;
   isGroupProject: boolean;
+  hasCollage: boolean;
   previewImage: ImageMetadata;
   previewImageAlt: string;
   description: string;
@@ -17,6 +18,12 @@ interface Props {
 }
 
 const { entries } = Astro.props;
+
+// Skip straight past a project's own "preview" step, since this timeline
+// entry (title, cover image, description) already serves that role - so
+// clicking through should land on the collage (or, if a project has no
+// collage, the full project page shows directly with no extra step).
+const linkHref = (entry: ProjectEntry) => `/projects/${entry.slug}${entry.hasCollage ? '#collage' : ''}`;
 ---
 
 <ol class="project-timeline">
@@ -27,7 +34,7 @@ const { entries } = Astro.props;
         aria-hidden="true"
       ></span>
       <div class="project-timeline__body">
-        <a href={`/projects/${entry.slug}`} class="project-timeline__link">
+        <a href={linkHref(entry)} class="project-timeline__link">
           <span class="project-timeline__title">{entry.title}</span>
           <span class="project-timeline__year">
             {entry.year}
@@ -42,7 +49,7 @@ const { entries } = Astro.props;
             class="project-timeline__preview-img"
           />
           <p class="project-timeline__preview-text">{entry.description}</p>
-          <a href={`/projects/${entry.slug}`} class="project-timeline__preview-link">View project →</a>
+          <a href={linkHref(entry)} class="project-timeline__preview-link">View project →</a>
         </div>
       </div>
     </li>
