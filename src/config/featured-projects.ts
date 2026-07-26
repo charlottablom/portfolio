@@ -8,8 +8,9 @@
 // is skipped rather than breaking the build.
 export const featuredProjects: string[] = [
   'arbetet-som-plats-for-inspiration',
+  'hotell-stella',
+  'social-inclusion',
   'arkyv-marketing',
   'living-by-alfa',
   'ringgarden',
-  'social-inclusion',
 ];

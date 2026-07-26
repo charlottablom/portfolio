@@ -14,9 +14,36 @@ coverImageAlt: "A sheltered brick terrace under a building overhang, with outdoo
 previewImage: "./perspective-city-1.jpg"
 previewImageAlt: "A street scene between a white building and a red brick building, with a crane-shaped sign reading ERIKSBERG spanning the street and pedestrians crossing below."
 accentColor: "#51281e"
+collageImages:
+  - image: "./perspective-city-1.jpg"
+    alt: "A street scene between a white building and a red brick building, with a crane-shaped sign reading ERIKSBERG spanning the street and pedestrians crossing below."
+    caption: "Street view toward the Eriksberg crane."
+    span: "wide"
+    targetId: "img-streetview"
+  - image: "./perspective-2.jpg"
+    alt: "A sheltered brick terrace under a building overhang, with outdoor tables and people looking out toward a suspension bridge at sunset."
+    caption: "The restaurant terrace, sheltered from the wind."
+    span: "small"
+    targetId: "img-terrace"
+  - image: "./perspective-entrance-1.jpg"
+    alt: "An entrance corridor with a brick wall and vertical wood slats, opening onto a reception desk lit by a round pendant lamp, with a seating area to one side."
+    caption: "Entrance and lobby."
+    span: "small"
+    targetId: "img-lobby"
+  - image: "./perspecitve-restaurant-1.png"
+    alt: "A tall, brick-vaulted atrium seen from below, with people gathered around a breakfast buffet at its base."
+    caption: "The atrium, lit through the guest floors above."
+    span: "wide"
+    targetId: "img-atrium"
+  - image: "./perspective-1.jpg"
+    alt: "A red brick hotel building seen from a boardwalk along the water, with people walking along the quay in front of its facade."
+    caption: "View of the hotel from the water."
+    span: "solo"
+    targetId: "img-waterview"
 ---
 
 import LoadingImage from '../../../components/LoadingImage.astro';
+import siteContext from './city-planning-0.jpg';
 import streetView from './perspective-city-1.jpg';
 import roofPlan from './city-planning-1.jpg';
 import facade from './facade-1.jpg';
@@ -34,6 +61,11 @@ import waterView from './perspective-1.jpg';
 Majnabbehamnen, a former ferry terminal on the Göta River, is being redeveloped into Knallen, a new waterfront district combining housing and other uses. Hotell Stella occupies the district's quay edge, its ground-floor restaurant close to the Klippan ferry crossing on the opposite bank.
 
 <figure id="img-siteplan">
+  <LoadingImage src={siteContext} width={1600} alt="Site plan showing the Göta River between Knallen's new street grid, with Hotell Stella marked at the quay edge near the Klippan ferry landing, and the existing shore opposite marked with the Eriksberg crane and the Älvsborg Bridge." />
+  <figcaption>Site plan: Hotell Stella within Knallen, opposite the Eriksberg crane.</figcaption>
+</figure>
+
+<figure id="img-streetview">
   <LoadingImage src={streetView} width={1600} alt="A street scene between a white building and a red brick building, with a crane-shaped sign reading ERIKSBERG spanning the street and pedestrians crossing below." />
   <figcaption>Street view toward the Eriksberg crane from Knallen's main street.</figcaption>
 </figure>

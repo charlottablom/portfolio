@@ -13,6 +13,17 @@ description: "A modular apartment system for a dialogue-based housing competitio
 coverImage: "./Rumsdiagram_livingbyalfa.jpg"
 coverImageAlt: "Diagram of nested circles showing how a resident's apartment, building, courtyard, and the wider Living by Alfa development in Søborg relate to Copenhagen at increasing scales."
 accentColor: "#ddcc94"
+collageImages:
+  - image: "./apartment-layout-type-1.JPG"
+    alt: "Three 3D diagrams of apartment type 1 - a built-in alcove bed nook, a flexible dining and meeting space, and a combined kitchen-living space - beside two floorplan variations and the quote 'Even my compact unit have space for me to invite friends and colleagues over.'"
+    caption: "Apartment type 1, drawn and modeled by Charlotta Blom."
+    span: "solo"
+    targetId: "img-apartmenttype1"
+  - image: "./apartment-layout-type-2.jpg"
+    alt: "An isometric cutaway of apartment type 2, a mirrored two-bedroom, two-bathroom shared unit with a combined kitchen and living space opening onto a balcony, beside its floorplan and the quote 'The flexibility in the layout gives me the choice of being social or private when I want.'"
+    caption: "Apartment type 2, a shared two-bedroom unit."
+    span: "solo"
+    targetId: "img-apartmenttype2"
 ---
 
 import LoadingImage from '../../../components/LoadingImage.astro';
@@ -47,14 +58,14 @@ That mix carries through to how the site itself is organized: one plot for singl
 
 Apartment type 1 - the single/one-bedroom unit - packs a built-in alcove bed, a flexible dining and meeting space, and a combined kitchen-living space into a small footprint, tested here in two layout variations.
 
-<figure>
+<figure id="img-apartmenttype1">
   <LoadingImage src={apartmentType1} width={1600} alt="Three 3D diagrams of apartment type 1 - a built-in alcove bed nook, a flexible dining and meeting space, and a combined kitchen-living space - beside two floorplan variations and the quote 'Even my compact unit have space for me to invite friends and colleagues over.'" />
-  <figcaption>Apartment type 1: alcove bed, flexible dining space, and two floorplan variations.</figcaption>
+  <figcaption>Apartment type 1, drawn and modeled by Charlotta Blom: alcove bed, flexible dining space, and two floorplan variations.</figcaption>
 </figure>
 
 Apartment type 2 - the two-bedroom, two-bathroom shared unit - mirrors two bedrooms around a combined kitchen and living space opening onto a balcony, designed so residents can choose to share the common space or retreat to their own room.
 
-<figure>
+<figure id="img-apartmenttype2">
   <LoadingImage src={apartmentType2} width={1600} alt="An isometric cutaway of apartment type 2, a mirrored two-bedroom, two-bathroom shared unit with a combined kitchen and living space opening onto a balcony, beside its floorplan and the quote 'The flexibility in the layout gives me the choice of being social or private when I want.'" />
-  <figcaption>Apartment type 2: a shared two-bedroom unit, private or social by choice.</figcaption>
+  <figcaption>Apartment type 2: floorplan by Charlotta Blom and Martin Skou Nautrup; 3D diagram by Charlotta Blom.</figcaption>
 </figure>
