@@ -11,6 +11,7 @@ export const featuredProjects: string[] = [
   'hotell-stella',
   'en-plats-pa-natten',
   'social-inclusion',
+  'visualization-work-at-link',
   'arkyv-marketing',
   'living-by-alfa',
 ];
