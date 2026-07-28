@@ -35,7 +35,7 @@
 
 :root {
   --color-background: #ffffff;
-  --color-text: #111111;
+  --color-text: rgb(1, 0, 72);
   --color-muted: #666666;
   --color-border: #dddddd;
 
