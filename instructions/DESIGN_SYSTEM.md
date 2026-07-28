@@ -156,17 +156,26 @@ compensate. Place names are left unbolded.
 
 # Colour
 
-The site's own chrome (navigation, text, background, borders) stays the
-neutral black-and-white palette already in place. It is not themed by
-the colours below.
+The site's own chrome (navigation, background, borders) stays neutral.
+`--color-text`, the one exception, is a near-black, subtly blue-tinted
+ink (`rgb(1, 0, 72)`), confirmed by Charlotta on 2026-07-28 - close
+enough to black to read as neutral at a glance, but with a deliberate
+tint rather than pure black. `--color-muted` (secondary/dimmer text)
+stays a plain grey, keeping that hierarchy distinct from body text.
+Neither is themed by the per-project colours below.
 
-One deliberate exception, confirmed by Charlotta on 2026-07-27: a very
-faint, fixed background texture of fine dashed horizontal lines in a
+Superseded: `--color-text` was pure black (`#111111`) until
+2026-07-28. Charlotta tried a brighter blue first (`rgb(0, 0, 139)`)
+directly against the neutral-chrome rule below, then asked for
+something darker and closer to black - the current value - which she
+confirmed she liked.
+
+Also present, confirmed by Charlotta on 2026-07-27: a very faint,
+fixed background texture of fine dashed horizontal lines in a
 blue-ink tone, confined to the main content column (fading out at its
 edges, matching `--content-max-width`/`--gutter`) rather than running
 the full page width. It's a single low-opacity decorative layer behind
-all page content, not a themed variant of the neutral tokens above -
-those still govern the text/background/border colours everywhere.
+all page content, separate from the text colour above.
 
 Each project's identifying colour - shown as a small full circle (8px)
 next to its title in listings, and used to tint that project's
