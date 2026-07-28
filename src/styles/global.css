@@ -90,6 +90,40 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/*
+  A faint background texture, confirmed by Charlotta on 2026-07-27 -
+  a fixed layer rather than body's own background, so the neutral
+  tokens above (background/text/border) stay untouched. Fine dashed
+  horizontal lines fill the main content column only, fading out at
+  its edges (matching --content-max-width and --gutter) rather than
+  running the full page width.
+*/
+.bg-pattern-content {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='36'%3E%3Cline x1='0' y1='18' x2='200' y2='18' stroke='%231e2f7a' stroke-width='1.4' stroke-dasharray='1.8 10' stroke-linecap='round' opacity='0.16'/%3E%3C/svg%3E");
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    transparent calc(50% - (var(--content-max-width) / 2 + var(--gutter))),
+    black calc(50% - (var(--content-max-width) / 2)),
+    black calc(50% + (var(--content-max-width) / 2)),
+    transparent calc(50% + (var(--content-max-width) / 2 + var(--gutter))),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    transparent calc(50% - (var(--content-max-width) / 2 + var(--gutter))),
+    black calc(50% - (var(--content-max-width) / 2)),
+    black calc(50% + (var(--content-max-width) / 2)),
+    transparent calc(50% + (var(--content-max-width) / 2 + var(--gutter))),
+    transparent 100%
+  );
+}
+
 h1,
 h2,
 h3,

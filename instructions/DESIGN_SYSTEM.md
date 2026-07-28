@@ -160,6 +160,14 @@ The site's own chrome (navigation, text, background, borders) stays the
 neutral black-and-white palette already in place. It is not themed by
 the colours below.
 
+One deliberate exception, confirmed by Charlotta on 2026-07-27: a very
+faint, fixed background texture of fine dashed horizontal lines in a
+blue-ink tone, confined to the main content column (fading out at its
+edges, matching `--content-max-width`/`--gutter`) rather than running
+the full page width. It's a single low-opacity decorative layer behind
+all page content, not a themed variant of the neutral tokens above -
+those still govern the text/background/border colours everywhere.
+
 Each project's identifying colour - shown as a small full circle (8px)
 next to its title in listings, and used to tint that project's
 image-loading animation and hover preview - is a hex value picked out
