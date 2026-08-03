@@ -45,13 +45,15 @@ const { Content } = await render(project);
 			<section class="project__view container" data-view="preview">
 				<h1>{title}</h1>
 				<p class="project__subtitle">{subtitle}</p>
-				<LoadingImage
-					class="project__preview-cover"
-					src={coverImage}
-					alt={coverImageAlt}
-					width={1600}
-					color={coverColor}
-				/>
+				<button type="button" class="project__preview-cover-link" data-goto="collage" aria-label="See the collage">
+					<LoadingImage
+						class="project__preview-cover"
+						src={coverImage}
+						alt={coverImageAlt}
+						width={1600}
+						color={coverColor}
+					/>
+				</button>
 				<p class="project__preview-text">{description}</p>
 				<button type="button" class="project__advance" data-goto="collage">See the collage →</button>
 			</section>
@@ -131,6 +133,16 @@ const { Content } = await render(project);
 			</button>
 		)}
 	</article>
+
+	<div class="lightbox" id="project-lightbox" hidden>
+		<button type="button" class="lightbox__close" aria-label="Close image">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M18 6L6 18"></path>
+				<path d="M6 6l12 12"></path>
+			</svg>
+		</button>
+		<img class="lightbox__img" src="" alt="" />
+	</div>
 </Layout>
 
 <script>
@@ -222,6 +234,69 @@ const { Content } = await render(project);
 
     backToTop?.addEventListener('click', () => goTo('collage'));
   }
+
+  // Click-to-enlarge for every image in the full project view (cover image
+  // included). Preview/collage-step images aren't part of this - the
+  // preview cover instead advances to the collage step (via [data-goto]
+  // above), and collage images already jump into the full project.
+  const lightbox = document.querySelector<HTMLElement>('#project-lightbox');
+  const lightboxImg = lightbox?.querySelector<HTMLImageElement>('.lightbox__img');
+  const lightboxClose = lightbox?.querySelector<HTMLButtonElement>('.lightbox__close');
+  let lastFocused: HTMLElement | null = null;
+
+  const openLightbox = (src: string, alt: string, trigger: HTMLElement) => {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lastFocused = trigger;
+    lightboxClose?.focus();
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox || !lightboxImg) return;
+    lightbox.hidden = true;
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+    lastFocused?.focus();
+  };
+
+  if (lightbox && lightboxImg) {
+    const fullImages = document.querySelectorAll<HTMLImageElement>('.project__cover img, .project__body img');
+
+    fullImages.forEach((img) => {
+      img.setAttribute('role', 'button');
+      img.setAttribute('tabindex', '0');
+      img.classList.add('project__image--enlargeable');
+
+      const trigger = () => openLightbox(img.currentSrc || img.src, img.alt, img);
+      img.addEventListener('click', trigger);
+      img.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          trigger();
+        }
+      });
+    });
+
+    lightboxClose?.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
+    });
+  }
+
+  // Videos already have their own native controls (play, seek, fullscreen);
+  // clicking one just hands off to the browser's own fullscreen rather than
+  // duplicating that in the image lightbox above.
+  document.querySelectorAll<HTMLVideoElement>('.project__body video').forEach((video) => {
+    video.addEventListener('click', () => {
+      video.requestFullscreen?.().catch(() => {});
+    });
+  });
 </script>
 
 <style>
@@ -371,10 +446,23 @@ const { Content } = await render(project);
     margin-bottom: var(--space-1);
   }
 
+  .project__preview-cover-link {
+    all: unset;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+  }
+
   .project__preview-cover {
     display: block;
     width: 100%;
     margin-top: var(--space-3);
+    transition: opacity var(--transition-fast);
+  }
+
+  .project__preview-cover-link:hover .project__preview-cover,
+  .project__preview-cover-link:focus-visible .project__preview-cover {
+    opacity: 0.85;
   }
 
   .project__preview-text {
@@ -429,5 +517,60 @@ const { Content } = await render(project);
 
   .project__back-to-top:hover {
     border-color: var(--color-text);
+  }
+
+  /*
+    Fully global (not just :global() on a scoped ancestor): the cover
+    image is rendered inside LoadingImage.astro, which carries its own
+    scope hash rather than this file's - an ancestor-qualified selector
+    like `.project__cover :global(...)` silently never matches it.
+  */
+  :global(.project__image--enlargeable) {
+    cursor: pointer;
+  }
+</style>
+
+<style is:global>
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3);
+    background: rgba(1, 0, 72, 0.9);
+  }
+
+  .lightbox[hidden] {
+    display: none;
+  }
+
+  .lightbox__img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .lightbox__close {
+    all: unset;
+    position: fixed;
+    top: var(--space-3);
+    right: var(--space-3);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .lightbox__close:hover,
+  .lightbox__close:focus-visible {
+    opacity: 0.8;
   }
 </style>
