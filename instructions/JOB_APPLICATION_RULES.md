@@ -56,10 +56,15 @@ achievement may be introduced - only what's already present somewhere
 in that project's own content (its frontmatter, its body text, images
 already described elsewhere on the page) may be surfaced earlier,
 reordered, or removed if it's judged not important for that posting.
-Removal is a real option here, not just tightening - a whole paragraph,
-figure, or section can be cut for a branch if it doesn't serve that
+Removal is a real option here, not just tightening - a whole paragraph
+or section of prose can be cut for a branch if it doesn't serve that
 application, since nothing is lost from `main`. If a rewording would
 only be true by adding something new, don't make it.
+
+Confirmed by Charlotta on 2026-08-09: text only. Never remove a
+figure, image, or other visual work to shorten a project for a
+posting - trim the prose around it instead, or leave the section as
+it is if there isn't meaningful prose left to cut.
 
 Reordering has real limits on a project whose sections build on each
 other - a research/methods narrative (Context, why the question
