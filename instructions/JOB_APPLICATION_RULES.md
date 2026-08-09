@@ -40,20 +40,36 @@ Claude may:
 
 # Text and Title Emphasis Per Application
 
-Confirmed by Charlotta on 2026-08-09: on a job-application branch, a
-project's title, subtitle, description, and body text - and the About
-page's intro - may be reworded to speak in that posting's own language:
-its terms, its emphasis, its framing of what matters. A posting that
-talks about "generative design" and "data-driven analysis" should be
-answered with a project that foregrounds exactly that vocabulary, not
-generic phrasing that happens to mean the same thing.
+Confirmed by Charlotta on 2026-08-09, refined 2026-08-09: on a
+job-application branch, a project's title, subtitle, description, and
+body text - and the About page's intro - may be reworded so the
+narrative runs from most to least relevant to that specific posting.
+The tools are reordering and trimming, not typographic emphasis -
+Charlotta tried bolding key phrases and didn't like it, so don't use
+bold, italics, or similar for this purpose. A posting that talks about
+"generative design" and "data-driven analysis" should be answered with
+a project whose opening lines are the ones that speak to that, not
+generic phrasing pushed to the top by rewording alone.
 
 This is emphasis, not authorship. No new fact, skill, tool, claim, or
 achievement may be introduced - only what's already present somewhere
 in that project's own content (its frontmatter, its body text, images
-already described elsewhere on the page) may be surfaced, reordered,
-trimmed, or set in bold for a reader scanning quickly. If a rewording
-would only be true by adding something new, don't make it.
+already described elsewhere on the page) may be surfaced earlier,
+reordered, or removed if it's judged not important for that posting.
+Removal is a real option here, not just tightening - a whole paragraph,
+figure, or section can be cut for a branch if it doesn't serve that
+application, since nothing is lost from `main`. If a rewording would
+only be true by adding something new, don't make it.
+
+Reordering has real limits on a project whose sections build on each
+other - a research/methods narrative (Context, why the question
+matters, before Methods, how it was studied, before Outcomes, what was
+found) usually can't have its section order scrambled without
+confusing the reader, since Outcomes only make sense once Methods has
+been explained. On projects like that, prefer reordering *within* a
+section (which sentence or figure leads) and trimming less-relevant
+figures over reordering the sections themselves. Simpler, non-
+sequential projects have more room to fully lead with what's relevant.
 
 Project titles may also be adapted per branch - the page URL is the
 project's folder name, not its title, so retitling doesn't break any
