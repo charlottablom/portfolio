@@ -124,15 +124,11 @@ const { Content } = await render(project);
 			</div>
 		</section>
 
-		{hasReadingSteps && (
-			<button type="button" class="project__back-to-top" aria-label="Back to the collage" title="Back to the collage">
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M19 12H5"></path>
-					<path d="M12 19l-7-7 7-7"></path>
-				</svg>
-			</button>
-		)}
 	</article>
+
+	{hasReadingSteps && (
+		<ReadingStepper color={accentColor} vertical class="project__stepper-fixed" />
+	)}
 
 	<div class="lightbox" id="project-lightbox" hidden>
 		<button type="button" class="lightbox__close" aria-label="Close image">
@@ -180,7 +176,6 @@ const { Content } = await render(project);
   if (article) {
     const views = article.querySelectorAll<HTMLElement>('.project__view');
     const stepButtons = article.parentElement?.querySelectorAll<HTMLButtonElement>('.reading-stepper button') ?? [];
-    const backToTop = article.querySelector<HTMLElement>('.project__back-to-top');
     const scrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
 
     const showView = (step: string) => {
@@ -190,7 +185,6 @@ const { Content } = await render(project);
       stepButtons.forEach((button) => {
         button.setAttribute('aria-current', String(button.dataset.step === step));
       });
-      backToTop?.classList.toggle('project__back-to-top--visible', step === 'full');
     };
 
     const goTo = (step: string) => {
@@ -232,7 +226,22 @@ const { Content } = await render(project);
       });
     });
 
-    backToTop?.addEventListener('click', () => goTo('collage'));
+    // The top stepper (inside the preview/collage header) is only ever
+    // in view right at the top of the page. Once it scrolls out, the
+    // fixed copy on the side takes over, so switching steps never
+    // requires scrolling all the way back up.
+    const topStepper = article.querySelector<HTMLElement>('.project__stepper');
+    const fixedStepper = document.querySelector<HTMLElement>('.project__stepper-fixed');
+
+    if (topStepper && fixedStepper && 'IntersectionObserver' in window) {
+      const stepperObserver = new IntersectionObserver(
+        ([entry]) => {
+          fixedStepper.classList.toggle('project__stepper-fixed--visible', !entry.isIntersecting);
+        },
+        { threshold: 0 },
+      );
+      stepperObserver.observe(topStepper);
+    }
   }
 
   // Click-to-enlarge for every image in the full project view (cover image
@@ -494,31 +503,6 @@ const { Content } = await render(project);
     margin-top: var(--space-4);
   }
 
-  .project__back-to-top {
-    all: unset;
-    position: fixed;
-    right: var(--space-3);
-    bottom: var(--space-3);
-    width: 2.25rem;
-    height: 2.25rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
-    background: var(--color-background);
-    cursor: pointer;
-    color: var(--color-text);
-  }
-
-  .project__back-to-top--visible {
-    display: flex;
-  }
-
-  .project__back-to-top:hover {
-    border-color: var(--color-text);
-  }
-
   /*
     Fully global (not just :global() on a scoped ancestor): the cover
     image is rendered inside LoadingImage.astro, which carries its own
@@ -539,7 +523,7 @@ const { Content } = await render(project);
     align-items: center;
     justify-content: center;
     padding: var(--space-3);
-    background: rgba(1, 0, 72, 0.9);
+    background: var(--color-background);
   }
 
   .lightbox[hidden] {
@@ -553,6 +537,7 @@ const { Content } = await render(project);
     width: auto;
     height: auto;
     object-fit: contain;
+    box-shadow: 0 0 0 1px var(--color-border);
   }
 
   .lightbox__close {
@@ -565,12 +550,45 @@ const { Content } = await render(project);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-background);
+    color: var(--color-text);
     cursor: pointer;
   }
 
   .lightbox__close:hover,
   .lightbox__close:focus-visible {
     opacity: 0.8;
+  }
+
+  /*
+    A fixed copy of the top stepper, so switching between preview,
+    collage, and full project never requires scrolling all the way back
+    up (or, from deep in the full project, all the way down again).
+    Hidden until the top stepper scrolls out of view (see [slug].astro's
+    script), and hidden outright below the breakpoint where it would
+    otherwise sit inside the content gutter rather than beside it.
+  */
+  .project__stepper-fixed {
+    position: fixed;
+    left: var(--space-3);
+    top: 50%;
+    translate: 0 -50%;
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+  }
+
+  .project__stepper-fixed--visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 60rem) {
+    .project__stepper-fixed {
+      display: none;
+    }
   }
 </style>
