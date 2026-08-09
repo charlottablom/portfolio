@@ -2,13 +2,18 @@
 interface Props {
   color?: string;
   class?: string;
+  vertical?: boolean;
 }
 
-const { color = 'var(--color-text)', class: className } = Astro.props;
+const { color = 'var(--color-text)', class: className, vertical = false } = Astro.props;
 ---
 
-<nav class:list={['reading-stepper', className]} aria-label="reading depth" style={`--stepper-color: ${color};`}>
-  <button type="button" data-step="preview">
+<nav
+  class:list={['reading-stepper', { 'reading-stepper--vertical': vertical }, className]}
+  aria-label="reading depth"
+  style={`--stepper-color: ${color};`}
+>
+  <button type="button" data-step="preview" title="Preview">
     <span class="reading-stepper__icon" aria-hidden="true">
       <svg viewBox="0 0 16 16">
         <circle cx="8" cy="8" r="8" class="reading-stepper__track"></circle>
@@ -18,7 +23,7 @@ const { color = 'var(--color-text)', class: className } = Astro.props;
     <span class="reading-stepper__label">Preview</span>
   </button>
   <span class="reading-stepper__connector" aria-hidden="true"></span>
-  <button type="button" data-step="collage">
+  <button type="button" data-step="collage" title="Collage">
     <span class="reading-stepper__icon" aria-hidden="true">
       <svg viewBox="0 0 16 16">
         <circle cx="8" cy="8" r="8" class="reading-stepper__track"></circle>
@@ -28,7 +33,7 @@ const { color = 'var(--color-text)', class: className } = Astro.props;
     <span class="reading-stepper__label">Collage</span>
   </button>
   <span class="reading-stepper__connector" aria-hidden="true"></span>
-  <button type="button" data-step="full">
+  <button type="button" data-step="full" title="Full project">
     <span class="reading-stepper__icon" aria-hidden="true">
       <svg viewBox="0 0 16 16">
         <circle cx="8" cy="8" r="8" class="reading-stepper__fill"></circle>
@@ -98,5 +103,35 @@ const { color = 'var(--color-text)', class: className } = Astro.props;
     width: 2rem;
     height: 1px;
     background: var(--color-border);
+  }
+
+  /*
+    Compact, icon-only version for a fixed position on the side of the
+    viewport, so switching steps never requires scrolling back to the
+    top - see [slug].astro. Labels stay in the DOM (for screen readers
+    and the hover title) but are visually hidden rather than removed,
+    since there isn't room for them in a slim fixed sidebar.
+  */
+  .reading-stepper--vertical {
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-block: 0;
+  }
+
+  .reading-stepper--vertical .reading-stepper__connector {
+    width: 1px;
+    height: 1.25rem;
+  }
+
+  .reading-stepper--vertical .reading-stepper__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>
