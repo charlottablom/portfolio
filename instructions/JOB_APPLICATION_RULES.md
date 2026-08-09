@@ -26,6 +26,14 @@ Claude may:
 - update CVs and resumes
 - suggest additional supporting material
 - create preview deployments for specific applications
+- choose a different header image for a project, from that project's own
+  existing material, when another of its images speaks more directly to
+  the specific posting - confirmed by Charlotta on 2026-08-09, e.g.
+  swapping Multifunctional Suburban Networks' header from a rendered
+  perspective to its GIS ecological-connectivity map for a generative-
+  design/analysis-focused role. Scoped to the job-application branch
+  only, never to main; and to images already in the project, never new
+  material made for the application.
 
 
 ------------------------------------------------
