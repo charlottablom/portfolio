@@ -38,6 +38,37 @@ Claude may:
 
 ------------------------------------------------
 
+# Text and Title Emphasis Per Application
+
+Confirmed by Charlotta on 2026-08-09: on a job-application branch, a
+project's title, subtitle, description, and body text - and the About
+page's intro - may be reworded to speak in that posting's own language:
+its terms, its emphasis, its framing of what matters. A posting that
+talks about "generative design" and "data-driven analysis" should be
+answered with a project that foregrounds exactly that vocabulary, not
+generic phrasing that happens to mean the same thing.
+
+This is emphasis, not authorship. No new fact, skill, tool, claim, or
+achievement may be introduced - only what's already present somewhere
+in that project's own content (its frontmatter, its body text, images
+already described elsewhere on the page) may be surfaced, reordered,
+trimmed, or set in bold for a reader scanning quickly. If a rewording
+would only be true by adding something new, don't make it.
+
+Project titles may also be adapted per branch - the page URL is the
+project's folder name, not its title, so retitling doesn't break any
+links. A title drawn from a Swedish site name (e.g. "Kyrktornet") may
+be swapped for one that names the work itself, built only from words
+already in that project's own subtitle or description.
+
+Scoped to the job-application branch only, never to main. Before
+implementing specific wording, present a before/after preview for
+approval rather than editing directly - text is more sensitive than
+image or ordering changes, and easier to get subtly wrong.
+
+
+------------------------------------------------
+
 # What May Never Be Adapted
 
 Claude may never:
