@@ -12,4 +12,5 @@ export const featuredProjects: string[] = [
   'gis-analyses',
   'grasshopper',
   'hotell-stella',
+  'living-by-alfa',
 ];
