@@ -6,4 +6,12 @@
 // folder names under src/content/projects/) you want to feature, in the
 // order they should appear. Any slug that doesn't match a real project
 // is skipped rather than breaking the build.
-export const featuredProjects: string[] = [];
+export const featuredProjects: string[] = [
+  'visualization-work-at-link',
+  'arkyv-marketing',
+  'ringgarden',
+  'living-by-alfa',
+  'hotell-stella',
+  'en-plats-pa-natten',
+  'social-inclusion',
+];
