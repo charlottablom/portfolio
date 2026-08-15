@@ -7,7 +7,7 @@ role: "Video production and Revit workflow demonstration"
 tools: ["Revit", "Arkyv AI"]
 themes: ["Architecture", "Computational Design"]
 careerStage: "practice"
-description: "A set of short workflow videos showing how Arkyv's AI agent speeds up everyday Revit tasks, made for LinkedIn and as the start of a customer-facing video library for Arkyv's website."
+description: "A set of short workflow videos showing how Arkyv's AI agent speeds up everyday Revit tasks, alongside talks and training that help architects across experience levels and firms get more out of AI in their everyday BIM, CAD, and rendering workflows."
 coverImage: "./Arkyv.png"
 coverImageAlt: "The Arkyv wordmark logo, in black on a white background."
 previewImage: "./renaming-views-preview.png"
@@ -15,13 +15,24 @@ previewImageAlt: "A screen recording of the renaming-views-and-sheets video: a R
 accentColor: "#5695c4"
 ---
 
+import LoadingImage from '../../../components/LoadingImage.astro';
 import renamingViewsAndSheets from './renaming-views-and-sheets.mp4';
 import parametricWorkflow from './LinkedIn-center-views-on-sheets.mp4';
 import elementColorCoding from './element-color-coding.mp4';
+import aiRenderingTalk from './20260814_AI-rendering-for-arkitekter.jpg';
 
 ## Context
 
 At **Arkyv**, my current role includes producing short videos that show what the AI agent can do inside **Revit** - for LinkedIn, and as the start of a customer-facing video library for Arkyv's own website.
+
+### Teaching AI to architects
+
+<figure>
+  <LoadingImage src={aiRenderingTalk} width={1600} alt="Title slide for a talk called 'AI-rendering för Arkitekter' (AI Rendering for Architects), reading 'AI can now produce renderings in minutes instead of days. Has the value disappeared, or has it just moved?', with speaker photos and titles for Axel Wohlin, Co-founder and CEO, and Charlotta Blom, Architect MSA." />
+  <figcaption>Title slide from a talk on prompting and good AI-rendering practice, given with Axel Wohlin to over 40 architects.</figcaption>
+</figure>
+
+A recurring part of the role is pedagogical: talks like this one, and regular conversations with architects at multiple firms to understand what they actually need from AI in their everyday BIM, CAD, and rendering workflows - knowledge that in turn shapes the videos and workflows below.
 
 ### Renaming views and sheets
 
