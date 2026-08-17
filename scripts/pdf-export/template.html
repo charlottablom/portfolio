@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<title>Charlotta Blom — Portfolio</title>
+<style>
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 300;
+    src: url('fonts/montserrat-300.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    src: url('fonts/montserrat-400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    src: url('fonts/montserrat-500.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    src: url('fonts/montserrat-600.woff2') format('woff2');
+  }
+
+  :root {
+    --color-text: rgb(1, 0, 72);
+    --color-muted: #6b6b6b;
+    --color-border: #dddddd;
+    --color-bg: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: 297mm 210mm; margin: 0; }
+
+  html, body {
+    background: #e8e8e8;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-text);
+    text-transform: lowercase;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  strong { font-weight: 600; }
+
+  .page {
+    width: 297mm;
+    height: 210mm;
+    position: relative;
+    background: var(--color-bg);
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .pad { padding: 16mm; }
+
+  /* ---------- quarter circle motif ---------- */
+  .qcircle {
+    position: absolute;
+    background: var(--color-text);
+    border-radius: 100% 0 0 0;
+  }
+
+  /* ---------- typography helpers ---------- */
+  .eyebrow {
+    font-size: 9pt;
+    letter-spacing: 0.06em;
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+  .meta {
+    font-size: 9pt;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+  .meta strong { color: var(--color-text); font-weight: 500; }
+  .caption {
+    font-size: 8pt;
+    color: var(--color-muted);
+    line-height: 1.4;
+    margin-top: 2mm;
+  }
+  .body-text {
+    font-size: 10.5pt;
+    line-height: 1.65;
+  }
+  h1 { font-size: 30pt; font-weight: 600; line-height: 1.1; }
+  h2 { font-size: 20pt; font-weight: 600; line-height: 1.15; }
+  .subtitle { font-size: 11.5pt; font-weight: 400; color: var(--color-muted); line-height: 1.5; text-transform: none; }
+
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  /* take images out of flow inside grid/positioned containers so a tall
+     source image's intrinsic aspect can never inflate the row track
+     (a Chromium grid-sizing quirk with percentage-height children) */
+  .grid-figure img, .proj-main img { position: absolute; inset: 0; }
+
+  /* ============ COVER ============ */
+  /* Mirrors PageIntro.astro's layout: a flex row, text block and the
+     quarter-circle mark side by side, both top-aligned, name/heading
+     taking the same visual role as the site's h1. */
+  .cover { padding: 24mm 20mm; }
+  .cover-hero {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16mm;
+  }
+  .cover-text { flex: 1 1 140mm; }
+  .cover-mark {
+    width: 50mm;
+    height: 50mm;
+    flex-shrink: 0;
+    background: var(--color-text);
+    border-radius: 100% 0 0 0;
+  }
+  .cover-name { font-size: 34pt; font-weight: 600; line-height: 1.05; }
+  .cover-role { font-size: 12.5pt; font-weight: 400; color: var(--color-muted); margin-top: 4mm; text-transform: none; }
+  .cover-tag { font-size: 10.5pt; margin-top: 8mm; line-height: 1.6; max-width: 130mm; }
+  .cover-contact { font-size: 9.5pt; color: var(--color-muted); margin-top: 10mm; }
+  .cover-eyebrow { font-size: 9pt; letter-spacing: 0.08em; color: var(--color-muted); font-weight: 500; margin-bottom: 10mm; }
+
+  /* ============ ABOUT ============ */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 110mm 1fr;
+    gap: 16mm;
+    height: 100%;
+  }
+  .about-left { display: flex; flex-direction: column; justify-content: flex-start; }
+  .about-left h1 { margin-bottom: 8mm; }
+  .about-left .body-text + .body-text { margin-top: 4mm; }
+  .about-right { display: flex; flex-direction: column; gap: 10mm; padding-top: 2mm; }
+  .about-block h3 {
+    font-size: 9pt; letter-spacing: 0.06em; color: var(--color-muted); font-weight: 600;
+    margin-bottom: 3mm; text-transform: uppercase;
+  }
+  .timeline-row { display: flex; gap: 4mm; font-size: 9.5pt; padding: 2mm 0; border-top: 0.3mm solid var(--color-border); }
+  .timeline-dates { color: var(--color-muted); width: 26mm; flex-shrink: 0; font-size: 8.5pt; }
+  .timeline-main { flex: 1; text-align: left; }
+  .timeline-main strong { font-weight: 600; }
+  .timeline-org { color: var(--color-muted); }
+  .tools-list { display: flex; flex-wrap: wrap; gap: 2mm 3mm; }
+  .tool-chip { font-size: 8.5pt; border: 0.3mm solid var(--color-border); padding: 1.2mm 3mm; border-radius: 20mm; color: var(--color-text); }
+
+  /* ============ PROJECT PAGES ============ */
+  .proj { display: grid; grid-template-columns: 88mm 1fr; height: 100%; }
+  .proj-side { padding: 16mm 12mm 16mm 16mm; display: flex; flex-direction: column; }
+  .proj-dot { width: 4mm; height: 4mm; border-radius: 50%; margin-bottom: 6mm; }
+  .proj-side h2 { margin-bottom: 3mm; }
+  .proj-side .subtitle { font-size: 10pt; margin-bottom: 6mm; }
+  .proj-side .meta { margin-bottom: 6mm; }
+  .proj-side .body-text { flex-grow: 1; }
+  .proj-page-num { font-size: 8pt; color: var(--color-muted); margin-top: auto; padding-top: 4mm; }
+  .proj-main { position: relative; background: #f2f2f2; }
+  .proj-main .cap-overlay {
+    position: absolute; left: 6mm; bottom: 6mm; background: rgba(255,255,255,0.88);
+    padding: 2mm 4mm; font-size: 8pt; color: var(--color-muted); max-width: 80mm;
+  }
+
+  /* full-bleed image grid page (no sidebar) */
+  .grid-page { padding: 16mm; display: flex; flex-direction: column; min-height: 0; }
+  .grid-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6mm; }
+  .grid-header .eyebrow-title { font-size: 12pt; font-weight: 600; }
+  .grid-body { flex-grow: 1; min-height: 0; display: grid; gap: 4mm; }
+  .grid-figure { position: relative; overflow: hidden; background: #f2f2f2; }
+  .grid-figure figcaption { position: absolute; left: 3mm; bottom: 3mm; background: rgba(255,255,255,0.88); padding: 1.5mm 3mm; font-size: 8pt; color: var(--color-muted); max-width: 60mm; }
+
+  /* two-up hero+grid variant for project B pages */
+  .g2-top { grid-template-rows: 1fr 0.62fr; }
+  .g2-equal { grid-template-rows: 1fr 1fr; }
+  .g2-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+  .g2-bottom.two-col { grid-template-columns: 1fr 1fr; }
+
+  /* ============ CLOSING ============ */
+  .closing { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 16mm; position: relative; }
+  .closing .qcircle { width: 90mm; height: 90mm; bottom: -45mm; right: -45mm; }
+  .closing h1 { margin-bottom: 8mm; }
+  .closing .body-text { max-width: 130mm; margin-bottom: 10mm; }
+  .closing-contact { font-size: 11pt; }
+  .closing-contact div { margin-bottom: 2mm; }
+  .closing-contact .label { color: var(--color-muted); display: inline-block; width: 28mm; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1: COVER ============ -->
+<div class="page cover">
+  <div class="cover-eyebrow">portfolio · 2026</div>
+  <div class="cover-hero">
+    <div class="cover-text">
+      <div class="cover-name">charlotta blom</div>
+      <div class="cover-role">arkitekt, tillämpad ai-arkitekt på <strong>arkyv</strong></div>
+      <div class="cover-tag">arbetar i skärningspunkten mellan arkitektur, landskap och datorstödd design, med fokus på 3d-design och visualisering. utvalda projekt från praktik på <strong>link arkitektur</strong> och akademiskt arbete vid <strong>chalmers tekniska högskola</strong>.</div>
+      <div class="cover-contact">charlotta.blom@live.se &nbsp;·&nbsp; linkedin.com/in/charlottablom &nbsp;·&nbsp; portfolio-charlotta.vercel.app</div>
+    </div>
+    <div class="cover-mark"></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2: ABOUT ============ -->
+<div class="page pad">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="eyebrow" style="margin-bottom:4mm;">om mig</div>
+      <h1>hej,<br/>jag heter charlotta.</h1>
+      <div class="body-text" style="margin-top:8mm;">jag är arkitekt och arbetar i skärningspunkten mellan arkitektur, landskap och datorstödd design, med ett starkt fokus på 3d-design och visualisering. just nu arbetar jag med tillämpad ai inom arkitektur på <strong>arkyv</strong>, där jag utvecklar ai-drivna arbetsflöden för arkitekter som arbetar i <strong>revit</strong>, <strong>archicad</strong> och <strong>rhino</strong> - verktyg jag också själv använder.</div>
+      <div class="body-text">genomgående i den här portföljen är utforskande och beräkningsdrivna metoder för att hantera rumsliga utmaningar i olika skalor.</div>
+    </div>
+    <div class="about-right">
+      <div class="about-block">
+        <h3>tidslinje</h3>
+        <div class="timeline-row">
+          <div class="timeline-dates">2026, pågående</div>
+          <div class="timeline-main"><strong>tillämpad ai-arkitekt</strong><br/><span class="timeline-org">arkyv ab, stockholm</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-dates">jan-jun 2026</div>
+          <div class="timeline-main"><strong>medverkande arkitekt</strong><br/><span class="timeline-org">link arkitektur ab, stockholm</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-dates">2024-2025</div>
+          <div class="timeline-main"><strong>examensarbete: multifunctional suburban networks</strong><br/><span class="timeline-org">chalmers tekniska högskola</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-dates">jan 2024, pågående</div>
+          <div class="timeline-main"><strong>landskapsarkitektur för hållbar urbanisering</strong><br/><span class="timeline-org">sveriges lantbruksuniversitet (slu)</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-dates">aug 2023-jan 2024</div>
+          <div class="timeline-main"><strong>praktik som medverkande arkitekt</strong><br/><span class="timeline-org">link arkitektur a/s, aarhus, danmark</span></div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-dates">2019-2025</div>
+          <div class="timeline-main"><strong>kandidat- och masterexamen i arkitektur</strong><br/><span class="timeline-org">chalmers tekniska högskola, inklusive en utbytestermin på aarhus arkitektskole, danmark</span></div>
+        </div>
+      </div>
+      <div class="about-block">
+        <h3>program &amp; verktyg</h3>
+        <div class="tools-list">
+          <span class="tool-chip">archicad</span>
+          <span class="tool-chip">revit</span>
+          <span class="tool-chip">rhinoceros</span>
+          <span class="tool-chip">grasshopper</span>
+          <span class="tool-chip">v-ray</span>
+          <span class="tool-chip">lumion</span>
+          <span class="tool-chip">autocad</span>
+          <span class="tool-chip">qgis</span>
+          <span class="tool-chip">indesign</span>
+          <span class="tool-chip">photoshop</span>
+          <span class="tool-chip">illustrator</span>
+          <span class="tool-chip">arkyv ai</span>
+        </div>
+      </div>
+      <div class="about-block">
+        <h3>utvalda projekt i det här dokumentet</h3>
+        <div class="body-text" style="font-size:9.5pt; line-height:1.7;">
+          visualiseringsarbete på link · ai-arbetsflöden på arkyv · ringgården · living by alfa · hotell stella · en plats om natten · gjord med omsorg
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ VISUALISERINGSARBETE PÅ LINK — A ============ -->
+<div class="page">
+  <div class="proj">
+    <div class="proj-side">
+      <div class="proj-dot" style="background:#b7c7e4;"></div>
+      <div class="eyebrow">2026 · stockholm</div>
+      <h2>visualiseringsarbete på link</h2>
+      <div class="subtitle">ai-assisterad 3d-visualisering och visionbilder för kunduppdrag och anbud på link arkitektur</div>
+      <div class="meta">
+        <strong>roll</strong> 3d-visualisering och ai-assisterad rendering<br/>
+        <strong>verktyg</strong> rhino, lumion, photoshop, arkyv (ai), nano banana
+      </div>
+      <div class="body-text">under min tid som medverkande arkitekt på <strong>link arkitektur</strong> i stockholm tog jag fram 3d-visualiseringar och ai-assisterade renderingar för en rad olika kunduppdrag och anbud: visionbilder, redigering av befintliga renderingar samt möbel- och materialval, ofta utifrån kollegors basmodeller, moodboards eller skisser.</div>
+      <div class="proj-page-num">01 / 07</div>
+    </div>
+    <div class="proj-main">
+      <img src="img/viz-savar.jpg" alt="" />
+      <div class="cap-overlay">flygvy över ett handelsområde vid sävar. rendering utförd på link arkitektur.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ VISUALISERINGSARBETE PÅ LINK — B ============ -->
+<div class="page grid-page">
+  <div class="grid-header">
+    <div class="eyebrow-title">visualiseringsarbete på link, fortsättning</div>
+    <div class="proj-page-num">01 / 07</div>
+  </div>
+  <div class="grid-body">
+    <div class="g2-bottom">
+      <div class="grid-figure">
+        <img src="img/viz-apel-before.jpg" alt="" />
+        <figcaption>apelvägen, fasad före ombyggnad.</figcaption>
+      </div>
+      <div class="grid-figure">
+        <img src="img/viz-apel-after.jpg" alt="" />
+        <figcaption>apelvägen, fasad efter ombyggnad.</figcaption>
+      </div>
+      <div class="grid-figure">
+        <img src="img/viz-hagalund.jpg" alt="" />
+        <figcaption>kontorsanpassning, södra hagalund. utfört på link arkitektur.</figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AI-ARBETSFLÖDEN PÅ ARKYV ============ -->
+<div class="page">
+  <div class="proj">
+    <div class="proj-side">
+      <div class="proj-dot" style="background:#5695c4;"></div>
+      <div class="eyebrow">2026 · arkyv</div>
+      <h2>ai-arbetsflöden på arkyv</h2>
+      <div class="subtitle">föreläsningar, träning och arbetsflöden som gör ai begripligt och användbart för arkitekter</div>
+      <div class="meta">
+        <strong>roll</strong> föreläsare och ai-arbetsflöden för revit<br/>
+        <strong>verktyg</strong> revit, arkyv ai
+      </div>
+      <div class="body-text">på <strong>arkyv</strong> arbetar jag för att göra ai begripligt och användbart för arkitekter på alla erfarenhetsnivåer. tillsammans med axel wohlin höll jag i en föreläsning om prompting och god ai-renderingspraxis för över 40 arkitekter.<br/><br/>en stor del av rollen handlar om att möta arkitekter på flera olika kontor för att förstå vad de behöver av ai i sina vardagliga bim-, cad- och renderingsflöden - kunskap som i sin tur formar de korta videor jag tar fram om vad arkyvs ai-agent klarar i revit.</div>
+      <div class="proj-page-num">02 / 07</div>
+    </div>
+    <div class="proj-main">
+      <img src="img/arkyv-hero.jpg" alt="" />
+      <div class="cap-overlay">titelbild från föreläsningen, hållen tillsammans med axel wohlin.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ RINGGÅRDEN ============ -->
+<div class="page">
+  <div class="proj">
+    <div class="proj-side">
+      <div class="proj-dot" style="background:#3e261c;"></div>
+      <div class="eyebrow">2023 · aarhus, danmark</div>
+      <h2>ringgården</h2>
+      <div class="subtitle">ombyggnad av ett bostadskvarter från 1940-talet i aarhus till modernt, genomgående ljust boende</div>
+      <div class="meta">
+        <strong>roll</strong> konceptutveckling, 3d-modellering och renderingar<br/>
+        <strong>med</strong> martin skou nautrup, julie velling, rasmus kierkegaard<br/>
+        <strong>verktyg</strong> 3d-modellering, rendering, indesign
+      </div>
+      <div class="body-text">ringgårdens andra etapp är ett bostadskvarter från 1940-talet i aarhus: 54 lägenheter fördelade på 8 trapphus, ingen med eget badrum. uppdraget var att modernisera byggnaden utan att förlora det som gör den karaktäristisk. gatufasaden lämnas orörd; allt nytt sker mot gården, där en ny bärande struktur bär balkongerna oberoende av det gamla teglet, genomgående inramad av växtlighet.</div>
+      <div class="proj-page-num">03 / 07</div>
+    </div>
+    <div class="proj-main">
+      <img src="img/ring-cover.jpg" alt="" />
+      <div class="cap-overlay">den nya balkongstrukturen, klädd med klätterväxter mot gårdsfasaden.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LIVING BY ALFA ============ -->
+<div class="page">
+  <div class="proj" style="grid-template-columns: 1fr 126mm;">
+    <div class="proj-side">
+      <div class="proj-dot" style="background:#ddcc94;"></div>
+      <div class="eyebrow">2023 · søborg, danmark</div>
+      <h2>living by alfa</h2>
+      <div class="subtitle">ett modulärt bostadskoncept för alfa developments tävling i søborg, danmark. vinnande bidrag.</div>
+      <div class="meta">
+        <strong>roll</strong> 3d-diagram och planlösning för lägenhetstyp 1<br/>
+        <strong>med</strong> martin skou nautrup, markus kjørvel-hansen<br/>
+        <strong>verktyg</strong> 3d-modellering, indesign
+      </div>
+      <div class="body-text"><strong>link arkitektur</strong> bjöds in till en dialogbaserad tävling med <strong>alfa development</strong> för ett nytt bostadsprojekt i søborg, utanför köpenhamn, och vann. tre standardiserade lägenhetstyper kombineras med en gemensam trapp- och hisskärna till kluster om två, tre eller fyra bostäder, samtliga kopplade till ett gemensamt klubbhus för alla boende.</div>
+      <div class="proj-page-num">04 / 07</div>
+    </div>
+    <div class="proj-main">
+      <img src="img/alfa-type1.jpg" alt="" />
+      <div class="cap-overlay">lägenhetstyp 1: 3d-diagram och planlösning, ritad av charlotta blom.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HOTELL STELLA — A ============ -->
+<div class="page">
+  <div class="proj">
+    <div class="proj-side">
+      <div class="proj-dot" style="background:#51281e;"></div>
+      <div class="eyebrow">2022 · göteborg</div>
+      <h2>hotell stella</h2>
+      <div class="subtitle">stadsplan och hotellbyggnad för knallen, en ny vattennära stadsdel vid göta älv i göteborg</div>
+      <div class="meta">
+        <strong>roll</strong> arkitekt<br/>
+        <strong>verktyg</strong> autocad, rhinoceros, v-ray, indesign, photoshop
+      </div>
+      <div class="body-text">majnabbehamnen, en tidigare färjeterminal vid göta älv, byggs om till knallen, en ny stadsdel vid vattnet. hotell stella ligger längs kajkanten. stadsdelens gatunät är medvetet oregelbundet och skapar skyddade uterum trots hårda vindar från havet - samma logik som hotell stella själv följer, fast i byggnadsskala.</div>
+      <div class="proj-page-num">05 / 07</div>
+    </div>
+    <div class="proj-main">
+      <img src="img/stella-restaurant.jpg" alt="" />
+      <div class="cap-overlay">hotellets atriumbar, indragen mellan gästvåningarna.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HOTELL STELLA — B: PLANLÖSNINGAR ============ -->
+<div class="page pad">
+  <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10mm;">
+    <div class="eyebrow-title" style="font-size:12pt; font-weight:600;">hotell stella, planlösningar</div>
+    <div class="proj-page-num">05 / 07</div>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:8mm; align-items:center;">
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <div style="height:66mm; aspect-ratio:3508/1222; background:#f2f2f2;">
+        <img src="img/stella-plan-entrance.jpg" alt="" style="position:static; width:100%; height:100%; object-fit:contain;" />
+      </div>
+      <div class="caption" style="margin-top:2mm;">entréplan: restaurang, lobby och personalutrymmen.</div>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <div style="height:66mm; aspect-ratio:3508/1178; background:#f2f2f2;">
+        <img src="img/stella-plan-l2.jpg" alt="" style="position:static; width:100%; height:100%; object-fit:contain;" />
+      </div>
+      <div class="caption" style="margin-top:2mm;">typisk gästvåning: rum kring det ljusa atriumet.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HOTELL STELLA — C ============ -->
+<div class="page grid-page">
+  <div class="grid-header">
+    <div class="eyebrow-title">hotell stella, fortsättning</div>
+    <div class="proj-page-num">05 / 07</div>
+  </div>
+  <div class="grid-body">
+    <div class="g2-bottom">
+      <div class="grid-figure">
+        <img src="img/stella-street.jpg" alt="" />
+        <figcaption>gatuvy mot eriksbergskranen.</figcaption>
+      </div>
+      <div class="grid-figure">
+        <img src="img/stella-terrace.jpg" alt="" />
+        <figcaption>restaurangterrassen, skyddad från vinden.</figcaption>
+      </div>
+      <div class="grid-figure">
+        <img src="img/stella-lobby.jpg" alt="" />
+        <figcaption>entré och lobby.</figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EN PLATS OM NATTEN — A ============ -->
+<div class="page">
+  <div class="proj">
+    <div class="proj-side">
+      <div class="proj-dot" style="background:#533c35;"></div>
+      <div class="eyebrow">2022 · göteborg</div>
+      <h2>en plats om natten</h2>
+      <div class="subtitle">ett höghus i trä på första långgatan i göteborg, vars saluhall blir dansgolv efter mörkrets inbrott</div>
+      <div class="meta">
+        <strong>roll</strong> arkitekt<br/>
+        <strong>verktyg</strong> rhinoceros, v-ray, photoshop
+      </div>
+      <div class="body-text">"en plats om natten" var den styrande tanken bakom det här höghuset på första långgatan i göteborg, nära nattlivet på andra långgatan och stigbergstorget. byggt helt i trä, med bottenvåningen organiserad som en saluhall vars stånd är ordnade som ett gatunät kring ett centralt torg: öppet för marknadsstånd på dagen, och stadsdelens dansgolv på natten.</div>
+      <div class="proj-page-num">06 / 07</div>
+    </div>
+    <div class="proj-main">
+      <img src="img/night-markethall.jpg" alt="" />
+      <div class="cap-overlay">saluhallen, ett dubbelhögt rum öppet mot våningen ovanför.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EN PLATS OM NATTEN — B ============ -->
+<div class="page grid-page">
+  <div class="grid-header">
+    <div class="eyebrow-title">en plats om natten, fortsättning</div>
+    <div class="proj-page-num">06 / 07</div>
+  </div>
+  <div class="grid-body">
+    <div class="g2-bottom">
+      <div class="grid-figure">
+        <img src="img/night-exterior.jpg" alt="" />
+        <figcaption>höghuset i skymning, på första långgatan.</figcaption>
+      </div>
+      <div class="grid-figure">
+        <img src="img/night-plan.jpg" alt="" />
+        <figcaption>bottenplan: saluhallens gatuliknande struktur.</figcaption>
+      </div>
+      <div class="grid-figure">
+        <img src="img/night-section.jpg" alt="" />
+        <figcaption>saluhallen på natten, sedd från restaurangvåningen ovanför.</figcaption>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GJORD MED OMSORG ============ -->
+<div class="page">
+  <div class="proj">
+    <div class="proj-side">
+      <div class="proj-dot" style="background:#a1ca6d;"></div>
+      <div class="eyebrow">2022 · angered, göteborg</div>
+      <h2>gjord med omsorg</h2>
+      <div class="subtitle">medskapande av angeredsgymnasiets ombyggnad genom deltagande design</div>
+      <div class="meta">
+        <strong>roll</strong> medskapare<br/>
+        <strong>med</strong> astrid nathorst westfeldt, sadia sharmin, chiara lancellotti<br/>
+        <strong>verktyg</strong> indesign, rhinoceros, v-ray, photoshop
+      </div>
+      <div class="body-text">ett återbruksprojekt för en skola från 1980-talet i angered, göteborg, framtaget genom medskapande metoder tillsammans med eleverna och lärarna som använder den varje dag. arton elever deltog i fem workshops som var och en testade ett nytt sätt att fånga deras idéer: skiss, ett platsskapande kortspel, gruppförhandling, 3d-collage och en gemensam fysisk modell av skolan.</div>
+      <div class="proj-page-num">07 / 07</div>
+    </div>
+    <div class="proj-main">
+      <img src="img/care-models.jpg" alt="" />
+      <div class="cap-overlay">3d-collagemodeller, gjorda av eleverna i klass sa20.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CLOSING ============ -->
+<div class="page closing">
+  <div class="qcircle"></div>
+  <div class="eyebrow" style="margin-bottom:4mm;">tack</div>
+  <h1>hör gärna av dig.</h1>
+  <div class="body-text">hela mitt portfolio, inklusive videorna som nämns i det här dokumentet, finns online på adressen nedan.</div>
+  <div class="closing-contact">
+    <div><span class="label">e-post</span>charlotta.blom@live.se</div>
+    <div><span class="label">linkedin</span>linkedin.com/in/charlottablom</div>
+    <div><span class="label">portfolio</span>portfolio-charlotta.vercel.app</div>
+  </div>
+</div>
+
+</body>
+</html>
