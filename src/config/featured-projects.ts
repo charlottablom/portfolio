@@ -12,4 +12,5 @@ export const featuredProjects: string[] = [
   'resting-and-nesting',
   'stadslandskap',
   'social-inclusion',
+  'visualization-work-at-link',
 ];
