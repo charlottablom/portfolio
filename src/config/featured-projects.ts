@@ -10,7 +10,4 @@ export const featuredProjects: string[] = [
   'multifunctional-suburban-networks',
   'the-shore-line',
   'resting-and-nesting',
-  'stadslandskap',
-  'social-inclusion',
-  'visualization-work-at-link',
 ];
