@@ -1,0 +1,13 @@
+{
+  "name": "pdf-export",
+  "private": true,
+  "description": "Standalone toolchain for building a print/PDF portfolio from template.html. Not part of the live site's build or dependency tree.",
+  "scripts": {
+    "images": "node build-images.js",
+    "fonts": "node copy-fonts.js",
+    "screenshot": "node screenshot-pages.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^23.0.0"
+  }
+}
