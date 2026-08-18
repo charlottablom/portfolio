@@ -35,15 +35,15 @@ const jobs = [
     console.log(outName, (size / 1024).toFixed(0) + 'KB');
   }
 
-  // arkyv-hero: the source title slide (3508x2480, ~1.42:1) is much wider
-  // than the near-square proj-main box (~1:1), so a plain centered cover-crop
-  // clips the leading "AI-" off the headline and the outer edges of both
-  // speaker photos. Pre-crop left-biased instead, keeping the full headline
-  // and both name cards, sacrificing the mostly-empty margin near the
-  // Arkyv wordmark on the right.
-  const heroSrc = path.join(SRC, 'arkyv-marketing/20260814_AI-rendering-for-arkitekter.jpg');
+  // arkyv-hero: a still from the renaming-views-and-sheets workflow video,
+  // showing both a Revit view and Charlotta's webcam overlay. Source is
+  // 1267x718 (~1.77:1). Crop tightly to just the webcam bubble and the
+  // Revit elevation (top-left quadrant) - a wider/taller crop pulls in
+  // a floating nav-cube icon and the video's own baked-in caption bar,
+  // which clashes with our own caption overlay.
+  const heroSrc = path.join(SRC, 'arkyv-marketing/renaming-views-preview.png');
   await sharp(heroSrc)
-    .extract({ left: 450, top: 0, width: 2468, height: 2480 })
+    .extract({ left: 0, top: 0, width: 480, height: 560 })
     .resize({ width: 2000, withoutEnlargement: true })
     .jpeg({ quality: 84, mozjpeg: true })
     .toFile(path.join(OUT, 'arkyv-hero.jpg'));
