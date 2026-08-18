@@ -54,62 +54,52 @@
     position: relative;
     background: var(--color-bg);
     overflow: hidden;
-    padding: 24mm;
+    padding: 20mm 24mm;
   }
 
-  .qcircle {
-    position: absolute;
-    top: 0; right: 0;
-    width: 20mm; height: 20mm;
-    background: var(--color-text);
-    border-radius: 0 0 0 100%;
-  }
+  .header { margin-bottom: 7mm; }
+  .header-name { font-size: 24pt; font-weight: 600; line-height: 1.05; }
+  .header-role { font-size: 11pt; color: var(--color-muted); margin-top: 2mm; text-transform: none; }
+  .header-contact { font-size: 9pt; color: var(--color-muted); margin-top: 3mm; }
 
-  .header { margin-bottom: 10mm; }
-  .header-name { font-size: 26pt; font-weight: 600; line-height: 1.05; }
-  .header-role { font-size: 11.5pt; color: var(--color-muted); margin-top: 2mm; text-transform: none; }
-  .header-contact { font-size: 9pt; color: var(--color-muted); margin-top: 4mm; }
-
-  .intro { font-size: 10.5pt; line-height: 1.65; max-width: 150mm; margin-bottom: 10mm; }
+  .intro { font-size: 10pt; line-height: 1.55; max-width: 150mm; margin-bottom: 7mm; }
 
   h3 {
-    font-size: 9pt; letter-spacing: 0.06em; color: var(--color-muted); font-weight: 600;
-    margin-bottom: 4mm; text-transform: uppercase;
+    font-size: 8.5pt; letter-spacing: 0.06em; color: var(--color-muted); font-weight: 600;
+    margin-bottom: 3mm; text-transform: uppercase;
   }
 
   .cv-grid { display: grid; grid-template-columns: 100mm 1fr; gap: 12mm; }
 
-  .exp-entry { padding: 3mm 0; border-top: 0.3mm solid var(--color-border); }
+  .exp-entry { padding: 2mm 0; border-top: 0.3mm solid var(--color-border); }
   .exp-entry:first-child { border-top: none; }
-  .exp-role { font-size: 10.5pt; font-weight: 600; }
-  .exp-org { font-size: 9pt; color: var(--color-muted); }
-  .exp-dates { font-size: 8.5pt; color: var(--color-muted); }
-  .exp-desc { font-size: 9pt; line-height: 1.55; margin-top: 1.5mm; }
+  .exp-role { font-size: 10pt; font-weight: 600; }
+  .exp-org { font-size: 8.5pt; color: var(--color-muted); }
+  .exp-dates { font-size: 8pt; color: var(--color-muted); }
+  .exp-desc { font-size: 8.5pt; line-height: 1.45; margin-top: 1mm; }
 
-  .side-block { margin-bottom: 8mm; }
+  .side-block { margin-bottom: 5mm; }
   .side-block:last-child { margin-bottom: 0; }
-  .edu-entry { font-size: 9pt; line-height: 1.5; margin-bottom: 3mm; }
-  .edu-entry strong { display: block; font-weight: 600; font-size: 9.5pt; }
+  .edu-entry { font-size: 8.5pt; line-height: 1.4; margin-bottom: 2mm; }
+  .edu-entry strong { display: block; font-weight: 600; font-size: 9pt; }
   .edu-entry .edu-org { color: var(--color-muted); }
 
   .tools-list { display: flex; flex-wrap: wrap; gap: 1.5mm 2.5mm; }
-  .tool-chip { font-size: 8pt; border: 0.3mm solid var(--color-border); padding: 1mm 2.5mm; border-radius: 20mm; color: var(--color-text); }
+  .tool-chip { font-size: 7.5pt; border: 0.3mm solid var(--color-border); padding: 0.8mm 2.5mm; border-radius: 20mm; color: var(--color-text); }
   .tool-chip.emphasis { border-color: var(--color-text); border-width: 0.5mm; font-weight: 600; }
 
-  .lang-row { font-size: 9pt; display: flex; justify-content: space-between; margin-bottom: 1.5mm; }
+  .lang-row { font-size: 8.5pt; display: flex; justify-content: space-between; margin-bottom: 1mm; }
   .lang-row .level { color: var(--color-muted); }
 
-  .footer { position: absolute; left: 24mm; right: 24mm; bottom: 16mm; font-size: 8.5pt; color: var(--color-muted); border-top: 0.3mm solid var(--color-border); padding-top: 4mm; }
+  .footer { position: absolute; left: 24mm; right: 24mm; bottom: 10mm; font-size: 8pt; color: var(--color-muted); border-top: 0.3mm solid var(--color-border); padding-top: 3mm; }
 </style>
 </head>
 <body>
 
 <div class="page">
-  <div class="qcircle"></div>
-
   <div class="header">
     <div class="header-name">charlotta blom</div>
-    <div class="header-role">arkitekt msa · tillämpad ai-arkitekt på arkyv, med fokus på revit och bim-arbetsflöden</div>
+    <div class="header-role">arkitekt msa · arkitekt, tillämpad ai på arkyv, med fokus på revit och bim-arbetsflöden</div>
     <div class="header-contact">charlotta.blom@live.se &nbsp;·&nbsp; linkedin.com/in/charlottablom &nbsp;·&nbsp; portfolio-charlotta.vercel.app</div>
   </div>
 
@@ -120,19 +110,19 @@
       <h3>erfarenhet</h3>
 
       <div class="exp-entry">
-        <div class="exp-role">tillämpad ai-arkitekt</div>
+        <div class="exp-role">arkitekt, tillämpad ai</div>
         <div class="exp-org">arkyv ab, stockholm <span class="exp-dates">· 2026, pågående</span></div>
         <div class="exp-desc">utvecklar ai-drivna arbetsflöden för arkitekter i revit, archicad och rhino. leder en intern revit-utbildning för arkyvs utvecklingsteam och håller föreläsningar och webbinarier om ai i bim-, cad- och renderingsarbete för arkitekter på flera olika kontor.</div>
       </div>
 
       <div class="exp-entry">
-        <div class="exp-role">medverkande arkitekt</div>
+        <div class="exp-role">medverkande arkitekt, urbanism &amp; bostad (praktikanställning)</div>
         <div class="exp-org">link arkitektur ab, stockholm <span class="exp-dates">· jan-jun 2026</span></div>
         <div class="exp-desc">26 projekt över urbanism och landskap, bostad, inredning och vård, från tidiga anbud och programhandling till gestaltningsbilagor och bygglov. utvecklade även en ai-assisterad visualiseringsworkflow som presenterades för link:s urbanismgrupp.</div>
       </div>
 
       <div class="exp-entry">
-        <div class="exp-role">arkitektpraktikant</div>
+        <div class="exp-role">arkitektpraktikant, arkitekturtävlingar</div>
         <div class="exp-org">link arkitektur a/s, aarhus, danmark <span class="exp-dates">· aug 2023-jan 2024</span></div>
         <div class="exp-desc">tidiga skeden, anbud och konceptutveckling inom bostadstransformation och tävlingar, bland annat ringgården. vann en bostadstävling åt alfa development med living by alfa.</div>
       </div>
@@ -142,6 +132,11 @@
         <div class="exp-org">arkitektursektionen, chalmers studentkår <span class="exp-dates">· sep 2021-sep 2022</span></div>
         <div class="exp-desc">styrelsearbete för en sektion med omkring 700 medlemmar: verksamhet, budget och studentinflytande.</div>
       </div>
+
+      <h3 style="margin-top: 8mm;">ideellt engagemang</h3>
+      <div class="edu-entry">ledamot, institutionsrådet för arkitektur och samhällsbyggnadsteknik, chalmers</div>
+      <div class="edu-entry">kommunikatör och eventkoordinator, fota (arkitektursektionens fotokommitté)</div>
+      <div class="edu-entry">engagerad i link akademi och klink, link arkitektur</div>
     </div>
 
     <div>
@@ -151,6 +146,11 @@
           <strong>kandidat- och masterexamen i arkitektur</strong>
           <span class="edu-org">chalmers tekniska högskola · 2019-2025</span><br/>
           inklusive en utbytestermin på aarhus arkitektskole, danmark.
+        </div>
+        <div class="edu-entry">
+          <strong>examensarbete: multifunctional suburban networks</strong>
+          <span class="edu-org">chalmers tekniska högskola · sep 2024-jun 2025</span><br/>
+          gis-baserad studie av 15-minutersstaden i göteborgs förorter, del av ett vinnova-finansierat forskningsprojekt (emc²).
         </div>
         <div class="edu-entry">
           <strong>landskapsarkitektur för hållbar urbanisering</strong>
@@ -180,6 +180,12 @@
         <h3>språk</h3>
         <div class="lang-row"><span>svenska</span><span class="level">modersmål</span></div>
         <div class="lang-row"><span>engelska</span><span class="level">flytande</span></div>
+        <div class="lang-row"><span>danska</span><span class="level">god förståelse</span></div>
+      </div>
+
+      <div class="side-block">
+        <h3>referenser</h3>
+        <div class="edu-entry">lämnas på begäran.</div>
       </div>
     </div>
   </div>
