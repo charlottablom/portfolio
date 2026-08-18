@@ -36,16 +36,14 @@ const jobs = [
   }
 
   // arkyv-hero: a still from the renaming-views-and-sheets workflow video,
-  // showing both a Revit view and Charlotta's webcam overlay. Source is
-  // 1267x718 (~1.77:1). Crop tightly to just the webcam bubble and the
-  // Revit elevation (top-left quadrant) - a wider/taller crop pulls in
-  // a floating nav-cube icon and the video's own baked-in caption bar,
-  // which clashes with our own caption overlay.
+  // showing Charlotta's webcam overlay, the Revit elevation, the results
+  // table, and the video's own subtitle. Shown uncropped (contain-fit, see
+  // template.html) so nothing is lost, so this is just a straight resize.
   const heroSrc = path.join(SRC, 'arkyv-marketing/renaming-views-preview.png');
   await sharp(heroSrc)
-    .extract({ left: 0, top: 0, width: 480, height: 560 })
-    .resize({ width: 2000, withoutEnlargement: true })
-    .jpeg({ quality: 84, mozjpeg: true })
+    .resize({ width: 2200, withoutEnlargement: true })
+    .flatten({ background: '#ffffff' })
+    .jpeg({ quality: 86, mozjpeg: true })
     .toFile(path.join(OUT, 'arkyv-hero.jpg'));
   console.log('arkyv-hero.jpg (re-cropped)', (fs.statSync(path.join(OUT, 'arkyv-hero.jpg')).size / 1024).toFixed(0) + 'KB');
 })().catch((e) => {
