@@ -107,7 +107,7 @@
   /* Mirrors PageIntro.astro's layout: a flex row, text block and the
      quarter-circle mark side by side, both top-aligned, name/heading
      taking the same visual role as the site's h1. */
-  .cover { padding: 24mm 20mm; }
+  .cover { padding: 24mm 20mm; display: flex; flex-direction: column; justify-content: flex-end; }
   .cover-hero {
     display: flex;
     align-items: flex-start;
@@ -150,7 +150,7 @@
   .timeline-org { color: var(--color-muted); }
   .tools-list { display: flex; flex-wrap: wrap; gap: 2mm 3mm; }
   .tool-chip { font-size: 8.5pt; border: 0.3mm solid var(--color-border); padding: 1.2mm 3mm; border-radius: 20mm; color: var(--color-text); }
-  .tool-chip.emphasis { border-color: var(--color-text); font-weight: 500; }
+  .tool-chip.emphasis { border-color: var(--color-text); border-width: 0.6mm; font-weight: 600; }
 
   /* ============ LINK PROJECTS TIMELINE (practice period) ============ */
   .link-projects { padding: 16mm; display: flex; flex-direction: column; min-height: 0; }
@@ -158,7 +158,7 @@
   .link-projects-header .eyebrow-title { font-size: 12pt; font-weight: 600; }
   .link-projects-intro { font-size: 9pt; color: var(--color-muted); max-width: 200mm; margin-bottom: 6mm; line-height: 1.5; }
   .lp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14mm; flex-grow: 1; align-content: start; }
-  .lp-row { display: flex; gap: 3mm; padding: 2mm 0; border-top: 0.3mm solid var(--color-border); }
+  .lp-row { display: flex; gap: 3mm; padding: 1.5mm 0; border-top: 0.3mm solid var(--color-border); }
   .lp-num { color: var(--color-muted); font-size: 8pt; width: 6mm; flex-shrink: 0; padding-top: 0.3mm; }
   .lp-main { flex: 1; }
   .lp-name { font-size: 8.5pt; font-weight: 600; line-height: 1.3; }
@@ -178,6 +178,10 @@
     position: absolute; left: 6mm; bottom: 6mm; background: rgba(255,255,255,0.88);
     padding: 2mm 4mm; font-size: 8pt; color: var(--color-muted); max-width: 80mm;
   }
+  /* for a portrait source taller/narrower than its box - contain instead of
+     cover, on a white ground matching the page, so nothing gets cropped */
+  .proj-main.contain-fit { display: flex; align-items: center; justify-content: center; background: #ffffff; }
+  .proj-main.contain-fit img { position: static; width: auto; height: 100%; max-width: 100%; object-fit: contain; }
 
   /* full-bleed image grid page (no sidebar) */
   .grid-page { padding: 16mm; display: flex; flex-direction: column; min-height: 0; }
@@ -200,7 +204,6 @@
 
   /* ============ CLOSING ============ */
   .closing { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 16mm; position: relative; }
-  .closing .qcircle { width: 90mm; height: 90mm; bottom: -45mm; right: -45mm; }
   .closing h1 { margin-bottom: 8mm; }
   .closing .body-text { max-width: 130mm; margin-bottom: 10mm; }
   .closing-contact { font-size: 11pt; }
@@ -229,9 +232,9 @@
   <div class="about-grid">
     <div class="about-left">
       <div class="eyebrow" style="margin-bottom:4mm;">om mig</div>
-      <h1>hej,<br/>jag heter charlotta.</h1>
-      <div class="body-text" style="margin-top:8mm;">jag är arkitekt och arbetar i skärningspunkten mellan arkitektur, landskap och datorstödd design, med ett starkt fokus på 3d-design och visualisering. just nu arbetar jag med tillämpad ai inom arkitektur på <strong>arkyv</strong>, där jag utvecklar ai-drivna arbetsflöden för arkitekter som arbetar i <strong>revit</strong>, <strong>archicad</strong> och <strong>rhino</strong> - verktyg jag också själv använder, både i egna projekt och i det jag bygger och lär ut till andra.</div>
-      <div class="body-text">genomgående i den här portföljen är utforskande och beräkningsdrivna metoder för att hantera rumsliga utmaningar i olika skalor.</div>
+      <h1>bim, revit och ai, på riktigt.</h1>
+      <div class="body-text" style="margin-top:8mm;">jag är arkitekt, men sedan jag började på <strong>arkyv</strong> har jag fastnat på riktigt, i hur revit är uppbyggt under ytan och hur ai kan kopplas in i det utan att bli en gimmick. jag har jobbat på <strong>link</strong> i både sverige och danmark, lär it-ingenjörer att förstå revit från grunden och utbildar arkitekter i alla erfarenhetsnivåer i ai.</div>
+      <div class="body-text">mitt mål är alltid detsamma: hitta arbetsflöden som ger folk mer tid till det de faktiskt är bra på.</div>
     </div>
     <div class="about-right">
       <div class="about-block">
@@ -239,6 +242,7 @@
         <div class="tools-list">
           <span class="tool-chip emphasis">revit</span>
           <span class="tool-chip emphasis">archicad</span>
+          <span class="tool-chip emphasis">arkyv ai</span>
           <span class="tool-chip">rhinoceros</span>
           <span class="tool-chip">grasshopper</span>
           <span class="tool-chip">lumion</span>
@@ -248,7 +252,6 @@
           <span class="tool-chip">indesign</span>
           <span class="tool-chip">photoshop</span>
           <span class="tool-chip">illustrator</span>
-          <span class="tool-chip">arkyv ai</span>
         </div>
       </div>
       <div class="about-block">
@@ -292,7 +295,7 @@
 <div class="page link-projects">
   <div class="link-projects-header">
     <div class="eyebrow-title">projekt på link arkitektur, praktikperiod 12/1-26/6 2026</div>
-    <div class="proj-page-num" style="margin:0;">27 projekt</div>
+    <div class="proj-page-num" style="margin:0;">26 projekt</div>
   </div>
   <div class="link-projects-intro">under min praktikperiod som medverkande arkitekt på link arkitektur i stockholm arbetade jag brett över skeden, från tidiga analyser och anbud till programhandling, gestaltningsbilagor, bygglov och färdigställande, inom urbanism och landskap, bostad, inredning och vård. nedan listas samtliga projekt jag medverkade i, med skede och programvara.</div>
   <div class="lp-grid">
@@ -304,28 +307,27 @@
       <div class="lp-row"><div class="lp-num">05</div><div class="lp-main"><div class="lp-name">huddingegymnasiet, 3d-print</div><div class="lp-meta">rhino, ultimaker cura</div></div></div>
       <div class="lp-row"><div class="lp-num">06</div><div class="lp-main"><div class="lp-name">broschyr urbanism</div><div class="lp-meta">säljarbete · indesign, acrobat</div></div></div>
       <div class="lp-row"><div class="lp-num">07</div><div class="lp-main"><div class="lp-name">ikano bostad, fenan 1</div><div class="lp-meta">utredning/analys · rhino (aioli), excel, indesign</div></div></div>
-      <div class="lp-row"><div class="lp-num">08</div><div class="lp-main"><div class="lp-name">materialprovpannå, kth gamma</div><div class="lp-meta">projektering, inredning</div></div></div>
-      <div class="lp-row"><div class="lp-num">09</div><div class="lp-main"><div class="lp-name">gestaltningsbilaga apelvägen</div><div class="lp-meta">gestaltningsbilaga · arkyv (ai), illustrator, photoshop</div></div></div>
-      <div class="lp-row"><div class="lp-num">10</div><div class="lp-main"><div class="lp-name">gestaltningsbilaga sshl</div><div class="lp-meta">gestaltningsbilaga · photoshop, indesign, lumion, arkyv (ai)</div></div></div>
-      <div class="lp-row"><div class="lp-num">11</div><div class="lp-main"><div class="lp-name">hyresgästanpassning shl</div><div class="lp-meta">gestaltningsbilaga · arkyv (ai), nano banana</div></div></div>
-      <div class="lp-row"><div class="lp-num">12</div><div class="lp-main"><div class="lp-name">säljarbete volvo göteborg</div><div class="lp-meta">säljarbete, referensbilaga · indesign</div></div></div>
-      <div class="lp-row"><div class="lp-num">13</div><div class="lp-main"><div class="lp-name">sigtuna sshl</div><div class="lp-meta">programhandling · arkyv (ai), nano banana</div></div></div>
-      <div class="lp-row"><div class="lp-num">14</div><div class="lp-main"><div class="lp-name">sollefteå hallstaberget</div><div class="lp-meta">gestaltningsbilaga/vision · rhino, lumion, nano banana</div></div></div>
+      <div class="lp-row"><div class="lp-num">08</div><div class="lp-main"><div class="lp-name">gestaltningsbilaga apelvägen</div><div class="lp-meta">gestaltningsbilaga · arkyv (ai), illustrator, photoshop</div></div></div>
+      <div class="lp-row"><div class="lp-num">09</div><div class="lp-main"><div class="lp-name">gestaltningsbilaga sshl</div><div class="lp-meta">gestaltningsbilaga · photoshop, indesign, lumion, arkyv (ai)</div></div></div>
+      <div class="lp-row"><div class="lp-num">10</div><div class="lp-main"><div class="lp-name">hyresgästanpassning shl</div><div class="lp-meta">gestaltningsbilaga · arkyv (ai), nano banana</div></div></div>
+      <div class="lp-row"><div class="lp-num">11</div><div class="lp-main"><div class="lp-name">säljarbete volvo göteborg</div><div class="lp-meta">säljarbete, referensbilaga · indesign</div></div></div>
+      <div class="lp-row"><div class="lp-num">12</div><div class="lp-main"><div class="lp-name">sigtuna sshl</div><div class="lp-meta">programhandling · arkyv (ai), nano banana</div></div></div>
+      <div class="lp-row"><div class="lp-num">13</div><div class="lp-main"><div class="lp-name">sollefteå hallstaberget</div><div class="lp-meta">gestaltningsbilaga/vision · rhino, lumion, nano banana</div></div></div>
     </div>
     <div>
-      <div class="lp-row"><div class="lp-num">15</div><div class="lp-main"><div class="lp-name">anbud tg8</div><div class="lp-meta">anbud (positiv tilldelning) · indesign</div></div></div>
-      <div class="lp-row"><div class="lp-num">16</div><div class="lp-main"><div class="lp-name">anbud ramlösa, helsingborg</div><div class="lp-meta">anbud, 300+ mkr (positiv tilldelning) · indesign</div></div></div>
-      <div class="lp-row"><div class="lp-num">17</div><div class="lp-main"><div class="lp-name">bygglov fsk diamanten, uppsala</div><div class="lp-meta">bygglov · archicad</div></div></div>
-      <div class="lp-row"><div class="lp-num">18</div><div class="lp-main"><div class="lp-name">fysisk arbetsmodell, gotlands bostäder</div><div class="lp-meta">bygglov · rhino, ultimaker cura</div></div></div>
-      <div class="lp-row"><div class="lp-num">19</div><div class="lp-main"><div class="lp-name">referensbilaga, markanvisning östersund</div><div class="lp-meta">anbud · indesign</div></div></div>
-      <div class="lp-row"><div class="lp-num">20</div><div class="lp-main"><div class="lp-name">anbud telge</div><div class="lp-meta">anbud · arkyv (ai), nano banana</div></div></div>
-      <div class="lp-row"><div class="lp-num">21</div><div class="lp-main"><div class="lp-name">sävar visionsbild, umeå kommun</div><div class="lp-meta">detaljplan · rhino, lumion, photoshop</div></div></div>
-      <div class="lp-row"><div class="lp-num">22</div><div class="lp-main"><div class="lp-name">mab, bostadskvalitetsanalys gläntan</div><div class="lp-meta">utredning/analys · archicad, excel</div></div></div>
-      <div class="lp-row"><div class="lp-num">23</div><div class="lp-main"><div class="lp-name">solstudie och skuggdiagram, järlåsa fsk</div><div class="lp-meta">programhandling · rhino</div></div></div>
-      <div class="lp-row"><div class="lp-num">24</div><div class="lp-main"><div class="lp-name">dörruppställningar, portalen</div><div class="lp-meta">färdigställande · archicad</div></div></div>
-      <div class="lp-row"><div class="lp-num">25</div><div class="lp-main"><div class="lp-name">kompletterande inredning, portalens showroom</div><div class="lp-meta">färdigställande</div></div></div>
-      <div class="lp-row"><div class="lp-num">26</div><div class="lp-main"><div class="lp-name">marknadsarbete inför almedalen</div><div class="lp-meta">säljarbete · ultimaker cura</div></div></div>
-      <div class="lp-row"><div class="lp-num">27</div><div class="lp-main"><div class="lp-name">anbud lunds universitet</div><div class="lp-meta">anbud, inredningsarkitektur · arkyv (ai), nano banana, affinity publisher</div></div></div>
+      <div class="lp-row"><div class="lp-num">14</div><div class="lp-main"><div class="lp-name">anbud tg8</div><div class="lp-meta">anbud (positiv tilldelning) · indesign</div></div></div>
+      <div class="lp-row"><div class="lp-num">15</div><div class="lp-main"><div class="lp-name">anbud ramlösa, helsingborg</div><div class="lp-meta">anbud, 300+ mkr (positiv tilldelning) · indesign</div></div></div>
+      <div class="lp-row"><div class="lp-num">16</div><div class="lp-main"><div class="lp-name">bygglov fsk diamanten, uppsala</div><div class="lp-meta">bygglov · archicad</div></div></div>
+      <div class="lp-row"><div class="lp-num">17</div><div class="lp-main"><div class="lp-name">fysisk arbetsmodell, gotlands bostäder</div><div class="lp-meta">bygglov · rhino, ultimaker cura</div></div></div>
+      <div class="lp-row"><div class="lp-num">18</div><div class="lp-main"><div class="lp-name">referensbilaga, markanvisning östersund</div><div class="lp-meta">anbud · indesign</div></div></div>
+      <div class="lp-row"><div class="lp-num">19</div><div class="lp-main"><div class="lp-name">anbud telge</div><div class="lp-meta">anbud · arkyv (ai), nano banana</div></div></div>
+      <div class="lp-row"><div class="lp-num">20</div><div class="lp-main"><div class="lp-name">sävar visionsbild, umeå kommun</div><div class="lp-meta">detaljplan · rhino, lumion, photoshop</div></div></div>
+      <div class="lp-row"><div class="lp-num">21</div><div class="lp-main"><div class="lp-name">mab, bostadskvalitetsanalys gläntan</div><div class="lp-meta">utredning/analys · archicad, excel</div></div></div>
+      <div class="lp-row"><div class="lp-num">22</div><div class="lp-main"><div class="lp-name">solstudie och skuggdiagram, järlåsa fsk</div><div class="lp-meta">programhandling · rhino</div></div></div>
+      <div class="lp-row"><div class="lp-num">23</div><div class="lp-main"><div class="lp-name">dörruppställningar, portalen</div><div class="lp-meta">färdigställande · archicad</div></div></div>
+      <div class="lp-row"><div class="lp-num">24</div><div class="lp-main"><div class="lp-name">kompletterande inredning, portalens showroom</div><div class="lp-meta">färdigställande</div></div></div>
+      <div class="lp-row"><div class="lp-num">25</div><div class="lp-main"><div class="lp-name">marknadsarbete inför almedalen</div><div class="lp-meta">säljarbete · ultimaker cura</div></div></div>
+      <div class="lp-row"><div class="lp-num">26</div><div class="lp-main"><div class="lp-name">anbud lunds universitet</div><div class="lp-meta">anbud, inredningsarkitektur · arkyv (ai), nano banana, affinity publisher</div></div></div>
     </div>
   </div>
 </div>
@@ -342,7 +344,7 @@
         <strong>roll</strong> föreläsare, revit-utbildare och ai-arbetsflöden för revit<br/>
         <strong>verktyg</strong> revit, arkyv ai
       </div>
-      <div class="body-text">på <strong>arkyv</strong> arbetar jag för att göra ai begripligt och användbart för arkitekter på alla erfarenhetsnivåer. tillsammans med axel wohlin höll jag i en föreläsning om ai-rendering för över 50 arkitekter från olika kontor, och leder just nu nästa webbinarium i samma serie: ai-stödd modellering i revit.<br/><br/>jag har också lett en intern revit-utbildning för arkyvs utvecklingsteam - vi byggde ett helt hus i revit tillsammans, med vårt ai-tillägg avstängt, så att teamet först skulle förstå revits egen logik.</div>
+      <div class="body-text">på <strong>arkyv</strong> arbetar jag för att göra ai begripligt och användbart för arkitekter på alla erfarenhetsnivåer. tillsammans med axel wohlin höll jag i en föreläsning om ai-rendering för över 50 arkitekter från olika kontor, och leder just nu nästa webbinarium i samma serie: ai-stödd modellering i revit.<br/><br/>jag har också lett en intern revit-utbildning för arkyvs utvecklingsteam, med vårt ai-tillägg avstängt, så att teamet först skulle förstå revits egen logik.</div>
       <div class="proj-page-num">01 / 03</div>
     </div>
     <div class="proj-main">
@@ -382,7 +384,7 @@
         <strong>roll</strong> 3d-visualisering och ai-assisterad rendering<br/>
         <strong>verktyg</strong> rhino, lumion, photoshop, arkyv (ai), nano banana
       </div>
-      <div class="body-text">under min tid som medverkande arkitekt på <strong>link arkitektur</strong> i stockholm tog jag fram 3d-visualiseringar och ai-assisterade renderingar för en rad olika kunduppdrag och anbud: visionbilder, redigering av befintliga renderingar samt möbel- och materialval, ofta utifrån kollegors basmodeller, moodboards eller skisser.</div>
+      <div class="body-text">under min tid som medverkande arkitekt på <strong>link arkitektur</strong> i stockholm tog jag fram 3d-modeller, visualiseringar och ai-assisterade renderingar för en rad olika kunduppdrag och anbud. jag jobbade över alla link:s olika affärsområden - urbanism och landskap, bostad, inredning och vård - vilket gjorde att jag lärde känna hela kontoret: folk visste vad de kunde få hjälp av mig med, oavsett vilket team de satt i.</div>
       <div class="proj-page-num">02 / 03</div>
     </div>
     <div class="proj-main">
@@ -405,12 +407,12 @@
         <figcaption>hallstabergets skidstadion i sollefteå, vinterrendering.</figcaption>
       </div>
       <div class="grid-figure">
-        <img src="img/viz-sigtuna.jpg" alt="" />
-        <figcaption>sigtunaskolans entré, akvarell efter landskapsarkitekternas ritningar - gåva till kungens 80-årsdag.</figcaption>
-      </div>
-      <div class="grid-figure">
         <img src="img/viz-hagalund.jpg" alt="" />
         <figcaption>hyresgästanpassning, södra hagalund.</figcaption>
+      </div>
+      <div class="grid-figure">
+        <img src="img/viz-sigtuna.jpg" alt="" />
+        <figcaption>sigtunaskolans entré, akvarell efter landskapsarkitekternas ritningar - gåva till kungens 80-årsdag.</figcaption>
       </div>
     </div>
   </div>
@@ -429,10 +431,10 @@
         <strong>med</strong> martin skou nautrup, markus kjørvel-hansen<br/>
         <strong>verktyg</strong> 3d-modellering, indesign
       </div>
-      <div class="body-text"><strong>link arkitektur</strong> bjöds in till en dialogbaserad tävling med <strong>alfa development</strong> för ett nytt bostadsprojekt i søborg, utanför köpenhamn, och vann. tre standardiserade lägenhetstyper kombineras med en gemensam trapp- och hisskärna till kluster om två, tre eller fyra bostäder, samtliga kopplade till ett gemensamt klubbhus för alla boende.</div>
+      <div class="body-text"><strong>link arkitektur danmark</strong> bjöds in till en dialogbaserad tävling med <strong>alfa development</strong> för ett nytt bostadsprojekt i søborg, utanför köpenhamn, och vann. tre standardiserade lägenhetstyper kombineras med en gemensam trapp- och hisskärna till kluster om två, tre eller fyra bostäder, samtliga kopplade till ett gemensamt klubbhus för alla boende.</div>
       <div class="proj-page-num">03 / 03</div>
     </div>
-    <div class="proj-main">
+    <div class="proj-main contain-fit">
       <img src="img/alfa-type1.jpg" alt="" />
       <div class="cap-overlay">lägenhetstyp 1: 3d-diagram och planlösning, ritad av charlotta blom.</div>
     </div>
@@ -441,14 +443,13 @@
 
 <!-- ============ CLOSING ============ -->
 <div class="page closing">
-  <div class="qcircle"></div>
   <div class="eyebrow" style="margin-bottom:4mm;">tack</div>
   <h1>hör gärna av dig.</h1>
   <div class="body-text">hela mitt portfolio, inklusive videorna som nämns i det här dokumentet, finns online på adressen nedan.</div>
   <div class="closing-contact">
+    <div><span class="label">portfolio</span>portfolio-charlotta.vercel.app</div>
     <div><span class="label">e-post</span>charlotta.blom@live.se</div>
     <div><span class="label">linkedin</span>linkedin.com/in/charlottablom</div>
-    <div><span class="label">portfolio</span>portfolio-charlotta.vercel.app</div>
   </div>
 </div>
 
