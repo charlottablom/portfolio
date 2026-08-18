@@ -20,6 +20,8 @@ import renamingViewsAndSheets from './renaming-views-and-sheets.mp4';
 import parametricWorkflow from './LinkedIn-center-views-on-sheets.mp4';
 import elementColorCoding from './element-color-coding.mp4';
 import aiRenderingTalk from './20260814_AI-rendering-for-arkitekter.jpg';
+import revitTutoringForItEngineers from './Revit-tutoring-for-it-engineers.JPG';
+import revitWebinarDemo from './Skärmbild 2026-08-18 200115.png';
 
 ## Context
 
@@ -29,26 +31,40 @@ At **Arkyv**, my current role includes producing short videos that show what the
 
 <figure>
   <LoadingImage src={aiRenderingTalk} width={1600} alt="Title slide for a talk called 'AI-rendering för Arkitekter' (AI Rendering for Architects), reading 'AI can now produce renderings in minutes instead of days. Has the value disappeared, or has it just moved?', with speaker photos and titles for Axel Wohlin, Co-founder and CEO, and Charlotta Blom, Architect MSA." />
-  <figcaption>Title slide from a talk on prompting and good AI-rendering practice, given with Axel Wohlin to over 40 architects.</figcaption>
+  <figcaption>Title slide from a talk on prompting and good AI-rendering practice, given with Axel Wohlin to over 50 architects from different offices.</figcaption>
 </figure>
 
 A recurring part of the role is pedagogical: talks like this one, and regular conversations with architects at multiple firms to understand what they actually need from AI in their everyday BIM, CAD, and rendering workflows - knowledge that in turn shapes the videos and workflows below.
 
-### Renaming views and sheets
+Next in the same series: on August 21, 2026, I'm presenting a live demo webinar with **Axel Wohlin** on AI-assisted modeling in Revit - covering project checklists inside the Revit model, compliance checks run directly against it, and reusable workflows for repetitive Revit tasks.
+
+<figure>
+  <LoadingImage src={revitWebinarDemo} width={1600} alt="Presentation slide titled 'Compliance checks, checklists, workflows', listing project checklists inside the Revit model, compliance checks against the model, and reusable workflows for repetitive Revit work, beside a screenshot of a Revit floor plan with a room-area compliance check." />
+  <figcaption>Live demo slide on compliance checks, checklists, and reusable workflows inside Revit.</figcaption>
+</figure>
+
+### Teaching Revit to engineers
+
+As part of introducing Arkyv's engineering team to the Revit UI that architects actually work in, I ran an internal hands-on Revit training - walking through building a full house model start to finish, in the order an architect actually works, with Arkyv's own Revit plug-in switched off so engineers would learn the underlying Revit mechanics before the tool that automates them. I wrote a companion two-part reference: one page on core concepts (Actions, Parameters, Views, Sheets), and one walking through the full build sequence step by step, tying each stage back to the same Elements, Types, and Shared Parameters that Arkyv's compliance checks and Revit add-in read from and write to.
+
+<figure>
+  <LoadingImage src={revitTutoringForItEngineers} width={1600} alt="Axel Wohlin, Arkyv's CEO, seated at a multi-monitor desk working through a Revit model of a house, with a step-by-step instruction document open on a laptop screen." />
+  <figcaption>Axel Wohlin, Arkyv's CEO, working through the full-house Revit exercise during the internal engineering training, with Arkyv's own plug-in switched off.</figcaption>
+</figure>
+
+### Showing what's possible inside Revit
+
+Alongside the talks and training, these workflow videos show what's possible day to day - short demonstrations for LinkedIn and Arkyv's customer video library.
 
 <figure>
   <video controls preload="metadata" src={renamingViewsAndSheets} style="width: 100%; display: block;" />
   <figcaption>Renaming sheets and views to match a specific Swedish naming convention.</figcaption>
 </figure>
 
-### Parametric workflow
-
 <figure>
   <video controls preload="metadata" src={parametricWorkflow} style="width: 100%; display: block;" />
   <figcaption>Centering four elevation views on their sheets, then saving the workflow for future use.</figcaption>
 </figure>
-
-### Color-coding elements
 
 <figure>
   <video controls preload="metadata" src={elementColorCoding} style="width: 100%; display: block;" />
