@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<title>Charlotta Blom — Personligt brev</title>
+<style>
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 300;
+    src: url('fonts/montserrat-300.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    src: url('fonts/montserrat-400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    src: url('fonts/montserrat-500.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    src: url('fonts/montserrat-600.woff2') format('woff2');
+  }
+
+  :root {
+    --color-text: rgb(1, 0, 72);
+    --color-muted: #6b6b6b;
+    --color-border: #dddddd;
+    --color-bg: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: 210mm 297mm; margin: 0; }
+
+  html, body { background: #e8e8e8; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-text);
+    text-transform: lowercase;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  strong { font-weight: 600; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    background: var(--color-bg);
+    overflow: hidden;
+  }
+
+  .letter { padding: 26mm 24mm; display: flex; flex-direction: column; height: 100%; }
+
+  .qcircle {
+    position: absolute;
+    top: 0; right: 0;
+    width: 20mm; height: 20mm;
+    background: var(--color-text);
+    border-radius: 0 0 0 100%;
+  }
+
+  .letterhead { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18mm; }
+  .letterhead-name { font-size: 15pt; font-weight: 600; }
+  .letterhead-contact { font-size: 9pt; color: var(--color-muted); margin-top: 2mm; text-transform: none; }
+  .letterhead-eyebrow { font-size: 8.5pt; letter-spacing: 0.06em; color: var(--color-muted); font-weight: 500; text-align: right; max-width: 60mm; line-height: 1.5; }
+
+  .letter-body { flex-grow: 1; }
+  .letter-salutation { font-size: 12.5pt; font-weight: 600; margin-bottom: 8mm; }
+  .letter-body p { font-size: 10.5pt; line-height: 1.7; }
+  .letter-body p + p { margin-top: 5mm; }
+
+  .letter-sign { margin-top: 12mm; font-size: 10.5pt; line-height: 1.6; }
+  .letter-sign .close { color: var(--color-muted); }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="qcircle"></div>
+  <div class="letter">
+    <div class="letterhead">
+      <div>
+        <div class="letterhead-name">charlotta blom</div>
+        <div class="letterhead-contact">charlotta.blom@live.se &nbsp;·&nbsp; linkedin.com/in/charlottablom &nbsp;·&nbsp; portfolio-charlotta.vercel.app</div>
+      </div>
+      <div class="letterhead-eyebrow">personligt brev<br/>bim-ingenjör, revit &amp; smarta arbetssätt<br/>link arkitektur</div>
+    </div>
+
+    <div class="letter-body">
+      <div class="letter-salutation">hej carola,</div>
+
+      <p>i våras satt jag på <strong>link</strong>:s kontor i stockholm och lärde mig hur jag gör gestaltningsbilagor och bygglov. efter att nu ha jobbat med <strong>revit</strong> och ai på heltid på <strong>arkyv</strong> vill jag gärna tillbaka till <strong>link</strong>, och i denna roll tror jag att min kompetens hade kommit otroligt väl till pass.</p>
+
+      <p>jag är inte en bim-ingenjör i grunden utan arkitekt. men sedan jag började som arkitekt på <strong>arkyv</strong> i våras har jag formats och omprofilerats, jag har på riktigt fastnat för hur arkitektens verktyg fungerar, hur ai kan kopplas in i det utan att det blir en gimmick, och framför allt hur tekniken kan användas för att lösa riktiga problem i arkitektens vardag. jag tror att det är den kombinationen som gör mig bra för den här rollen: jag förstår <strong>revit</strong> både som arkitekten som ritar i det och som personen som bygger verktyg och arbetsflöden runt det, och är dessutom ett riktigt proffs på specifikt <strong>arkyv</strong>.</p>
+
+      <p>utöver det har jag jobbat på <strong>link</strong> i både sverige och danmark och varit engagerad i <strong>link akademi</strong> och <strong>klink</strong>. som den enda och första arkitekten på <strong>arkyv</strong> lär jag it-ingenjörer att förstå <strong>revit</strong> från grunden. det har varit lite fake it till you make it, och jag har studerat programmet som en galning. under en intern <strong>revit</strong>-kurs som jag höll i byggde vi ett helt hus tillsammans från grunden, med vårt eget ai-tillägg avstängt. utöver det innebär min roll att utbilda arkitekter med helt olika erfarenhetsnivåer i hur ai faktiskt kan användas i vardagen, inte bara som ett buzzword. på fredag håller jag ett webbinarium om just det: ai-stödd modellering i <strong>revit</strong>.</p>
+
+      <p>jag är ödmjuk inför allt jag fortfarande har att lära mig, framför allt av ett team som redan kan sina bim-processer utan och innan. men att lyssna in och hitta effektivare arbetsflöden så att människor får mer tid till det de faktiskt är bra på är något jag ser stor mening i. jag följer vad som händer inom <strong>revit</strong>, bim och ai på ett sätt som känns lite väl engagerat ibland, och har numera mycket kontakter inom tech. jag tror att det är precis den sortens engagemang som gör skillnad i praktiken, och kanske särskiljer mig som kandidat till denna tjänst. jag är fortfarande i början av min karriär, men jag känner verkligen att det är hit jag vill och är villig att jobba hårt för det.</p>
+    </div>
+
+    <div class="letter-sign">
+      <div class="close">varma hälsningar,</div>
+      <div><strong>charlotta blom</strong></div>
+      <div>charlotta.blom@live.se</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
