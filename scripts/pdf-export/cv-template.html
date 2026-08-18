@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<title>Charlotta Blom — CV</title>
+<style>
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 300;
+    src: url('fonts/montserrat-300.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    src: url('fonts/montserrat-400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    src: url('fonts/montserrat-500.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    src: url('fonts/montserrat-600.woff2') format('woff2');
+  }
+
+  :root {
+    --color-text: rgb(1, 0, 72);
+    --color-muted: #6b6b6b;
+    --color-border: #dddddd;
+    --color-bg: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: 210mm 297mm; margin: 0; }
+
+  html, body { background: #e8e8e8; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-text);
+    text-transform: lowercase;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  strong { font-weight: 600; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    background: var(--color-bg);
+    overflow: hidden;
+    padding: 24mm;
+  }
+
+  .qcircle {
+    position: absolute;
+    top: 0; right: 0;
+    width: 20mm; height: 20mm;
+    background: var(--color-text);
+    border-radius: 0 0 0 100%;
+  }
+
+  .header { margin-bottom: 10mm; }
+  .header-name { font-size: 26pt; font-weight: 600; line-height: 1.05; }
+  .header-role { font-size: 11.5pt; color: var(--color-muted); margin-top: 2mm; text-transform: none; }
+  .header-contact { font-size: 9pt; color: var(--color-muted); margin-top: 4mm; }
+
+  .intro { font-size: 10.5pt; line-height: 1.65; max-width: 150mm; margin-bottom: 10mm; }
+
+  h3 {
+    font-size: 9pt; letter-spacing: 0.06em; color: var(--color-muted); font-weight: 600;
+    margin-bottom: 4mm; text-transform: uppercase;
+  }
+
+  .cv-grid { display: grid; grid-template-columns: 100mm 1fr; gap: 12mm; }
+
+  .exp-entry { padding: 3mm 0; border-top: 0.3mm solid var(--color-border); }
+  .exp-entry:first-child { border-top: none; }
+  .exp-role { font-size: 10.5pt; font-weight: 600; }
+  .exp-org { font-size: 9pt; color: var(--color-muted); }
+  .exp-dates { font-size: 8.5pt; color: var(--color-muted); }
+  .exp-desc { font-size: 9pt; line-height: 1.55; margin-top: 1.5mm; }
+
+  .side-block { margin-bottom: 8mm; }
+  .side-block:last-child { margin-bottom: 0; }
+  .edu-entry { font-size: 9pt; line-height: 1.5; margin-bottom: 3mm; }
+  .edu-entry strong { display: block; font-weight: 600; font-size: 9.5pt; }
+  .edu-entry .edu-org { color: var(--color-muted); }
+
+  .tools-list { display: flex; flex-wrap: wrap; gap: 1.5mm 2.5mm; }
+  .tool-chip { font-size: 8pt; border: 0.3mm solid var(--color-border); padding: 1mm 2.5mm; border-radius: 20mm; color: var(--color-text); }
+  .tool-chip.emphasis { border-color: var(--color-text); border-width: 0.5mm; font-weight: 600; }
+
+  .lang-row { font-size: 9pt; display: flex; justify-content: space-between; margin-bottom: 1.5mm; }
+  .lang-row .level { color: var(--color-muted); }
+
+  .footer { position: absolute; left: 24mm; right: 24mm; bottom: 16mm; font-size: 8.5pt; color: var(--color-muted); border-top: 0.3mm solid var(--color-border); padding-top: 4mm; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="qcircle"></div>
+
+  <div class="header">
+    <div class="header-name">charlotta blom</div>
+    <div class="header-role">arkitekt msa · tillämpad ai-arkitekt på arkyv, med fokus på revit och bim-arbetsflöden</div>
+    <div class="header-contact">charlotta.blom@live.se &nbsp;·&nbsp; linkedin.com/in/charlottablom &nbsp;·&nbsp; portfolio-charlotta.vercel.app</div>
+  </div>
+
+  <div class="intro">arkitekt som sedan i somras arbetar heltid med ai-drivna revit-, archicad- och rhino-arbetsflöden på <strong>arkyv</strong>. bakgrund i praktiskt arkitektarbete från <strong>link arkitektur</strong> i både sverige och danmark, kombinerat med pedagogiskt arbete: intern revit-utbildning för it-ingenjörer och ai-utbildning för arkitekter på alla erfarenhetsnivåer.</div>
+
+  <div class="cv-grid">
+    <div>
+      <h3>erfarenhet</h3>
+
+      <div class="exp-entry">
+        <div class="exp-role">tillämpad ai-arkitekt</div>
+        <div class="exp-org">arkyv ab, stockholm <span class="exp-dates">· 2026, pågående</span></div>
+        <div class="exp-desc">utvecklar ai-drivna arbetsflöden för arkitekter i revit, archicad och rhino. leder en intern revit-utbildning för arkyvs utvecklingsteam och håller föreläsningar och webbinarier om ai i bim-, cad- och renderingsarbete för arkitekter på flera olika kontor.</div>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-role">medverkande arkitekt</div>
+        <div class="exp-org">link arkitektur ab, stockholm <span class="exp-dates">· jan-jun 2026</span></div>
+        <div class="exp-desc">26 projekt över urbanism och landskap, bostad, inredning och vård, från tidiga anbud och programhandling till gestaltningsbilagor och bygglov. utvecklade även en ai-assisterad visualiseringsworkflow som presenterades för link:s urbanismgrupp.</div>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-role">arkitektpraktikant</div>
+        <div class="exp-org">link arkitektur a/s, aarhus, danmark <span class="exp-dates">· aug 2023-jan 2024</span></div>
+        <div class="exp-desc">tidiga skeden, anbud och konceptutveckling inom bostadstransformation och tävlingar, bland annat ringgården. vann en bostadstävling åt alfa development med living by alfa.</div>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-role">ordförande</div>
+        <div class="exp-org">arkitektursektionen, chalmers studentkår <span class="exp-dates">· sep 2021-sep 2022</span></div>
+        <div class="exp-desc">styrelsearbete för en sektion med omkring 700 medlemmar: verksamhet, budget och studentinflytande.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="side-block">
+        <h3>utbildning</h3>
+        <div class="edu-entry">
+          <strong>kandidat- och masterexamen i arkitektur</strong>
+          <span class="edu-org">chalmers tekniska högskola · 2019-2025</span><br/>
+          inklusive en utbytestermin på aarhus arkitektskole, danmark.
+        </div>
+        <div class="edu-entry">
+          <strong>landskapsarkitektur för hållbar urbanisering</strong>
+          <span class="edu-org">sveriges lantbruksuniversitet (slu) · jan 2024, pågående</span>
+        </div>
+      </div>
+
+      <div class="side-block">
+        <h3>program &amp; verktyg</h3>
+        <div class="tools-list">
+          <span class="tool-chip emphasis">revit</span>
+          <span class="tool-chip emphasis">archicad</span>
+          <span class="tool-chip emphasis">arkyv ai</span>
+          <span class="tool-chip">rhinoceros</span>
+          <span class="tool-chip">grasshopper</span>
+          <span class="tool-chip">lumion</span>
+          <span class="tool-chip">v-ray</span>
+          <span class="tool-chip">autocad</span>
+          <span class="tool-chip">qgis</span>
+          <span class="tool-chip">indesign</span>
+          <span class="tool-chip">photoshop</span>
+          <span class="tool-chip">illustrator</span>
+        </div>
+      </div>
+
+      <div class="side-block">
+        <h3>språk</h3>
+        <div class="lang-row"><span>svenska</span><span class="level">modersmål</span></div>
+        <div class="lang-row"><span>engelska</span><span class="level">flytande</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">fullständig portfolio och personligt brev bifogas separat. portfolio-charlotta.vercel.app</div>
+</div>
+
+</body>
+</html>
