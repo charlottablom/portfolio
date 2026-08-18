@@ -8,6 +8,6 @@
 // is skipped rather than breaking the build.
 export const featuredProjects: string[] = [
   'arkyv-marketing',
-  'link-project-highlights',
+  'visualization-work-at-link',
   'living-by-alfa',
 ];
