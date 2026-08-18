@@ -16,7 +16,7 @@ const jobs = [
   ['arkyv-marketing/Skärmbild 2026-08-18 200115.png', 'arkyv-webinar.jpg', 2000],
   ['visualization-work-at-link/savar-flygvy.jpg', 'viz-savar.jpg', 2200],
   ['visualization-work-at-link/solleftea-skidstadion.jpg', 'viz-skidstadion.jpg', 2000],
-  ['visualization-work-at-link/sigtuna-entrance.jpg', 'viz-sigtuna.jpg', 2000],
+  ['visualization-work-at-link/apelgarden-facade.jpg', 'viz-apel-after.jpg', 2000],
   ['visualization-work-at-link/sodra-hagalund-hyresgastanpassning-2.png', 'viz-hagalund.jpg', 1800],
 ];
 
