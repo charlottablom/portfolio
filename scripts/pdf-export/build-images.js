@@ -12,22 +12,12 @@ const OUT = path.resolve(__dirname, 'img');
 // [sourceRelativePath, outputName, maxWidthPx]
 const jobs = [
   ['living by alfa/apartment-layout-type-1.png', 'alfa-type1.jpg', 1800],
-  ['arkyv-marketing/20260814_AI-rendering-for-arkitekter.jpg', 'arkyv-hero.jpg', 2000],
-  ['en-plats-pa-natten/rendering-exterior-1.jpg', 'night-exterior.jpg', 1600],
-  ['en-plats-pa-natten/rendering-market-hall-1.png', 'night-markethall.jpg', 2000],
-  ['en-plats-pa-natten/plan-1.jpg', 'night-plan.jpg', 2200],
-  ['en-plats-pa-natten/section-indoor-1.jpg', 'night-section.jpg', 2200],
-  ['ringgarden/perspective-2.JPG', 'ring-cover.jpg', 2200],
-  ['hotell-stella/perspective-entrance-1.jpg', 'stella-lobby.jpg', 1600],
-  ['hotell-stella/floorplan-entrance-floor-1.png', 'stella-plan-entrance.jpg', 3000],
-  ['hotell-stella/floorplan-l2-1.png', 'stella-plan-l2.jpg', 3000],
-  ['hotell-stella/perspecitve-restaurant-1.jpg', 'stella-restaurant.jpg', 2200],
-  ['hotell-stella/perspective-city-1.jpg', 'stella-street.jpg', 2000],
-  ['hotell-stella/perspective-2.jpg', 'stella-terrace.jpg', 1600],
-  ['visualization-work-at-link/apelgarden-facade.jpg', 'viz-apel-after.jpg', 2000],
-  ['visualization-work-at-link/apelgarden-facade-tidigare.jpg', 'viz-apel-before.jpg', 2000],
-  ['visualization-work-at-link/sodra-hagalund-hyresgastanpassning-2.png', 'viz-hagalund.jpg', 1800],
+  ['arkyv-marketing/Revit-tutoring-for-it-engineers.JPG', 'arkyv-hackathon.jpg', 2000],
+  ['arkyv-marketing/Skärmbild 2026-08-18 200115.png', 'arkyv-webinar.jpg', 2000],
   ['visualization-work-at-link/savar-flygvy.jpg', 'viz-savar.jpg', 2200],
+  ['visualization-work-at-link/solleftea-skidstadion.jpg', 'viz-skidstadion.jpg', 2000],
+  ['visualization-work-at-link/sigtuna-entrance.jpg', 'viz-sigtuna.jpg', 2000],
+  ['visualization-work-at-link/sodra-hagalund-hyresgastanpassning-1.png', 'viz-hagalund.jpg', 1800],
 ];
 
 (async () => {
@@ -45,22 +35,19 @@ const jobs = [
     console.log(outName, (size / 1024).toFixed(0) + 'KB');
   }
 
-  // Made with Care's collage composite is a tall 5-model portrait image;
-  // cropping to the top two rows (4 of 5 models) gets close to the page
-  // template's own image-box aspect ratio, so it fills the frame under
-  // cover-fit instead of needing letterboxing. Only relevant if the new
-  // application still uses this project with the same hero treatment.
-  const careSrc = path.join(SRC, 'social-inclusion/COLLAGE models by the students.png');
-  if (fs.existsSync(careSrc)) {
-    const out = path.join(OUT, 'care-models.jpg');
-    await sharp(careSrc)
-      .extract({ left: 0, top: 55, width: 2480, height: 1926 })
-      .resize({ width: 2000, withoutEnlargement: true })
-      .flatten({ background: '#ffffff' })
-      .jpeg({ quality: 84, mozjpeg: true })
-      .toFile(out);
-    console.log('care-models.jpg (re-cropped)', (fs.statSync(out).size / 1024).toFixed(0) + 'KB');
-  }
+  // arkyv-hero: the source title slide (3508x2480, ~1.42:1) is much wider
+  // than the near-square proj-main box (~1:1), so a plain centered cover-crop
+  // clips the leading "AI-" off the headline and the outer edges of both
+  // speaker photos. Pre-crop left-biased instead, keeping the full headline
+  // and both name cards, sacrificing the mostly-empty margin near the
+  // Arkyv wordmark on the right.
+  const heroSrc = path.join(SRC, 'arkyv-marketing/20260814_AI-rendering-for-arkitekter.jpg');
+  await sharp(heroSrc)
+    .extract({ left: 450, top: 0, width: 2468, height: 2480 })
+    .resize({ width: 2000, withoutEnlargement: true })
+    .jpeg({ quality: 84, mozjpeg: true })
+    .toFile(path.join(OUT, 'arkyv-hero.jpg'));
+  console.log('arkyv-hero.jpg (re-cropped)', (fs.statSync(path.join(OUT, 'arkyv-hero.jpg')).size / 1024).toFixed(0) + 'KB');
 })().catch((e) => {
   console.error(e);
   process.exit(1);
