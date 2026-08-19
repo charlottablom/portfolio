@@ -7,7 +7,9 @@
 // order they should appear. Any slug that doesn't match a real project
 // is skipped rather than breaking the build.
 export const featuredProjects: string[] = [
-  'arkyv-marketing',
-  'visualization-work-at-link',
+  'ringgarden',
   'living-by-alfa',
+  'hotell-stella',
+  'stadsbostaden',
+  'social-inclusion',
 ];
