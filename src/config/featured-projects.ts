@@ -10,6 +10,6 @@ export const featuredProjects: string[] = [
   'ringgarden',
   'living-by-alfa',
   'hotell-stella',
-  'stadsbostaden',
-  'social-inclusion',
+  'arkyv-marketing',
+  'en-plats-pa-natten',
 ];
